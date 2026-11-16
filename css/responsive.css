@@ -308,3 +308,15 @@
     transform: none;
   }
 }
+
+/* ===== Режим высокой контрастности Windows (forced colors) =====
+   Цвета заменяются системными, поэтому метки, которые держались
+   только на цвете фона, получают рамку. */
+@media (forced-colors: active) {
+  .product-card__badge,
+  .site-nav__link--active,
+  .order-steps__item::before,
+  .route__step::before {
+    border: 2px solid CanvasText;
+  }
+}
