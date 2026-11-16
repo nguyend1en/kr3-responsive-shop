@@ -51,10 +51,7 @@ kr3-responsive-shop/
 │   └── main.js          — мобильное меню, модальное окно, проверка форм, корзина, чат
 ├── images/
 │   ├── favicon.svg
-│   └── products/        — фото товаров и категорий 480px и 960px в форматах WebP и JPEG
-├── scripts/
-│   ├── download-images.ps1 — скрипт, которым фото загружены с Unsplash
-│   └── download-images.bat — запуск скрипта двойным щелчком
+│   └── products/        — фото товаров, категорий и главного экрана 480px и 960px в форматах WebP и JPEG
 ├── lighthouse/
 │   └── report.png       — скриншот отчёта Lighthouse
 ├── README.md
@@ -121,27 +118,25 @@ kr3-responsive-shop/
 
 ## Фотографии
 
-Фото товаров взяты с [Unsplash](https://unsplash.com/) (бесплатная лицензия Unsplash) и загружены скриптом `scripts/download-images.ps1` (запуск — `scripts/download-images.bat`) в двух размерах и двух форматах.
+Фото товаров, категорий и главного экрана взяты с официальных сайтов производителей и магазинов и используются только в учебных целях. Каждое фото обрезано до пропорции 3:2 (товары на белом фоне — вписаны с полями) и сохранено в двух размерах (480 и 960px) и двух форматах (WebP и JPEG).
 
-| Товар | Страница фото |
+| Файл | Источник |
 | --- | --- |
-| Беспроводные наушники | <https://unsplash.com/photos/l9Z8SE377OU> |
-| Умная колонка | <https://unsplash.com/photos/XCH03_cdWTA> |
-| Портативный аккумулятор | <https://unsplash.com/photos/mI0yALu4BJA> |
-| Настольная лампа | <https://unsplash.com/photos/SbGLQAtv8Gk> |
-| Вязаный плед | <https://unsplash.com/photos/694K2AhsFLA> |
-| Термобутылка | <https://unsplash.com/photos/dGIEMeN2MV8> |
-| Городской рюкзак | <https://unsplash.com/photos/3wcfuygszjU> |
-| Беспроводная клавиатура | <https://unsplash.com/photos/8-rk1cT-1xo> |
-| Главный экран | <https://unsplash.com/photos/FnR2U1lXsBQ> |
-| Категория «Электроника» | <https://unsplash.com/photos/SBv6vq-92eE> |
-| Категория «Дом» | <https://unsplash.com/photos/iAftdIcgpFc> |
-| Категория «Аксессуары» | <https://unsplash.com/photos/JQ-WgCJk5ow> |
+| `hero` — главный экран | Logitech, страница клавиатуры K380 |
+| `cat-electronics` | Logitech, страница клавиатуры K380 |
+| `cat-home` | IKEA, плед SANDBRODD |
+| `cat-accessories`, `backpack`, `headphones` | Xiaomi, рюкзак Mi Casual Daypack |
+| `speaker` | Яндекс, Станция Мини 3 |
+| `powerbank` | Xiaomi, Mi Power Bank 3 Ultra Compact |
+| `lamp` | Xiaomi, Mi LED Desk Lamp 1S |
+| `blanket` | IKEA, плед HUMLEMOTT |
+| `keyboard` | Logitech, клавиатура K380 |
+| `bottle` | временная заглушка — фото будет добавлено |
 
 ## Самостоятельные доработки
 
 1. Новый дизайн в стиле светлого минимализма с системой CSS-переменных.
-2. Реальные фотографии всех товаров в двух размерах и двух форматах.
+2. Фотографии товаров с сайтов производителей в двух размерах и двух форматах.
 3. Страница контактов с картой Яндекс, маршрутом от метро и формой обратной связи.
 4. Расширенный подвал из четырёх колонок с соцсетями и контактами.
 5. Блоки «Категории», иконки преимуществ, цифры на первом экране.
