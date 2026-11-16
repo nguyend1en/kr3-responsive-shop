@@ -22,6 +22,9 @@ $photos = [ordered]@{
   'backpack'   = '3wcfuygszjU'   # рюкзак
   'keyboard'   = '8-rk1cT-1xo'   # беспроводная клавиатура
   'hero'       = 'FnR2U1lXsBQ'   # фото для главного экрана
+  'cat-electronics' = 'SBv6vq-92eE'   # категория «Электроника»
+  'cat-home'        = 'iAftdIcgpFc'   # категория «Дом»
+  'cat-accessories' = 'JQ-WgCJk5ow'   # категория «Аксессуары»
 }
 
 $root = Split-Path -Parent $PSScriptRoot
@@ -36,6 +39,8 @@ $client.DefaultRequestHeaders.UserAgent.ParseAdd('Mozilla/5.0 kr3-responsive-sho
 
 foreach ($name in $photos.Keys) {
   $id = $photos[$name]
+  # уже загруженные фото пропускаем (скрипт можно запускать повторно)
+  if (Test-Path (Join-Path $out "$name-960.jpg")) { Write-Host "-- $name уже есть"; continue }
   Write-Host "-> $name ($id)"
   # 1) страница скачивания отвечает перенаправлением на адрес картинки
   $resp = $client.GetAsync("https://unsplash.com/photos/$id/download").Result

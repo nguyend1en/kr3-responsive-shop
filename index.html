@@ -70,10 +70,34 @@
 
     <section class="section" id="categories" aria-labelledby="categories-title">
       <h2 class="section__title" id="categories-title">Категории</h2>
-      <ul class="categories">
-        <li class="category-card"><a class="category-card__link" href="catalog.html"><span><span class="category-card__title">Электроника</span><br><span class="category-card__count">3 товара</span></span></a></li>
-        <li class="category-card"><a class="category-card__link" href="catalog.html"><span><span class="category-card__title">Дом</span><br><span class="category-card__count">2 товара</span></span></a></li>
-        <li class="category-card"><a class="category-card__link" href="catalog.html"><span><span class="category-card__title">Аксессуары</span><br><span class="category-card__count">3 товара</span></span></a></li>
+      <ul class="categories categories--photos">
+        <li class="category-card">
+          <a class="category-card__link" href="catalog.html">
+            <picture>
+              <source type="image/webp" srcset="images/products/cat-electronics-480.webp 480w, images/products/cat-electronics-960.webp 960w" sizes="(min-width: 600px) 33vw, 100vw">
+              <img class="category-card__image" src="images/products/cat-electronics-480.jpg" srcset="images/products/cat-electronics-480.jpg 480w, images/products/cat-electronics-960.jpg 960w" sizes="(min-width: 600px) 33vw, 100vw" alt="Компьютер, клавиатура и мышь на рабочем столе" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
+            <span class="category-card__body"><span class="category-card__title">Электроника</span><span class="category-card__count">3 товара</span></span>
+          </a>
+        </li>
+        <li class="category-card">
+          <a class="category-card__link" href="catalog.html">
+            <picture>
+              <source type="image/webp" srcset="images/products/cat-home-480.webp 480w, images/products/cat-home-960.webp 960w" sizes="(min-width: 600px) 33vw, 100vw">
+              <img class="category-card__image" src="images/products/cat-home-480.jpg" srcset="images/products/cat-home-480.jpg 480w, images/products/cat-home-960.jpg 960w" sizes="(min-width: 600px) 33vw, 100vw" alt="Уютная спальня с подушками и настольной лампой" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
+            <span class="category-card__body"><span class="category-card__title">Дом</span><span class="category-card__count">2 товара</span></span>
+          </a>
+        </li>
+        <li class="category-card">
+          <a class="category-card__link" href="catalog.html">
+            <picture>
+              <source type="image/webp" srcset="images/products/cat-accessories-480.webp 480w, images/products/cat-accessories-960.webp 960w" sizes="(min-width: 600px) 33vw, 100vw">
+              <img class="category-card__image" src="images/products/cat-accessories-480.jpg" srcset="images/products/cat-accessories-480.jpg 480w, images/products/cat-accessories-960.jpg 960w" sizes="(min-width: 600px) 33vw, 100vw" alt="Рюкзак на деревянном столе" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
+            <span class="category-card__body"><span class="category-card__title">Аксессуары</span><span class="category-card__count">3 товара</span></span>
+          </a>
+        </li>
       </ul>
     </section>
 

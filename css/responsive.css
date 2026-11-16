@@ -391,6 +391,26 @@
   }
 }
 
+/* категории с фото на маленьком планшете: три узкие колонки,
+   стрелка скрыта, отступы меньше */
+@media (min-width: 600px) and (max-width: 767px) {
+  .categories--photos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .categories--photos .category-card__body {
+    padding: var(--space-md);
+  }
+
+  .categories--photos .category-card__title {
+    font-size: 1rem;
+  }
+
+  .categories--photos .category-card__link::after {
+    content: none;
+  }
+}
+
 /* ===== Режим высокой контрастности Windows (forced colors) =====
    Цвета заменяются системными, поэтому метки, которые держались
    только на цвете фона, получают рамку. */
