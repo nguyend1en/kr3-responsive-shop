@@ -4,26 +4,42 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Беспроводные наушники — Учебный интернет-магазин</title>
-  <meta name="description" content="Беспроводные наушники: описание, характеристики, сравнение с другими товарами, отзывы и цена.">
+  <meta name="description" content="Беспроводные наушники: описание, характеристики, сравнение с другими товарами и отзывы покупателей.">
+  <meta name="theme-color" content="#ffffff">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
   <script src="js/main.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+  <div class="topbar">
+    <div class="topbar__inner">
+      <p class="topbar__text">Бесплатная доставка от 5 000 руб.</p>
+      <a class="topbar__phone" href="tel:+79000000000">+7 (900) 000-00-00</a>
+    </div>
+  </div>
   <header class="site-header" id="top">
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html">ShopProject</a>
       <nav class="site-nav" aria-label="Основная навигация">
-        <ul class="site-nav__list">
-        <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
-        <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
-        <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="product.html" aria-current="page">Товар</a></li>
-        <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
-        <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
-        <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
-        <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
+        <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-list">
+          <span class="site-nav__toggle-icon" aria-hidden="true"></span>
+          Меню
+        </button>
+        <ul class="site-nav__list" id="site-nav-list">
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="product.html" aria-current="page">Товар</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
         </ul>
       </nav>
+      <a class="button button--primary site-header__cta" href="order.html">Оставить заявку</a>
     </div>
   </header>
 
@@ -37,7 +53,10 @@
     <article class="product-detail">
       <div class="product-detail__media">
         <span class="product-card__badge product-card__badge--hit">Хит</span>
-        <img class="product-detail__image" src="images/product.png" alt="Беспроводные наушники" width="600" height="400">
+        <picture>
+          <source type="image/webp" srcset="images/products/headphones-480.webp 480w, images/products/headphones-960.webp 960w" sizes="(min-width: 1024px) 640px, (min-width: 768px) 50vw, 100vw">
+          <img class="product-detail__image" src="images/products/headphones-960.jpg" srcset="images/products/headphones-480.jpg 480w, images/products/headphones-960.jpg 960w" sizes="(min-width: 1024px) 640px, (min-width: 768px) 50vw, 100vw" alt="Беспроводные наушники" width="960" height="640" fetchpriority="high">
+        </picture>
       </div>
       <div class="product-detail__info">
         <p class="product-detail__category">Электроника</p>
@@ -59,9 +78,9 @@
 
     <section class="section" aria-labelledby="specs-title">
       <h2 class="section__title" id="specs-title">Характеристики</h2>
-      <div class="table-wrap">
+      <div class="table-wrap" role="region" aria-labelledby="specs-caption" tabindex="0">
         <table class="data-table">
-          <caption class="data-table__caption">Характеристики товара</caption>
+          <caption class="data-table__caption" id="specs-caption">Характеристики товара</caption>
           <thead>
             <tr class="data-table__row">
               <th class="data-table__head-cell" scope="col">Параметр</th>
@@ -100,9 +119,10 @@
 
     <section class="section" aria-labelledby="compare-title">
       <h2 class="section__title" id="compare-title">Сравнение с другими товарами</h2>
-      <div class="table-wrap">
-        <table class="data-table">
-          <caption class="data-table__caption">Сравнение товаров категории «Электроника»</caption>
+      <p class="table-hint" aria-hidden="true">Таблицу можно прокрутить вправо &rarr;</p>
+      <div class="table-wrap" role="region" aria-labelledby="compare-caption" tabindex="0">
+        <table class="data-table data-table--compare">
+          <caption class="data-table__caption" id="compare-caption">Сравнение товаров категории «Электроника»</caption>
           <thead>
             <tr class="data-table__row">
               <th class="data-table__head-cell" scope="col">Параметр</th>
@@ -164,7 +184,10 @@
       <div class="products-grid">
           <article class="product-card product-card--discount">
             <span class="product-card__badge">Скидка</span>
-            <img class="product-card__image" src="images/product.png" alt="Умная колонка" width="300" height="200">
+            <picture>
+              <source type="image/webp" srcset="images/products/speaker-480.webp 480w, images/products/speaker-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
+              <img class="product-card__image" src="images/products/speaker-480.jpg" srcset="images/products/speaker-480.jpg 480w, images/products/speaker-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Умная колонка" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
             <p class="product-card__category">Электроника</p>
             <h3 class="product-card__title">Умная колонка</h3>
             <p class="product-card__description">Компактная колонка с голосовым помощником и Wi‑Fi.</p>
@@ -176,7 +199,10 @@
           </article>
           <article class="product-card product-card--hit">
             <span class="product-card__badge product-card__badge--hit">Хит</span>
-            <img class="product-card__image" src="images/product.png" alt="Портативный аккумулятор" width="300" height="200">
+            <picture>
+              <source type="image/webp" srcset="images/products/powerbank-480.webp 480w, images/products/powerbank-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
+              <img class="product-card__image" src="images/products/powerbank-480.jpg" srcset="images/products/powerbank-480.jpg 480w, images/products/powerbank-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Портативный аккумулятор" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
             <p class="product-card__category">Электроника</p>
             <h3 class="product-card__title">Портативный аккумулятор</h3>
             <p class="product-card__description">10 000 мА·ч, быстрая зарядка, два USB-порта.</p>
@@ -188,7 +214,10 @@
           </article>
           <article class="product-card product-card--new">
             <span class="product-card__badge product-card__badge--new">Новинка</span>
-            <img class="product-card__image" src="images/product.png" alt="Городской рюкзак" width="300" height="200">
+            <picture>
+              <source type="image/webp" srcset="images/products/backpack-480.webp 480w, images/products/backpack-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
+              <img class="product-card__image" src="images/products/backpack-480.jpg" srcset="images/products/backpack-480.jpg 480w, images/products/backpack-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Городской рюкзак" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
             <p class="product-card__category">Аксессуары</p>
             <h3 class="product-card__title">Городской рюкзак</h3>
             <p class="product-card__description">Отделение для ноутбука 15,6", водоотталкивающая ткань.</p>
@@ -204,13 +233,45 @@
 
   <footer class="site-footer" id="contacts">
     <div class="site-footer__inner">
-      <nav class="site-footer__nav" aria-label="Быстрые ссылки">
-        <a class="site-footer__link" href="index.html#advantages">Преимущества</a>
-        <a class="site-footer__link" href="index.html#popular">Популярные товары</a>
-        <a class="site-footer__link" href="index.html#contacts">Контакты</a>
+      <div class="site-footer__brand">
+        <a class="site-footer__logo" href="index.html">ShopProject</a>
+        <p class="site-footer__about">Учебный интернет-магазин электроники, товаров для дома и аксессуаров. Проект по дисциплине «Фронтенд и бэкенд разработка».</p>
+        <ul class="socials">
+          <li><a class="socials__link" href="https://vk.com/" target="_blank" rel="noopener" aria-label="ВКонтакте (в новой вкладке)">VK</a></li>
+          <li><a class="socials__link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram (в новой вкладке)">TG</a></li>
+        </ul>
+      </div>
+      <nav class="site-footer__col" aria-labelledby="footer-shop-title">
+        <h2 class="site-footer__title" id="footer-shop-title">Магазин</h2>
+        <ul class="site-footer__list">
+          <li><a class="site-footer__link" href="catalog.html">Каталог</a></li>
+          <li><a class="site-footer__link" href="index.html#popular">Популярные товары</a></li>
+          <li><a class="site-footer__link" href="index.html#advantages">Преимущества</a></li>
+          <li><a class="site-footer__link" href="order.html">Оформить заявку</a></li>
+        </ul>
       </nav>
-      <p class="site-footer__text">&copy; 2026 Учебный проект. Все права защищены.</p>
-      <p class="site-footer__text">Дисциплина: Фронтенд и бэкенд разработка</p>
+      <nav class="site-footer__col" aria-labelledby="footer-help-title">
+        <h2 class="site-footer__title" id="footer-help-title">Покупателям</h2>
+        <ul class="site-footer__list">
+          <li><a class="site-footer__link" href="contacts.html#faq">Доставка и оплата</a></li>
+          <li><a class="site-footer__link" href="contacts.html#faq">Возврат товара</a></li>
+          <li><a class="site-footer__link" href="contacts.html#route">Как добраться</a></li>
+          <li><a class="site-footer__link" href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">Контакты</h2>
+        <address class="site-footer__address">
+          <span>г. Москва, ул. Мясницкая, д. 24</span>
+          <a href="tel:+79000000000">+7 (900) 000-00-00</a>
+          <a href="mailto:example@mail.ru">example@mail.ru</a>
+          <span>Ежедневно 10:00–20:00</span>
+        </address>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>&copy; 2026 ShopProject. Учебный проект, данные условные.</p>
+      <p>Фото товаров: <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a></p>
     </div>
   </footer>
   <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
@@ -219,45 +280,45 @@
     <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
     <form class="order-form" id="dlg-form" action="#" method="post">
     <input id="selected-product" name="selected-product" type="hidden">
-    <div class="order-form__field">
-      <label class="order-form__label" for="dlg-name">Имя</label>
-      <input class="order-form__input" id="dlg-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
-    </div>
-    <div class="order-form__field">
-      <label class="order-form__label" for="dlg-email">E-mail</label>
-      <input class="order-form__input" id="dlg-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
-    </div>
-    <div class="order-form__field">
-      <label class="order-form__label" for="dlg-phone">Телефон</label>
-      <input class="order-form__input" id="dlg-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" autocomplete="tel" aria-describedby="dlg-phone-hint" required>
-      <small class="order-form__hint" id="dlg-phone-hint">Формат: +7 (900) 000-00-00</small>
-    </div>
-    <div class="order-form__field">
-      <label class="order-form__label" for="dlg-date">Дата связи</label>
-      <input class="order-form__input" id="dlg-date" name="date" type="date">
-    </div>
-    <div class="order-form__field">
-      <label class="order-form__label" for="dlg-topic">Тема заявки</label>
-      <select class="order-form__select" id="dlg-topic" name="topic" required>
-        <option value="">Выберите тему</option>
-        <option value="product">Заказ товара</option>
-        <option value="consultation">Консультация</option>
-        <option value="delivery">Доставка</option>
-      </select>
-    </div>
-    <div class="order-form__field">
-      <label class="order-form__label" for="dlg-comment">Комментарий</label>
-      <textarea class="order-form__textarea" id="dlg-comment" name="comment" rows="4" placeholder="Укажите дополнительную информацию"></textarea>
-    </div>
-    <div class="order-form__field order-form__field--checkbox">
-      <input class="order-form__checkbox" id="dlg-agreement" name="agreement" type="checkbox" required>
-      <label class="order-form__label" for="dlg-agreement">Я согласен на обработку данных</label>
-    </div>
-    <div class="order-form__actions">
-      <button class="button button--secondary" type="button" id="close-order-dialog">Закрыть</button>
-      <button class="button button--primary" type="submit">Отправить заявку</button>
-    </div>
-  </form>
+          <div class="order-form__field">
+            <label class="order-form__label" for="dlg-name">Имя</label>
+            <input class="order-form__input" id="dlg-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
+          </div>
+          <div class="order-form__field">
+            <label class="order-form__label" for="dlg-email">E-mail</label>
+            <input class="order-form__input" id="dlg-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
+          </div>
+          <div class="order-form__field">
+            <label class="order-form__label" for="dlg-phone">Телефон</label>
+            <input class="order-form__input" id="dlg-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" autocomplete="tel" aria-describedby="dlg-phone-hint" required>
+            <small class="order-form__hint" id="dlg-phone-hint">Формат: +7 (900) 000-00-00</small>
+          </div>
+          <div class="order-form__field">
+            <label class="order-form__label" for="dlg-date">Дата связи</label>
+            <input class="order-form__input" id="dlg-date" name="date" type="date">
+          </div>
+          <div class="order-form__field order-form__field--wide">
+            <label class="order-form__label" for="dlg-topic">Тема заявки</label>
+            <select class="order-form__select" id="dlg-topic" name="topic" required>
+              <option value="">Выберите тему</option>
+              <option value="product">Заказ товара</option>
+              <option value="consultation">Консультация</option>
+              <option value="delivery">Доставка</option>
+            </select>
+          </div>
+          <div class="order-form__field order-form__field--wide">
+            <label class="order-form__label" for="dlg-comment">Комментарий</label>
+            <textarea class="order-form__textarea" id="dlg-comment" name="comment" rows="4" placeholder="Укажите дополнительную информацию"></textarea>
+          </div>
+          <div class="order-form__field order-form__field--checkbox">
+            <input class="order-form__checkbox" id="dlg-agreement" name="agreement" type="checkbox" required>
+            <label class="order-form__label" for="dlg-agreement">Я согласен на обработку данных</label>
+          </div>
+          <div class="order-form__actions">
+            <button class="button button--secondary" type="button" id="close-order-dialog">Закрыть</button>
+            <button class="button button--primary" type="submit">Отправить заявку</button>
+          </div>
+    </form>
   </dialog>
 
   <p class="success-message" id="success-message" role="status" hidden>Заявка отправлена! Мы свяжемся с вами в течение рабочего дня.</p>

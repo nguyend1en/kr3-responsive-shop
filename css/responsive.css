@@ -1,0 +1,310 @@
+/* =========================================================
+   ShopProject — КР №3. Адаптивные стили.
+   Mobile First: базовые стили в style.css написаны для
+   телефона, а здесь медиазапросы min-width постепенно
+   расширяют макет для больших экранов.
+
+   Контрольные точки:
+     480px  — крупный телефон (кнопки в строку)
+     600px  — маленький планшет (2 колонки карточек)
+     768px  — планшет
+     1024px — ноутбук / desktop
+     1280px — широкий экран (4 колонки карточек)
+   ========================================================= */
+
+/* ===== 480px: крупный телефон ===== */
+@media (min-width: 480px) {
+  .hero__actions,
+  .order-form__actions,
+  .product-detail__actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .hero__title {
+    font-size: 2.5rem;
+  }
+}
+
+/* ===== 600px: маленький планшет ===== */
+@media (min-width: 600px) {
+  main {
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
+  }
+
+  .topbar__phone {
+    display: inline;
+  }
+
+  .products-grid,
+  .advantages,
+  .reviews {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .categories {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .category-card__link {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 160px;
+  }
+
+  .success-message {
+    left: auto;
+    max-width: 380px;
+  }
+
+  /* форма: поля в две колонки, длинные — на всю ширину */
+  .order-form {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md) var(--space-lg);
+    align-items: start;
+  }
+
+  .order-form__field--wide,
+  .order-form__field--checkbox,
+  .order-form__actions {
+    grid-column: 1 / -1;
+  }
+
+  /* от 600px таблица сравнения помещается — подсказка не нужна */
+  .table-hint {
+    display: none;
+  }
+
+  .contact-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .feedback {
+    padding: var(--space-xl);
+  }
+
+  /* подвал: 2 колонки */
+  .site-footer__inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===== 768px: планшет ===== */
+@media (min-width: 768px) {
+  h1,
+  .page-title {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  /* кнопка заявки в шапке */
+  .button.site-header__cta {
+    display: inline-flex;
+    min-height: 40px;
+    padding: 8px 18px;
+    font-size: 0.95rem;
+  }
+
+  .hero__title {
+    font-size: 3rem;
+  }
+
+  .order-steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .aside-info {
+    padding: var(--space-2xl);
+  }
+
+  /* страница товара: фото и описание рядом */
+  .product-detail {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .product-detail__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .order-dialog {
+    padding: var(--space-xl);
+  }
+}
+
+/* ===== 1024px: desktop ===== */
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 72px;
+  }
+
+  /* шапка: логотип, меню и кнопка в одну строку */
+  .site-header__inner {
+    flex-wrap: nowrap;
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .site-nav {
+    width: auto;
+    margin-left: auto;
+  }
+
+  .site-nav__list {
+    overflow: visible;
+  }
+
+  /* на desktop кнопка «Меню» не нужна — меню видно всегда */
+  .js .site-nav__toggle {
+    display: none;
+  }
+
+  .js .site-nav__list {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-xs);
+    max-height: none;
+    padding: 0;
+    overflow: visible;
+    background-color: transparent;
+    border-bottom: none;
+    box-shadow: none;
+  }
+
+  .js .site-nav__link {
+    padding: var(--space-sm) 14px;
+    font-size: 1rem;
+    border-radius: var(--radius-pill);
+  }
+
+  main {
+    padding: var(--space-xl) var(--space-lg) 96px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: var(--space-2xl);
+    padding-top: var(--space-xl);
+  }
+
+  .hero__title {
+    font-size: 3.5rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .advantages {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .reviews {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* каталог: фильтры слева, товары справа (grid-template-areas) */
+  .catalog-layout {
+    grid-template-columns: 260px 1fr;
+    grid-template-areas: "filters products";
+    align-items: start;
+  }
+
+  /* фильтры «прилипают» под шапкой при прокрутке */
+  .catalog-filters {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-lg));
+  }
+
+  /* на desktop варианты фильтра — обычный список */
+  .catalog-filters__group {
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .catalog-filters__option {
+    min-height: 36px;
+    padding: 4px 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+  }
+
+  .catalog-filters__option:has(input:checked) {
+    font-weight: 800;
+  }
+
+  /* minmax(0, …) не даёт содержимому раздвинуть колонку */
+  .order-layout {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  }
+
+  .order-layout__aside {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-lg));
+  }
+
+  .product-detail {
+    grid-template-columns: 7fr 5fr;
+    gap: var(--space-2xl);
+  }
+
+  .product-detail__actions {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  /* контакты: данные слева, карта справа */
+  .contacts-layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  /* подвал: 4 колонки — о магазине шире остальных */
+  .site-footer__inner {
+    grid-template-columns: 2fr 1fr 1fr 1.3fr;
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
+  }
+
+  .site-footer__bottom {
+    padding: var(--space-lg);
+  }
+}
+
+/* ===== 1280px: широкий экран ===== */
+@media (min-width: 1280px) {
+  .products-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* в каталоге рядом с фильтрами помещается 3 колонки */
+  .catalog .products-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===== Пользователь просит меньше анимаций ===== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .product-card:hover,
+  .product-card:focus-within {
+    transform: none;
+  }
+}
