@@ -43,10 +43,12 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <span class="breadcrumbs__current">Заявка</span>
+      <ol class="breadcrumbs__list">
+        <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Главная</a></li>
+        <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Заявка</span></li>
+      </ol>
     </nav>
     <h1 class="page-title">Оформление заявки</h1>
 
@@ -160,7 +162,7 @@
     </div>
     <div class="site-footer__bottom">
       <p>&copy; 2026 ShopProject. Учебный проект, данные условные.</p>
-      <p>Фото товаров: <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a></p>
+      <p>Фото товаров: <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash<span class="visually-hidden"> (в новой вкладке)</span></a></p>
     </div>
   </footer>
   <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>

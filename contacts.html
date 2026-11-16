@@ -43,10 +43,12 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <span class="breadcrumbs__current">Контакты</span>
+      <ol class="breadcrumbs__list">
+        <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Главная</a></li>
+        <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Контакты</span></li>
+      </ol>
     </nav>
     <h1 class="page-title">Контакты</h1>
 
@@ -87,7 +89,7 @@
         <div class="map-block__frame">
           <iframe class="map-block__iframe" src="https://yandex.ru/map-widget/v1/?ll=37.634700%2C55.762700&amp;z=16&amp;pt=37.634700%2C55.762700%2Cpm2rdm" title="Яндекс Карта: пункт выдачи ShopProject, Москва, ул. Мясницкая, 24" loading="lazy" allowfullscreen></iframe>
         </div>
-        <a class="map-block__link" href="https://yandex.ru/maps/?pt=37.634700,55.762700&amp;z=17&amp;l=map" target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
+        <a class="map-block__link" href="https://yandex.ru/maps/?pt=37.634700,55.762700&amp;z=17&amp;l=map" target="_blank" rel="noopener">Открыть в Яндекс Картах<span class="visually-hidden"> (в новой вкладке)</span></a>
       </section>
     </div>
 
@@ -190,7 +192,7 @@
     </div>
     <div class="site-footer__bottom">
       <p>&copy; 2026 ShopProject. Учебный проект, данные условные.</p>
-      <p>Фото товаров: <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a></p>
+      <p>Фото товаров: <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash<span class="visually-hidden"> (в новой вкладке)</span></a></p>
     </div>
   </footer>
   <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>

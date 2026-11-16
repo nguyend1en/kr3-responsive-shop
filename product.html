@@ -43,11 +43,13 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <nav class="breadcrumbs" aria-label="Хлебные крошки">
-      <a class="breadcrumbs__link" href="index.html">Главная</a>
-      <a class="breadcrumbs__link" href="catalog.html">Каталог</a>
-      <span class="breadcrumbs__current">Беспроводные наушники</span>
+      <ol class="breadcrumbs__list">
+        <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Главная</a></li>
+        <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="catalog.html">Каталог</a></li>
+        <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Беспроводные наушники</span></li>
+      </ol>
     </nav>
 
     <article class="product-detail">
@@ -191,10 +193,10 @@
             <p class="product-card__category">Электроника</p>
             <h3 class="product-card__title">Умная колонка</h3>
             <p class="product-card__description">Компактная колонка с голосовым помощником и Wi‑Fi.</p>
-            <p class="product-card__price">3 490 руб. <s class="product-card__old-price">4 290 руб.</s></p>
+            <p class="product-card__price">3 490 руб. <s class="product-card__old-price"><span class="visually-hidden">Старая цена: </span>4 290 руб.</s></p>
             <div class="product-card__actions">
-              <a class="button button--secondary" href="product.html">Подробнее</a>
-              <button class="button button--primary product-card__button" type="button" data-product="Умная колонка">Заказать</button>
+              <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Умная колонка»</span></a>
+              <button class="button button--primary product-card__button" type="button" data-product="Умная колонка">Заказать<span class="visually-hidden"> «Умная колонка»</span></button>
             </div>
           </article>
           <article class="product-card product-card--hit">
@@ -208,8 +210,8 @@
             <p class="product-card__description">10 000 мА·ч, быстрая зарядка, два USB-порта.</p>
             <p class="product-card__price">1 990 руб.</p>
             <div class="product-card__actions">
-              <a class="button button--secondary" href="product.html">Подробнее</a>
-              <button class="button button--primary product-card__button" type="button" data-product="Портативный аккумулятор">Заказать</button>
+              <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Портативный аккумулятор»</span></a>
+              <button class="button button--primary product-card__button" type="button" data-product="Портативный аккумулятор">Заказать<span class="visually-hidden"> «Портативный аккумулятор»</span></button>
             </div>
           </article>
           <article class="product-card product-card--new">
@@ -223,8 +225,8 @@
             <p class="product-card__description">Отделение для ноутбука 15,6", водоотталкивающая ткань.</p>
             <p class="product-card__price">3 990 руб.</p>
             <div class="product-card__actions">
-              <a class="button button--secondary" href="product.html">Подробнее</a>
-              <button class="button button--primary product-card__button" type="button" data-product="Городской рюкзак">Заказать</button>
+              <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Городской рюкзак»</span></a>
+              <button class="button button--primary product-card__button" type="button" data-product="Городской рюкзак">Заказать<span class="visually-hidden"> «Городской рюкзак»</span></button>
             </div>
           </article>
       </div>
@@ -271,7 +273,7 @@
     </div>
     <div class="site-footer__bottom">
       <p>&copy; 2026 ShopProject. Учебный проект, данные условные.</p>
-      <p>Фото товаров: <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a></p>
+      <p>Фото товаров: <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash<span class="visually-hidden"> (в новой вкладке)</span></a></p>
     </div>
   </footer>
   <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
