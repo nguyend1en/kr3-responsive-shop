@@ -115,6 +115,12 @@ a:hover {
   color: var(--color-accent-text);
 }
 
+/* адаптивные изображения: не шире контейнера,
+   высота считается по пропорции из width/height */
+picture {
+  display: block;
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -481,6 +487,18 @@ summary:focus-visible {
 .hero__stat-label {
   font-size: 0.85rem;
   color: var(--color-muted);
+}
+
+.hero__media {
+  overflow: hidden;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+}
+
+.hero__image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
 }
 
 /* ===== 9. Разделы ===== */
