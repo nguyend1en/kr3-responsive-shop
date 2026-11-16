@@ -28,7 +28,7 @@
       <a class="site-header__logo" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#141414"/><path d="M19 25h26l-3 21H22z" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round"/><path d="M26 25v-3a6 6 0 0 1 12 0v3" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/><circle cx="47" cy="46" r="6" fill="#e8590c"/></svg><span class="site-header__name">ShopProject</span></a>
       <div class="header-actions">
         <a class="header-actions__link" href="account.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="header-actions__text">Войти</span></a>
-        <a class="header-actions__link" href="cart.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg><span class="header-actions__text">Корзина</span><span class="header-actions__count"><span class="visually-hidden">, товаров: </span>4</span></a>
+        <a class="header-actions__link" href="cart.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg><span class="header-actions__text">Корзина</span><span class="header-actions__count"><span class="visually-hidden">, товаров: </span><span class="header-actions__count-value">0</span></span></a>
       </div>
       <nav class="site-nav" aria-label="Основная навигация">
         <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-list">
@@ -118,7 +118,7 @@
             <p class="product-card__price">4 990 руб.</p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Беспроводные наушники»</span></a>
-              <button class="button button--primary product-card__button" type="button" data-product="Беспроводные наушники">Заказать<span class="visually-hidden"> «Беспроводные наушники»</span></button>
+              <button class="button button--primary product-card__cart" type="button" data-id="headphones" data-name="Беспроводные наушники" data-category="Электроника" data-price="4990">В корзину<span class="visually-hidden"> «Беспроводные наушники»</span></button>
             </div>
           </article>
           <article class="product-card product-card--discount">
@@ -133,7 +133,7 @@
             <p class="product-card__price">3 490 руб. <s class="product-card__old-price"><span class="visually-hidden">Старая цена: </span>4 290 руб.</s></p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Умная колонка»</span></a>
-              <button class="button button--primary product-card__button" type="button" data-product="Умная колонка">Заказать<span class="visually-hidden"> «Умная колонка»</span></button>
+              <button class="button button--primary product-card__cart" type="button" data-id="speaker" data-name="Умная колонка" data-category="Электроника" data-price="3490" data-old-price="4290">В корзину<span class="visually-hidden"> «Умная колонка»</span></button>
             </div>
           </article>
           <article class="product-card product-card--hit">
@@ -148,7 +148,7 @@
             <p class="product-card__price">1 990 руб.</p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Портативный аккумулятор»</span></a>
-              <button class="button button--primary product-card__button" type="button" data-product="Портативный аккумулятор">Заказать<span class="visually-hidden"> «Портативный аккумулятор»</span></button>
+              <button class="button button--primary product-card__cart" type="button" data-id="powerbank" data-name="Портативный аккумулятор" data-category="Электроника" data-price="1990">В корзину<span class="visually-hidden"> «Портативный аккумулятор»</span></button>
             </div>
           </article>
           <article class="product-card product-card--new">
@@ -163,7 +163,7 @@
             <p class="product-card__price">2 290 руб.</p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Настольная лампа»</span></a>
-              <button class="button button--primary product-card__button" type="button" data-product="Настольная лампа">Заказать<span class="visually-hidden"> «Настольная лампа»</span></button>
+              <button class="button button--primary product-card__cart" type="button" data-id="lamp" data-name="Настольная лампа" data-category="Дом" data-price="2290">В корзину<span class="visually-hidden"> «Настольная лампа»</span></button>
             </div>
           </article>
       </div>
@@ -257,51 +257,6 @@
     </div>
   </footer>
   <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
-
-  <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
-    <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
-    <form class="order-form" id="dlg-form" action="#" method="post">
-    <input id="selected-product" name="selected-product" type="hidden">
-          <div class="order-form__field">
-            <label class="order-form__label" for="dlg-name">Имя</label>
-            <input class="order-form__input" id="dlg-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
-          </div>
-          <div class="order-form__field">
-            <label class="order-form__label" for="dlg-email">E-mail</label>
-            <input class="order-form__input" id="dlg-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
-          </div>
-          <div class="order-form__field">
-            <label class="order-form__label" for="dlg-phone">Телефон</label>
-            <input class="order-form__input" id="dlg-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" autocomplete="tel" aria-describedby="dlg-phone-hint" required>
-            <small class="order-form__hint" id="dlg-phone-hint">Формат: +7 (900) 000-00-00</small>
-          </div>
-          <div class="order-form__field">
-            <label class="order-form__label" for="dlg-date">Дата связи</label>
-            <input class="order-form__input" id="dlg-date" name="date" type="date">
-          </div>
-          <div class="order-form__field order-form__field--wide">
-            <label class="order-form__label" for="dlg-topic">Тема заявки</label>
-            <select class="order-form__select" id="dlg-topic" name="topic" required>
-              <option value="">Выберите тему</option>
-              <option value="product">Заказ товара</option>
-              <option value="consultation">Консультация</option>
-              <option value="delivery">Доставка</option>
-            </select>
-          </div>
-          <div class="order-form__field order-form__field--wide">
-            <label class="order-form__label" for="dlg-comment">Комментарий</label>
-            <textarea class="order-form__textarea" id="dlg-comment" name="comment" rows="4" placeholder="Укажите дополнительную информацию"></textarea>
-          </div>
-          <div class="order-form__field order-form__field--checkbox">
-            <input class="order-form__checkbox" id="dlg-agreement" name="agreement" type="checkbox" required>
-            <label class="order-form__label" for="dlg-agreement">Я согласен на обработку данных</label>
-          </div>
-          <div class="order-form__actions">
-            <button class="button button--secondary" type="button" id="close-order-dialog">Закрыть</button>
-            <button class="button button--primary" type="submit">Отправить заявку</button>
-          </div>
-    </form>
-  </dialog>
 
   <p class="success-message" id="success-message" role="status" hidden>Заявка отправлена! Мы свяжемся с вами в течение рабочего дня.</p>
   <div class="chat" id="chat">

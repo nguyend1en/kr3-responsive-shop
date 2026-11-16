@@ -28,7 +28,7 @@
       <a class="site-header__logo" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#141414"/><path d="M19 25h26l-3 21H22z" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round"/><path d="M26 25v-3a6 6 0 0 1 12 0v3" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/><circle cx="47" cy="46" r="6" fill="#e8590c"/></svg><span class="site-header__name">ShopProject</span></a>
       <div class="header-actions">
         <a class="header-actions__link" href="account.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="header-actions__text">Войти</span></a>
-        <a class="header-actions__link header-actions__link--active" aria-current="page" href="cart.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg><span class="header-actions__text">Корзина</span><span class="header-actions__count"><span class="visually-hidden">, товаров: </span>4</span></a>
+        <a class="header-actions__link header-actions__link--active" aria-current="page" href="cart.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg><span class="header-actions__text">Корзина</span><span class="header-actions__count"><span class="visually-hidden">, товаров: </span><span class="header-actions__count-value">0</span></span></a>
       </div>
       <nav class="site-nav" aria-label="Основная навигация">
         <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-list">
@@ -56,72 +56,27 @@
     <div class="cart-layout">
       <section class="cart" aria-labelledby="cart-title">
         <div class="catalog__toolbar">
-          <h2 class="catalog__title" id="cart-title">Товары в корзине</h2>
-          <p class="catalog__count">4 товара</p>
+          <h2 class="catalog__title" id="cart-title" tabindex="-1">Товары в корзине</h2>
+          <p class="catalog__count" id="cart-count">0 товаров</p>
         </div>
-        <ul class="cart__list">
-          <li class="cart-item">
-            <picture>
-              <source type="image/webp" srcset="images/products/headphones-480.webp 480w, images/products/headphones-960.webp 960w" sizes="(min-width: 600px) 160px, 96px">
-              <img class="cart-item__image" src="images/products/headphones-480.jpg" srcset="images/products/headphones-480.jpg 480w, images/products/headphones-960.jpg 960w" sizes="(min-width: 600px) 160px, 96px" alt="Беспроводные наушники" width="480" height="320" loading="lazy" decoding="async">
-            </picture>
-            <div class="cart-item__info">
-              <p class="cart-item__category">Электроника</p>
-              <h3 class="cart-item__title"><a class="cart-item__link" href="product.html">Беспроводные наушники</a></h3>
-              <p class="cart-item__price">4 990 руб.</p>
-            </div>
-            <div class="cart-item__controls">
-              <label class="cart-item__qty-label" for="qty-headphones">Количество<span class="visually-hidden"> «Беспроводные наушники»</span></label>
-              <input class="cart-item__qty" id="qty-headphones" name="qty-headphones" type="number" min="1" max="10" value="1" inputmode="numeric">
-              <p class="cart-item__sum"><span class="visually-hidden">Сумма: </span>4 990 руб.</p>
-              <button class="cart-item__remove" type="button" aria-label="Удалить «Беспроводные наушники» из корзины">Удалить</button>
-            </div>
-          </li>
-          <li class="cart-item">
-            <picture>
-              <source type="image/webp" srcset="images/products/speaker-480.webp 480w, images/products/speaker-960.webp 960w" sizes="(min-width: 600px) 160px, 96px">
-              <img class="cart-item__image" src="images/products/speaker-480.jpg" srcset="images/products/speaker-480.jpg 480w, images/products/speaker-960.jpg 960w" sizes="(min-width: 600px) 160px, 96px" alt="Умная колонка" width="480" height="320" loading="lazy" decoding="async">
-            </picture>
-            <div class="cart-item__info">
-              <p class="cart-item__category">Электроника</p>
-              <h3 class="cart-item__title"><a class="cart-item__link" href="product.html">Умная колонка</a></h3>
-              <p class="cart-item__price">3 490 руб. <s class="cart-item__old-price"><span class="visually-hidden">Старая цена: </span>4 290 руб.</s></p>
-            </div>
-            <div class="cart-item__controls">
-              <label class="cart-item__qty-label" for="qty-speaker">Количество<span class="visually-hidden"> «Умная колонка»</span></label>
-              <input class="cart-item__qty" id="qty-speaker" name="qty-speaker" type="number" min="1" max="10" value="1" inputmode="numeric">
-              <p class="cart-item__sum"><span class="visually-hidden">Сумма: </span>3 490 руб.</p>
-              <button class="cart-item__remove" type="button" aria-label="Удалить «Умная колонка» из корзины">Удалить</button>
-            </div>
-          </li>
-          <li class="cart-item">
-            <picture>
-              <source type="image/webp" srcset="images/products/powerbank-480.webp 480w, images/products/powerbank-960.webp 960w" sizes="(min-width: 600px) 160px, 96px">
-              <img class="cart-item__image" src="images/products/powerbank-480.jpg" srcset="images/products/powerbank-480.jpg 480w, images/products/powerbank-960.jpg 960w" sizes="(min-width: 600px) 160px, 96px" alt="Портативный аккумулятор" width="480" height="320" loading="lazy" decoding="async">
-            </picture>
-            <div class="cart-item__info">
-              <p class="cart-item__category">Электроника</p>
-              <h3 class="cart-item__title"><a class="cart-item__link" href="product.html">Портативный аккумулятор</a></h3>
-              <p class="cart-item__price">1 990 руб.</p>
-            </div>
-            <div class="cart-item__controls">
-              <label class="cart-item__qty-label" for="qty-powerbank">Количество<span class="visually-hidden"> «Портативный аккумулятор»</span></label>
-              <input class="cart-item__qty" id="qty-powerbank" name="qty-powerbank" type="number" min="1" max="10" value="2" inputmode="numeric">
-              <p class="cart-item__sum"><span class="visually-hidden">Сумма: </span>3 980 руб.</p>
-              <button class="cart-item__remove" type="button" aria-label="Удалить «Портативный аккумулятор» из корзины">Удалить</button>
-            </div>
-          </li>
-        </ul>
-        <p class="cart__note">Корзина представлена статической разметкой: пересчёт суммы и удаление товаров заработают в КР №4.</p>
+        <!-- список заполняет js/main.js из localStorage -->
+        <ul class="cart__list" id="cart-list"></ul>
+        <div class="cart__empty" id="cart-empty">
+          <p class="cart__empty-title">Корзина пуста</p>
+          <p class="cart__empty-text">Добавьте товары кнопкой «В корзину» в каталоге или на странице товара.</p>
+          <a class="button button--primary" href="catalog.html">Перейти в каталог</a>
+        </div>
+        <noscript><p class="cart__note">Корзина работает с включённым JavaScript.</p></noscript>
+        <p class="visually-hidden" id="cart-status" role="status"></p>
       </section>
 
       <aside class="cart-summary" aria-labelledby="summary-title">
         <h2 class="cart-summary__title" id="summary-title">Ваш заказ</h2>
         <dl class="cart-summary__list">
-          <div class="cart-summary__row"><dt>Товары (4)</dt><dd>13 260 руб.</dd></div>
-          <div class="cart-summary__row cart-summary__row--discount"><dt>Скидка</dt><dd>−800 руб.</dd></div>
-          <div class="cart-summary__row"><dt>Доставка</dt><dd>Бесплатно</dd></div>
-          <div class="cart-summary__row cart-summary__row--total"><dt>Итого</dt><dd>12 460 руб.</dd></div>
+          <div class="cart-summary__row"><dt id="summary-items-label">Товары (0)</dt><dd id="summary-items">0 руб.</dd></div>
+          <div class="cart-summary__row cart-summary__row--discount"><dt>Скидка</dt><dd id="summary-discount">0 руб.</dd></div>
+          <div class="cart-summary__row"><dt>Доставка</dt><dd id="summary-delivery">Бесплатно</dd></div>
+          <div class="cart-summary__row cart-summary__row--total"><dt>Итого</dt><dd id="summary-total">0 руб.</dd></div>
         </dl>
         <form class="promo" action="#" method="post">
           <label class="promo__label" for="promo-code">Промокод</label>
@@ -131,7 +86,7 @@
           </div>
           <p class="promo__note" id="promo-note">Промокоды появятся после подключения backend.</p>
         </form>
-        <a class="button button--primary cart-summary__checkout" href="order.html">Оформить заявку</a>
+        <a class="button button--primary cart-summary__checkout" id="cart-checkout" href="order.html">Оформить заявку</a>
         <a class="cart-summary__back" href="catalog.html">Продолжить покупки</a>
       </aside>
     </div>
