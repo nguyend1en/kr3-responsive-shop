@@ -86,8 +86,13 @@ document.querySelectorAll('.order-form').forEach((form) => {
       return;
     }
 
+    if (form.dataset.account && !handleAccount(form)) return;
+
     form.reset();
-    if ('clearCart' in form.dataset) saveCart([]);
+    if ('clearCart' in form.dataset) {
+      recordOrder(loadCart());
+      saveCart([]);
+    }
     if (dialog && dialog.open) dialog.close();
     showMessage(form.dataset.success);
   });
@@ -393,3 +398,189 @@ if (cartList) {
 
   renderCart();
 }
+
+// ===== Личный кабинет =====
+// Backend ещё нет, поэтому аккаунты, вход и заказы хранятся
+// в localStorage. Для проверки есть демо-аккаунт.
+// Хранить пароль в браузере допустимо только в учебном демо!
+const USERS_KEY = 'shopproject-users';
+const SESSION_KEY = 'shopproject-session';
+const DEMO_USER = {
+  name: 'Анна',
+  email: 'demo@shopproject.ru',
+  password: 'demo1234',
+  phone: '+7 (900) 123-45-67',
+  orders: [
+    { id: 10517, date: '12.11.2026', items: 'Вязаный плед × 1', total: 1890, status: 'В пути' },
+    { id: 10482, date: '02.11.2026', items: 'Умная колонка × 1, Портативный аккумулятор × 2', total: 7470, status: 'Доставлен' },
+  ],
+};
+
+function readJSON(key, fallback) {
+  try {
+    const value = JSON.parse(localStorage.getItem(key));
+    return value ?? fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function writeJSON(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    // хранилище недоступно
+  }
+}
+
+// демо-аккаунт всегда есть в списке пользователей
+function getUsers() {
+  const users = readJSON(USERS_KEY, []);
+  if (!users.some((user) => user.email === DEMO_USER.email)) {
+    users.unshift(JSON.parse(JSON.stringify(DEMO_USER)));
+  }
+  return users;
+}
+
+function currentUser() {
+  const email = readJSON(SESSION_KEY, null);
+  return email ? getUsers().find((user) => user.email === email) || null : null;
+}
+
+// заказ из корзины попадает в историю вошедшего пользователя
+function recordOrder(cart) {
+  const email = readJSON(SESSION_KEY, null);
+  if (!email || cart.length === 0) return;
+  const users = getUsers();
+  const user = users.find((entry) => entry.email === email);
+  if (!user) return;
+  const sum = cart.reduce((total, item) => total + item.price * item.qty, 0);
+  user.orders.unshift({
+    id: 10000 + (Date.now() % 90000),
+    date: new Date().toLocaleDateString('ru-RU'),
+    items: cart.map((item) => `${item.name} × ${item.qty}`).join(', '),
+    total: sum + (sum < 5000 ? 300 : 0),
+    status: 'Принят',
+  });
+  writeJSON(USERS_KEY, users);
+}
+
+// вызывается из общего обработчика форм; true — вход выполнен
+function handleAccount(form) {
+  const users = getUsers();
+  if (form.dataset.account === 'login') {
+    const email = form.elements.email.value.trim().toLowerCase();
+    const user = users.find((entry) => entry.email === email && entry.password === form.elements.password.value);
+    const error = document.getElementById('login-error');
+    if (!user) {
+      error.hidden = false;
+      form.elements.password.setAttribute('aria-invalid', 'true');
+      form.elements.password.focus();
+      return false;
+    }
+    error.hidden = true;
+    writeJSON(SESSION_KEY, user.email);
+  } else {
+    const email = form.elements.email.value.trim().toLowerCase();
+    const error = document.getElementById('register-error');
+    if (users.some((entry) => entry.email === email)) {
+      error.hidden = false;
+      form.elements.email.setAttribute('aria-invalid', 'true');
+      form.elements.email.focus();
+      return false;
+    }
+    error.hidden = true;
+    users.push({
+      name: form.elements.name.value.trim(),
+      email,
+      password: form.elements.password.value,
+      phone: form.elements.phone.value,
+      orders: [],
+    });
+    writeJSON(USERS_KEY, users);
+    writeJSON(SESSION_KEY, email);
+  }
+  renderAccount(true);
+  return true;
+}
+
+function renderAccount(moveFocus = false) {
+  const user = currentUser();
+
+  // в шапке вместо «Войти» — имя пользователя
+  document.querySelectorAll('.header-actions__link[href="account.html"] .header-actions__text').forEach((label) => {
+    label.textContent = user ? user.name : 'Войти';
+  });
+
+  const auth = document.getElementById('account-auth');
+  const profile = document.getElementById('account-profile');
+  if (!auth || !profile) return;
+
+  auth.hidden = Boolean(user);
+  profile.hidden = !user;
+  if (!user) return;
+
+  document.getElementById('profile-avatar').textContent = user.name.charAt(0).toUpperCase();
+  document.getElementById('profile-name').textContent = user.name;
+  document.getElementById('profile-email').textContent = user.email;
+  document.getElementById('profile-phone').textContent = user.phone;
+
+  const spent = user.orders.reduce((total, order) => total + order.total, 0);
+  document.getElementById('stat-orders').textContent = user.orders.length;
+  document.getElementById('stat-spent').textContent = formatRub(spent);
+  document.getElementById('stat-bonus').textContent = Math.round(spent * 0.05).toLocaleString('ru-RU');
+
+  const body = document.getElementById('orders-body');
+  const statusClass = { 'Доставлен': 'done', 'В пути': 'way', 'Принят': 'new' };
+  body.replaceChildren(...user.orders.map((order) => {
+    const row = document.createElement('tr');
+    row.className = 'data-table__row';
+    const cells = [`№ ${order.id}`, order.date, order.items, formatRub(order.total)];
+    cells.forEach((text, index) => {
+      const cell = document.createElement(index === 0 ? 'th' : 'td');
+      cell.className = index === 0 ? 'data-table__row-head' : 'data-table__cell';
+      if (index === 0) cell.scope = 'row';
+      cell.textContent = text;
+      row.append(cell);
+    });
+    const statusCell = document.createElement('td');
+    statusCell.className = 'data-table__cell';
+    const badge = document.createElement('span');
+    badge.className = `order-status order-status--${statusClass[order.status] || 'new'}`;
+    badge.textContent = order.status;
+    statusCell.append(badge);
+    row.append(statusCell);
+    return row;
+  }));
+  document.getElementById('orders-empty').hidden = user.orders.length > 0;
+
+  if (moveFocus) document.getElementById('profile-title').focus();
+}
+
+const demoFill = document.getElementById('demo-fill');
+if (demoFill) {
+  demoFill.addEventListener('click', () => {
+    const form = document.getElementById('login-form');
+    form.elements.email.value = DEMO_USER.email;
+    form.elements.password.value = DEMO_USER.password;
+    form.elements.password.removeAttribute('aria-invalid');
+    document.getElementById('login-error').hidden = true;
+    form.querySelector('button[type="submit"]').focus();
+  });
+}
+
+const logout = document.getElementById('logout');
+if (logout) {
+  logout.addEventListener('click', () => {
+    try {
+      localStorage.removeItem(SESSION_KEY);
+    } catch (error) {
+      // ничего
+    }
+    renderAccount();
+    document.getElementById('login-email').focus();
+    showMessage('Вы вышли из личного кабинета.');
+  });
+}
+
+renderAccount();

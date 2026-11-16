@@ -53,11 +53,15 @@
     </nav>
     <h1 class="page-title">Личный кабинет</h1>
 
-    <div class="account-layout">
+    <div class="account-layout" id="account-auth">
       <section class="account-card" aria-labelledby="login-title">
         <h2 class="account-card__title" id="login-title">Вход</h2>
         <p class="account-card__text">Войдите, чтобы видеть историю заказов и быстрее оформлять заявки.</p>
-        <form class="order-form" id="login-form" action="#" method="post" data-success="Вы вошли в личный кабинет.">
+        <div class="account-demo">
+          <p class="account-demo__data">Демо-доступ: <code>demo@shopproject.ru</code> / <code>demo1234</code></p>
+          <button class="account-demo__fill" id="demo-fill" type="button">Подставить</button>
+        </div>
+        <form class="order-form" id="login-form" action="#" method="post" data-success="Вы вошли в личный кабинет." data-account="login">
           <div class="order-form__field order-form__field--wide">
             <label class="order-form__label" for="login-email">E-mail</label>
             <input class="order-form__input" id="login-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
@@ -74,13 +78,14 @@
             <button class="button button--primary" type="submit">Войти</button>
             <a class="account-card__link" href="contacts.html#faq">Забыли пароль?</a>
           </div>
+          <p class="account-card__error" id="login-error" role="alert" hidden>Неверный e-mail или пароль. Попробуйте ещё раз или воспользуйтесь демо-доступом.</p>
         </form>
       </section>
 
       <section class="account-card account-card--accent" aria-labelledby="register-title">
         <h2 class="account-card__title" id="register-title">Регистрация</h2>
         <p class="account-card__text">Новый покупатель? Создайте аккаунт за минуту. Поля со звёздочкой <span class="order-form__required" aria-hidden="true">*</span> обязательны.</p>
-        <form class="order-form" id="register-form" action="#" method="post" data-success="Аккаунт создан! Проверьте почту.">
+        <form class="order-form" id="register-form" action="#" method="post" data-success="Аккаунт создан, вы вошли в личный кабинет." data-account="register">
           <div class="order-form__field">
             <label class="order-form__label" for="reg-name">Имя <span class="order-form__required" aria-hidden="true">*</span></label>
             <input class="order-form__input" id="reg-name" name="name" type="text" minlength="2" autocomplete="given-name" required>
@@ -106,9 +111,47 @@
           <div class="order-form__actions">
             <button class="button button--primary" type="submit">Зарегистрироваться</button>
           </div>
+          <p class="account-card__error" id="register-error" role="alert" hidden>Пользователь с таким e-mail уже зарегистрирован. Войдите в аккаунт.</p>
         </form>
       </section>
     </div>
+
+    <!-- профиль показывается после входа (js/main.js) -->
+    <section class="profile" id="account-profile" aria-labelledby="profile-title" hidden>
+      <div class="profile__head">
+        <span class="profile__avatar" id="profile-avatar" aria-hidden="true"></span>
+        <div class="profile__who">
+          <h2 class="profile__title" id="profile-title" tabindex="-1">Здравствуйте, <span id="profile-name"></span>!</h2>
+          <p class="profile__meta"><span id="profile-email"></span> · <span id="profile-phone"></span></p>
+        </div>
+        <button class="button button--secondary profile__logout" id="logout" type="button">Выйти</button>
+      </div>
+
+      <dl class="profile__stats">
+        <div class="profile__stat"><dt>Заказов</dt><dd id="stat-orders">0</dd></div>
+        <div class="profile__stat"><dt>Сумма покупок</dt><dd id="stat-spent">0 руб.</dd></div>
+        <div class="profile__stat"><dt>Бонусы (5%)</dt><dd id="stat-bonus">0</dd></div>
+      </dl>
+
+      <h3 class="profile__subtitle">История заказов</h3>
+      <p class="table-hint" aria-hidden="true">Таблицу можно прокрутить вправо &rarr;</p>
+      <div class="table-wrap" role="region" aria-labelledby="orders-caption" tabindex="0">
+        <table class="data-table orders-table">
+          <caption class="data-table__caption" id="orders-caption">Ваши заказы — новые сверху</caption>
+          <thead>
+            <tr class="data-table__row">
+              <th class="data-table__head-cell" scope="col">№</th>
+              <th class="data-table__head-cell" scope="col">Дата</th>
+              <th class="data-table__head-cell" scope="col">Товары</th>
+              <th class="data-table__head-cell" scope="col">Сумма</th>
+              <th class="data-table__head-cell" scope="col">Статус</th>
+            </tr>
+          </thead>
+          <tbody id="orders-body"></tbody>
+        </table>
+      </div>
+      <p class="profile__empty" id="orders-empty" hidden>Заказов пока нет. <a href="catalog.html">Перейти в каталог</a></p>
+    </section>
 
     <section class="section" aria-labelledby="perks-title">
       <h2 class="section__title" id="perks-title">Что есть в личном кабинете</h2>
