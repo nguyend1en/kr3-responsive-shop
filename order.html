@@ -3,27 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Заявка — Учебный интернет-магазин</title>
-  <meta name="description" content="Форма оформления заявки в учебном интернет-магазине.">
+  <title>Оформление заявки — Учебный интернет-магазин</title>
+  <meta name="description" content="Форма заявки на покупку товара или консультацию в учебном интернет-магазине.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+  <div class="topbar">
+    <div class="topbar__inner">
+      <p class="topbar__text">Бесплатная доставка от 5 000 руб.</p>
+      <a class="topbar__phone" href="tel:+79000000000">+7 (900) 000-00-00</a>
+    </div>
+  </div>
   <header class="site-header" id="top">
     <div class="site-header__inner">
       <a class="site-header__logo" href="index.html">ShopProject</a>
       <nav class="site-nav" aria-label="Основная навигация">
-        <ul class="site-nav__list">
-        <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
-        <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
-        <li class="site-nav__item"><a class="site-nav__link" href="product.html">Товар</a></li>
-        <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="order.html" aria-current="page">Заявка</a></li>
-        <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
-        <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
-        <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
+        <ul class="site-nav__list" id="site-nav-list">
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="product.html">Товар</a></li>
+          <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="order.html" aria-current="page">Заявка</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
         </ul>
       </nav>
+      <a class="button button--primary site-header__cta" href="order.html">Оставить заявку</a>
     </div>
   </header>
 
@@ -56,13 +66,13 @@
             <label class="order-form__label" for="order-product">Товар</label>
             <select class="order-form__select" id="order-product" name="product">
               <option value="">Не выбран — нужна консультация</option>
-                <option value="Беспроводные наушники">Беспроводные наушники</option>
-                <option value="Умная колонка">Умная колонка</option>
-                <option value="Портативный аккумулятор">Портативный аккумулятор</option>
-                <option value="Настольная лампа">Настольная лампа</option>
-                <option value="Плед из флиса">Плед из флиса</option>
-                <option value="Термокружка">Термокружка</option>
-                <option value="Городской рюкзак">Городской рюкзак</option>
+              <option value="Беспроводные наушники">Беспроводные наушники</option>
+              <option value="Умная колонка">Умная колонка</option>
+              <option value="Портативный аккумулятор">Портативный аккумулятор</option>
+              <option value="Настольная лампа">Настольная лампа</option>
+              <option value="Плед из флиса">Плед из флиса</option>
+              <option value="Термокружка">Термокружка</option>
+              <option value="Городской рюкзак">Городской рюкзак</option>
             </select>
           </div>
           <div class="order-form__field">
