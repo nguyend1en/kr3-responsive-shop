@@ -243,12 +243,6 @@ main:focus {
   color: var(--color-accent);
 }
 
-/* кнопка заявки в шапке появляется с 768px
-   (два класса — чтобы правило было сильнее, чем .button) */
-.button.site-header__cta {
-  display: none;
-}
-
 /* ===== 5. Навигация (Flexbox) ===== */
 .site-nav {
   width: 100%;
@@ -1639,4 +1633,334 @@ main:focus {
 
 .topbar__phone {
   padding: 4px 0;
+}
+
+/* ===== 21. Логотип со знаком и иконки в шапке ===== */
+.site-header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-header__logo::after {
+  content: none;
+}
+
+/* точка после названия — оранжевая, как на знаке */
+.site-header__name::after {
+  content: ".";
+  color: var(--color-accent);
+}
+
+/* на телефоне в одной строке: знак, название, кабинет, корзина, меню */
+.site-header__inner {
+  column-gap: var(--space-sm);
+}
+
+.logo-mark {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.site-header__name {
+  font-size: 1.2rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-left: auto;
+}
+
+.header-actions__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 10px;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+}
+
+.header-actions__link:hover,
+.header-actions__link--active {
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+/* подписи «Войти» и «Корзина» видны с 1024px */
+.header-actions__text {
+  display: none;
+}
+
+/* на узком экране у кнопки меню остаётся только значок,
+   слово «Меню» скрыто визуально, но читается диктором */
+.js .site-nav__toggle {
+  padding: 8px 12px;
+}
+
+.site-nav__toggle-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.header-actions__count {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 20px;
+  text-align: center;
+  color: var(--color-text);
+  background-color: var(--color-accent);
+  border-radius: var(--radius-pill);
+}
+
+/* ===== 22. Корзина ===== */
+.cart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-xl);
+}
+
+.cart {
+  min-width: 0;
+}
+
+.cart__list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.cart-item__image {
+  width: 96px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.cart-item__info {
+  min-width: 0;
+}
+
+.cart-item__category {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.cart-item__title {
+  margin: 2px 0 var(--space-xs);
+  font-size: 1.05rem;
+}
+
+.cart-item__link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.cart-item__link:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+}
+
+.cart-item__price {
+  margin: 0;
+  font-weight: 700;
+}
+
+.cart-item__old-price {
+  margin-left: var(--space-sm);
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+/* на телефоне количество и сумма — отдельной строкой под товаром */
+.cart-item__controls {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: var(--space-sm) var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-line);
+}
+
+.cart-item__qty-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.cart-item__qty {
+  width: 76px;
+  min-height: 44px;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: var(--color-surface);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
+}
+
+.cart-item__qty:focus {
+  background-color: var(--color-bg);
+  border-color: var(--color-text);
+}
+
+.cart-item__sum {
+  margin: 0 0 0 auto;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.cart-item__remove {
+  min-height: 44px;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+.cart-item__remove:hover {
+  color: var(--color-danger);
+}
+
+.cart__note {
+  margin: var(--space-md) 0 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.cart-summary {
+  align-self: start;
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+}
+
+.cart-summary__title {
+  margin-bottom: var(--space-md);
+  font-size: 1.3rem;
+}
+
+.cart-summary__list {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0 0 var(--space-lg);
+}
+
+.cart-summary__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.cart-summary__row dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.cart-summary__row--discount dd {
+  color: var(--color-accent-text);
+}
+
+.cart-summary__row--total {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-md);
+  font-size: 1.2rem;
+  font-weight: 800;
+  border-top: 1px solid var(--color-line);
+}
+
+.promo {
+  margin-bottom: var(--space-lg);
+}
+
+.promo__label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.promo__group {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.promo__input {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px var(--space-md);
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: var(--color-bg);
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+
+.promo__input:focus {
+  border-color: var(--color-text);
+}
+
+.promo__button {
+  min-height: 48px;
+  padding: 10px var(--space-md);
+}
+
+.promo__note {
+  margin: 6px 0 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.cart-summary__checkout {
+  width: 100%;
+}
+
+.cart-summary__back {
+  display: block;
+  margin-top: var(--space-md);
+  font-weight: 700;
+  text-align: center;
 }
