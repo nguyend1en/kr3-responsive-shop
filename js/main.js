@@ -32,8 +32,12 @@ if (nav && navToggle) {
 const dialog = document.getElementById('order-dialog');
 const message = document.getElementById('success-message');
 
-function showMessage() {
+// текст сообщения берётся из data-success формы (или стандартный)
+const defaultMessage = message ? message.textContent : '';
+
+function showMessage(text) {
   if (!message) return;
+  message.textContent = text || defaultMessage;
   message.hidden = false;
   setTimeout(() => {
     message.hidden = true;
@@ -84,6 +88,6 @@ document.querySelectorAll('.order-form').forEach((form) => {
 
     form.reset();
     if (dialog && dialog.open) dialog.close();
-    showMessage();
+    showMessage(form.dataset.success);
   });
 });
