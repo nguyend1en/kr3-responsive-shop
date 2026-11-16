@@ -250,6 +250,104 @@ summary:focus-visible {
   background-color: var(--color-text);
 }
 
+/* --- Мобильное меню («бургер») ---
+   Кнопка и скрытие меню работают, только если загружен JavaScript
+   (класс .js на <html>). Без JS меню остаётся строкой с прокруткой. */
+.site-nav__toggle {
+  display: none;
+}
+
+.js .site-nav {
+  width: auto;
+}
+
+.js .site-nav__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+/* три полоски из одного элемента и двух псевдоэлементов */
+.site-nav__toggle-icon,
+.site-nav__toggle-icon::before,
+.site-nav__toggle-icon::after {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+  transition: transform 0.2s ease;
+}
+
+.site-nav__toggle-icon {
+  position: relative;
+}
+
+.site-nav__toggle-icon::before,
+.site-nav__toggle-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.site-nav__toggle-icon::before {
+  top: -6px;
+}
+
+.site-nav__toggle-icon::after {
+  top: 6px;
+}
+
+/* открытое меню: полоски превращаются в крестик */
+.site-nav__toggle[aria-expanded="true"] .site-nav__toggle-icon {
+  background-color: transparent;
+}
+
+.site-nav__toggle[aria-expanded="true"] .site-nav__toggle-icon::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.site-nav__toggle[aria-expanded="true"] .site-nav__toggle-icon::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* выпадающая панель под шапкой */
+.js .site-nav__list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  gap: var(--space-xs);
+  max-height: calc(100vh - var(--header-height));
+  padding: var(--space-md);
+  overflow-y: auto;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-line);
+  box-shadow: 0 12px 24px rgba(20, 20, 20, 0.08);
+}
+
+.js .site-nav--open .site-nav__list {
+  display: flex;
+}
+
+.js .site-nav__link {
+  padding: 12px var(--space-md);
+  font-size: 1.05rem;
+  border-radius: var(--radius-md);
+}
+
 /* ===== 6. Кнопки ===== */
 .button {
   display: inline-flex;

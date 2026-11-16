@@ -1,4 +1,34 @@
-// Минимальная логика: открытие/закрытие модального окна и обработка форм.
+// Минимальная логика: мобильное меню, модальное окно и обработка форм.
+
+// Мобильное меню: кнопка «Меню» открывает и закрывает список ссылок.
+// aria-expanded сообщает экранному диктору, открыто меню или нет.
+const nav = document.querySelector('.site-nav');
+const navToggle = document.querySelector('.site-nav__toggle');
+
+function setMenu(open) {
+  nav.classList.toggle('site-nav--open', open);
+  navToggle.setAttribute('aria-expanded', String(open));
+}
+
+if (nav && navToggle) {
+  navToggle.addEventListener('click', () => {
+    setMenu(navToggle.getAttribute('aria-expanded') !== 'true');
+  });
+
+  // Esc закрывает меню и возвращает фокус на кнопку
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && nav.classList.contains('site-nav--open')) {
+      setMenu(false);
+      navToggle.focus();
+    }
+  });
+
+  // после перехода по ссылке меню закрывается
+  nav.querySelectorAll('.site-nav__link').forEach((link) => {
+    link.addEventListener('click', () => setMenu(false));
+  });
+}
+
 const dialog = document.getElementById('order-dialog');
 const message = document.getElementById('success-message');
 

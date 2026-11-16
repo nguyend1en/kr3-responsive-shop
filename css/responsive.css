@@ -132,6 +132,30 @@
     overflow: visible;
   }
 
+  /* на desktop кнопка «Меню» не нужна — меню видно всегда */
+  .js .site-nav__toggle {
+    display: none;
+  }
+
+  .js .site-nav__list {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    gap: var(--space-xs);
+    max-height: none;
+    padding: 0;
+    overflow: visible;
+    background-color: transparent;
+    border-bottom: none;
+    box-shadow: none;
+  }
+
+  .js .site-nav__link {
+    padding: var(--space-sm) 14px;
+    font-size: 1rem;
+    border-radius: var(--radius-pill);
+  }
+
   main {
     padding: var(--space-xl) var(--space-lg) 96px;
   }
