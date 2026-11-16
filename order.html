@@ -172,5 +172,29 @@
   <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
 
   <p class="success-message" id="success-message" role="status" hidden>Заявка отправлена! Мы свяжемся с вами в течение рабочего дня.</p>
+  <div class="chat" id="chat">
+    <section class="chat__panel" id="chat-panel" aria-labelledby="chat-title" hidden>
+      <div class="chat__header">
+        <div>
+          <h2 class="chat__title" id="chat-title">Чат с магазином</h2>
+          <p class="chat__status"><span class="chat__dot" aria-hidden="true"></span>Менеджеры отвечают 10:00–20:00</p>
+        </div>
+        <button class="chat__close" type="button" aria-label="Свернуть чат">&times;</button>
+      </div>
+      <ol class="chat__messages" aria-live="polite">
+        <li class="chat__message chat__message--shop">
+          <p class="chat__author">Менеджер ShopProject</p>
+          <p class="chat__text">Здравствуйте! Напишите вопрос о товаре, доставке или возврате — сотрудник магазина ответит здесь.</p>
+        </li>
+      </ol>
+      <form class="chat__form" id="chat-form" action="#" method="post">
+        <label class="visually-hidden" for="chat-input">Ваше сообщение</label>
+        <textarea class="chat__input" id="chat-input" name="message" rows="2" placeholder="Напишите сообщение…" required></textarea>
+        <button class="chat__send" type="submit" aria-label="Отправить сообщение"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12l16-8-6 16-2-7z"/></svg></button>
+      </form>
+    </section>
+    <button class="chat__toggle" type="button" aria-expanded="false" aria-controls="chat-panel"><svg class="chat__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="chat__toggle-text">Чат</span></button>
+  </div>
+
 </body>
 </html>

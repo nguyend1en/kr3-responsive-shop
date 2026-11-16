@@ -91,3 +91,100 @@ document.querySelectorAll('.order-form').forEach((form) => {
     showMessage(form.dataset.success);
   });
 });
+
+// Чат поддержки. Сообщение уходит менеджеру магазина — отвечает
+// сотрудник, а не бот. Пока нет backend, сообщения сохраняются
+// в браузере (localStorage), чтобы не пропадали при переходе по страницам.
+const chatToggle = document.querySelector('.chat__toggle');
+const chatPanel = document.getElementById('chat-panel');
+
+if (chatToggle && chatPanel) {
+  const chatClose = chatPanel.querySelector('.chat__close');
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input');
+  const chatList = chatPanel.querySelector('.chat__messages');
+  const STORAGE_KEY = 'shopproject-chat';
+  let noteShown = false;
+  let history = [];
+
+  function setChat(open) {
+    chatPanel.hidden = !open;
+    chatToggle.setAttribute('aria-expanded', String(open));
+    if (open) {
+      chatList.scrollTop = chatList.scrollHeight;
+      chatInput.focus();
+    }
+  }
+
+  // createElement + textContent: текст пользователя не выполняется как HTML
+  function addMessage(text, time) {
+    const item = document.createElement('li');
+    item.className = 'chat__message chat__message--user';
+    const body = document.createElement('p');
+    body.className = 'chat__text';
+    body.textContent = text;
+    const stamp = document.createElement('time');
+    stamp.className = 'chat__time';
+    stamp.textContent = time;
+    item.append(body, stamp);
+    chatList.append(item);
+    chatList.scrollTop = chatList.scrollHeight;
+  }
+
+  function addNote(text) {
+    const note = document.createElement('li');
+    note.className = 'chat__note';
+    note.textContent = text;
+    chatList.append(note);
+  }
+
+  try {
+    history = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch (error) {
+    history = [];
+  }
+  history.forEach((message) => addMessage(message.text, message.time));
+
+  chatToggle.addEventListener('click', () => setChat(chatPanel.hidden));
+
+  chatClose.addEventListener('click', () => {
+    setChat(false);
+    chatToggle.focus();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !chatPanel.hidden) {
+      setChat(false);
+      chatToggle.focus();
+    }
+  });
+
+  // Enter — отправить, Shift+Enter — новая строка
+  chatInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      chatForm.requestSubmit();
+    }
+  });
+
+  chatForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    const time = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+    addMessage(text, time);
+    history.push({ text, time });
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(-20)));
+    } catch (error) {
+      // хранилище недоступно — сообщение просто не сохранится
+    }
+    chatInput.value = '';
+
+    if (!noteShown) {
+      addNote('Сообщение передано менеджеру. Ответ придёт в этот чат в рабочее время.');
+      noteShown = true;
+    }
+  });
+}

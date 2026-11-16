@@ -2036,3 +2036,220 @@ main:focus {
   right: var(--space-lg);
   bottom: var(--space-lg);
 }
+
+/* ===== 25. Чат поддержки =====
+   Без JavaScript чат не работает, поэтому он показывается только
+   при классе .js. Отвечает менеджер магазина, а не бот. */
+.chat {
+  display: none;
+}
+
+.js .chat {
+  position: fixed;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-sm);
+}
+
+/* кнопка «Наверх» и сообщение поднимаются над кнопкой чата */
+.js .to-top {
+  bottom: 84px;
+}
+
+.js .success-message {
+  bottom: 148px;
+}
+
+.chat__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 52px;
+  padding: 12px 20px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #ffffff;
+  background-color: var(--color-text);
+  border: none;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 8px 24px rgba(20, 20, 20, 0.25);
+  cursor: pointer;
+}
+
+.chat__toggle:hover,
+.chat__toggle[aria-expanded="true"] {
+  color: var(--color-text);
+  background-color: var(--color-accent);
+}
+
+.chat__panel {
+  display: flex;
+  flex-direction: column;
+  width: min(360px, calc(100vw - 2 * var(--space-md)));
+  height: min(480px, calc(100vh - 110px));
+  overflow: hidden;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 48px rgba(20, 20, 20, 0.18);
+}
+
+.chat__panel[hidden] {
+  display: none;
+}
+
+.chat__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  color: #ffffff;
+  background-color: var(--color-text);
+}
+
+.chat__title {
+  margin: 0;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.chat__status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: var(--color-footer-text);
+}
+
+.chat__dot {
+  width: 8px;
+  height: 8px;
+  background-color: #3ddc84;
+  border-radius: 50%;
+}
+
+.chat__close {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  font-family: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #ffffff;
+  background: transparent;
+  border: 1.5px solid #3a3a3a;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.chat__close:hover {
+  border-color: #ffffff;
+}
+
+.chat__messages {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: var(--space-md);
+  overflow-y: auto;
+  list-style: none;
+  background-color: var(--color-surface);
+}
+
+.chat__message {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+}
+
+.chat__message--shop {
+  align-self: flex-start;
+  background-color: var(--color-bg);
+  border-bottom-left-radius: 4px;
+}
+
+.chat__message--user {
+  align-self: flex-end;
+  color: #ffffff;
+  background-color: var(--color-text);
+  border-bottom-right-radius: 4px;
+}
+
+.chat__author {
+  margin: 0 0 2px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--color-muted);
+}
+
+.chat__text {
+  margin: 0;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.chat__time {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  text-align: right;
+  color: var(--color-footer-text);
+}
+
+.chat__note {
+  align-self: center;
+  max-width: 90%;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.chat__form {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-top: 1px solid var(--color-line);
+}
+
+.chat__input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  max-height: 120px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: none;
+  background-color: var(--color-surface);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
+}
+
+.chat__input:focus {
+  background-color: var(--color-bg);
+  border-color: var(--color-text);
+}
+
+.chat__send {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--color-text);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
