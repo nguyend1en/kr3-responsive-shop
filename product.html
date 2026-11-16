@@ -233,13 +233,45 @@
 
   <footer class="site-footer" id="contacts">
     <div class="site-footer__inner">
-      <nav class="site-footer__nav" aria-label="Быстрые ссылки">
-        <a class="site-footer__link" href="index.html#advantages">Преимущества</a>
-        <a class="site-footer__link" href="index.html#popular">Популярные товары</a>
-        <a class="site-footer__link" href="index.html#contacts">Контакты</a>
+      <div class="site-footer__brand">
+        <a class="site-footer__logo" href="index.html">ShopProject</a>
+        <p class="site-footer__about">Учебный интернет-магазин электроники, товаров для дома и аксессуаров. Проект по дисциплине «Фронтенд и бэкенд разработка».</p>
+        <ul class="socials">
+          <li><a class="socials__link" href="https://vk.com/" target="_blank" rel="noopener" aria-label="ВКонтакте (в новой вкладке)">VK</a></li>
+          <li><a class="socials__link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram (в новой вкладке)">TG</a></li>
+        </ul>
+      </div>
+      <nav class="site-footer__col" aria-labelledby="footer-shop-title">
+        <h2 class="site-footer__title" id="footer-shop-title">Магазин</h2>
+        <ul class="site-footer__list">
+          <li><a class="site-footer__link" href="catalog.html">Каталог</a></li>
+          <li><a class="site-footer__link" href="index.html#popular">Популярные товары</a></li>
+          <li><a class="site-footer__link" href="index.html#advantages">Преимущества</a></li>
+          <li><a class="site-footer__link" href="order.html">Оформить заявку</a></li>
+        </ul>
       </nav>
-      <p class="site-footer__text">&copy; 2026 Учебный проект. Все права защищены.</p>
-      <p class="site-footer__text">Дисциплина: Фронтенд и бэкенд разработка</p>
+      <nav class="site-footer__col" aria-labelledby="footer-help-title">
+        <h2 class="site-footer__title" id="footer-help-title">Покупателям</h2>
+        <ul class="site-footer__list">
+          <li><a class="site-footer__link" href="contacts.html#faq">Доставка и оплата</a></li>
+          <li><a class="site-footer__link" href="contacts.html#faq">Возврат товара</a></li>
+          <li><a class="site-footer__link" href="contacts.html#route">Как добраться</a></li>
+          <li><a class="site-footer__link" href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">Контакты</h2>
+        <address class="site-footer__address">
+          <span>г. Москва, ул. Мясницкая, д. 24</span>
+          <a href="tel:+79000000000">+7 (900) 000-00-00</a>
+          <a href="mailto:example@mail.ru">example@mail.ru</a>
+          <span>Ежедневно 10:00–20:00</span>
+        </address>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>&copy; 2026 ShopProject. Учебный проект, данные условные.</p>
+      <p>Фото товаров: <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a></p>
     </div>
   </footer>
   <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>

@@ -51,28 +51,83 @@
     <h1 class="page-title">Контакты</h1>
 
     <div class="contacts-layout">
-      <section class="section contacts-layout__info" aria-labelledby="contacts-info-title">
+      <section class="contacts-layout__info" aria-labelledby="contacts-info-title">
         <h2 class="section__title" id="contacts-info-title">Как с нами связаться</h2>
         <dl class="contact-list">
-          <dt class="contact-list__term">Телефон</dt>
-          <dd class="contact-list__value"><a class="contact-list__link" href="tel:+79000000000">+7 (900) 000-00-00</a></dd>
-          <dt class="contact-list__term">E-mail</dt>
-          <dd class="contact-list__value"><a class="contact-list__link" href="mailto:example@mail.ru">example@mail.ru</a></dd>
-          <dt class="contact-list__term">Адрес</dt>
-          <dd class="contact-list__value"><address class="contact-list__address">г. Москва, ул. Учебная, д. 1, пункт выдачи заказов</address></dd>
-          <dt class="contact-list__term">Режим работы</dt>
-          <dd class="contact-list__value">Пн–Пт: 9:00–20:00, Сб–Вс: 10:00–18:00</dd>
+          <div class="contact-list__item">
+            <dt class="contact-list__term">Телефон</dt>
+            <dd class="contact-list__value"><a class="contact-list__link" href="tel:+79000000000">+7 (900) 000-00-00</a></dd>
+          </div>
+          <div class="contact-list__item">
+            <dt class="contact-list__term">E-mail</dt>
+            <dd class="contact-list__value"><a class="contact-list__link" href="mailto:example@mail.ru">example@mail.ru</a></dd>
+          </div>
+          <div class="contact-list__item">
+            <dt class="contact-list__term">Адрес</dt>
+            <dd class="contact-list__value"><address class="contact-list__address">г. Москва, ул. Мясницкая, д. 24, пункт выдачи заказов</address></dd>
+          </div>
+          <div class="contact-list__item">
+            <dt class="contact-list__term">Режим работы</dt>
+            <dd class="contact-list__value">Ежедневно 10:00–20:00</dd>
+          </div>
         </dl>
-        <a class="button button--primary" href="order.html">Перейти к форме заявки</a>
+
+        <section class="section" id="route" aria-labelledby="route-title">
+          <h2 class="section__title" id="route-title">Как добраться</h2>
+          <ol class="route">
+            <li class="route__step"><strong>Метро «Чистые пруды»</strong> или «Тургеневская», выход к улице Мясницкой.</li>
+            <li class="route__step">Идите по Мясницкой в сторону Лубянки 4–5 минут.</li>
+            <li class="route__step">Дом 24 — вход со двора, табличка «Пункт выдачи ShopProject».</li>
+          </ol>
+        </section>
       </section>
 
-      <aside class="aside-info contacts-layout__aside" aria-labelledby="contacts-aside-title">
-        <h2 class="aside-info__title" id="contacts-aside-title">Ответим быстро</h2>
-        <p class="aside-info__text">Заявки, отправленные до 18:00, обрабатываются в тот же день. В выходные отвечаем на e-mail в течение 24 часов.</p>
-      </aside>
+      <section class="map-block" aria-labelledby="map-title">
+        <h2 class="section__title" id="map-title">Пункт выдачи на карте</h2>
+        <div class="map-block__frame">
+          <iframe class="map-block__iframe" src="https://yandex.ru/map-widget/v1/?ll=37.634700%2C55.762700&amp;z=16&amp;pt=37.634700%2C55.762700%2Cpm2rdm" title="Яндекс Карта: пункт выдачи ShopProject, Москва, ул. Мясницкая, 24" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <a class="map-block__link" href="https://yandex.ru/maps/?pt=37.634700,55.762700&amp;z=17&amp;l=map" target="_blank" rel="noopener">Открыть в Яндекс Картах</a>
+      </section>
     </div>
 
-    <section class="section" aria-labelledby="faq-title">
+    <section class="section feedback" aria-labelledby="feedback-title">
+      <h2 class="section__title" id="feedback-title">Напишите нам</h2>
+      <p class="feedback__text">Ответим на e-mail в течение рабочего дня. Поля со звёздочкой <span class="order-form__required" aria-hidden="true">*</span> обязательны.</p>
+      <form class="order-form feedback__form" id="feedback-form" action="#" method="post">
+          <div class="order-form__field">
+            <label class="order-form__label" for="fb-name">Имя <span class="order-form__required" aria-hidden="true">*</span></label>
+            <input class="order-form__input" id="fb-name" name="name" type="text" placeholder="Как к вам обращаться" minlength="2" autocomplete="given-name" required>
+          </div>
+          <div class="order-form__field">
+            <label class="order-form__label" for="fb-email">E-mail <span class="order-form__required" aria-hidden="true">*</span></label>
+            <input class="order-form__input" id="fb-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
+          </div>
+          <div class="order-form__field order-form__field--wide">
+            <label class="order-form__label" for="fb-topic">Тема <span class="order-form__required" aria-hidden="true">*</span></label>
+            <select class="order-form__select" id="fb-topic" name="topic" required>
+              <option value="">Выберите тему</option>
+              <option value="question">Вопрос о товаре</option>
+              <option value="delivery">Доставка и самовывоз</option>
+              <option value="return">Возврат</option>
+              <option value="other">Другое</option>
+            </select>
+          </div>
+          <div class="order-form__field order-form__field--wide">
+            <label class="order-form__label" for="fb-message">Сообщение <span class="order-form__required" aria-hidden="true">*</span></label>
+            <textarea class="order-form__textarea" id="fb-message" name="message" rows="5" placeholder="Опишите ваш вопрос" minlength="10" required></textarea>
+          </div>
+          <div class="order-form__field order-form__field--checkbox">
+            <input class="order-form__checkbox" id="fb-agreement" name="agreement" type="checkbox" required>
+            <label class="order-form__label" for="fb-agreement">Я согласен на обработку персональных данных <span class="order-form__required" aria-hidden="true">*</span></label>
+          </div>
+          <div class="order-form__actions">
+            <button class="button button--primary" type="submit">Отправить сообщение</button>
+          </div>
+      </form>
+    </section>
+
+    <section class="section" id="faq" aria-labelledby="faq-title">
       <h2 class="section__title" id="faq-title">Частые вопросы</h2>
       <div class="faq">
         <details class="faq__item">
@@ -97,13 +152,45 @@
 
   <footer class="site-footer" id="contacts">
     <div class="site-footer__inner">
-      <nav class="site-footer__nav" aria-label="Быстрые ссылки">
-        <a class="site-footer__link" href="index.html#advantages">Преимущества</a>
-        <a class="site-footer__link" href="index.html#popular">Популярные товары</a>
-        <a class="site-footer__link" href="index.html#contacts">Контакты</a>
+      <div class="site-footer__brand">
+        <a class="site-footer__logo" href="index.html">ShopProject</a>
+        <p class="site-footer__about">Учебный интернет-магазин электроники, товаров для дома и аксессуаров. Проект по дисциплине «Фронтенд и бэкенд разработка».</p>
+        <ul class="socials">
+          <li><a class="socials__link" href="https://vk.com/" target="_blank" rel="noopener" aria-label="ВКонтакте (в новой вкладке)">VK</a></li>
+          <li><a class="socials__link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram (в новой вкладке)">TG</a></li>
+        </ul>
+      </div>
+      <nav class="site-footer__col" aria-labelledby="footer-shop-title">
+        <h2 class="site-footer__title" id="footer-shop-title">Магазин</h2>
+        <ul class="site-footer__list">
+          <li><a class="site-footer__link" href="catalog.html">Каталог</a></li>
+          <li><a class="site-footer__link" href="index.html#popular">Популярные товары</a></li>
+          <li><a class="site-footer__link" href="index.html#advantages">Преимущества</a></li>
+          <li><a class="site-footer__link" href="order.html">Оформить заявку</a></li>
+        </ul>
       </nav>
-      <p class="site-footer__text">&copy; 2026 Учебный проект. Все права защищены.</p>
-      <p class="site-footer__text">Дисциплина: Фронтенд и бэкенд разработка</p>
+      <nav class="site-footer__col" aria-labelledby="footer-help-title">
+        <h2 class="site-footer__title" id="footer-help-title">Покупателям</h2>
+        <ul class="site-footer__list">
+          <li><a class="site-footer__link" href="contacts.html#faq">Доставка и оплата</a></li>
+          <li><a class="site-footer__link" href="contacts.html#faq">Возврат товара</a></li>
+          <li><a class="site-footer__link" href="contacts.html#route">Как добраться</a></li>
+          <li><a class="site-footer__link" href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">Контакты</h2>
+        <address class="site-footer__address">
+          <span>г. Москва, ул. Мясницкая, д. 24</span>
+          <a href="tel:+79000000000">+7 (900) 000-00-00</a>
+          <a href="mailto:example@mail.ru">example@mail.ru</a>
+          <span>Ежедневно 10:00–20:00</span>
+        </address>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>&copy; 2026 ShopProject. Учебный проект, данные условные.</p>
+      <p>Фото товаров: <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash</a></p>
     </div>
   </footer>
   <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>

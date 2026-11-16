@@ -75,6 +75,19 @@
   .table-hint {
     display: none;
   }
+
+  .contact-list {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .feedback {
+    padding: var(--space-xl);
+  }
+
+  /* подвал: 2 колонки */
+  .site-footer__inner {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* ===== 768px: планшет ===== */
@@ -121,11 +134,6 @@
 
   .order-dialog {
     padding: var(--space-xl);
-  }
-
-  .contacts-layout {
-    grid-template-columns: 2fr 1fr;
-    align-items: start;
   }
 }
 
@@ -252,14 +260,21 @@
     align-items: center;
   }
 
-  .site-footer__inner {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: var(--space-xs) var(--space-xl);
+  /* контакты: данные слева, карта справа */
+  .contacts-layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
   }
 
-  .site-footer__nav {
-    grid-column: 1 / -1;
+  /* подвал: 4 колонки — о магазине шире остальных */
+  .site-footer__inner {
+    grid-template-columns: 2fr 1fr 1fr 1.3fr;
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
+  }
+
+  .site-footer__bottom {
+    padding: var(--space-lg);
   }
 }
 
