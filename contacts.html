@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контакты — Учебный интернет-магазин</title>
+  <meta name="description" content="Контакты учебного интернет-магазина: телефон, e-mail, адрес, режим работы и ответы на частые вопросы.">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+  <header class="site-header" id="top">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="index.html">ShopProject</a>
+      <nav class="site-nav" aria-label="Основная навигация">
+        <ul class="site-nav__list">
+        <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+        <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+        <li class="site-nav__item"><a class="site-nav__link" href="product.html">Товар</a></li>
+        <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
+        <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="contacts.html" aria-current="page">Контакты</a></li>
+        <li class="site-nav__item"><a class="site-nav__link" href="index.html#advantages">Преимущества</a></li>
+        <li class="site-nav__item"><a class="site-nav__link" href="index.html#popular">Популярные товары</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <a class="breadcrumbs__link" href="index.html">Главная</a>
+      <span class="breadcrumbs__current">Контакты</span>
+    </nav>
+    <h1 class="page-title">Контакты</h1>
+
+    <div class="contacts-layout">
+      <section class="section contacts-layout__info" aria-labelledby="contacts-info-title">
+        <h2 class="section__title" id="contacts-info-title">Как с нами связаться</h2>
+        <dl class="contact-list">
+          <dt class="contact-list__term">Телефон</dt>
+          <dd class="contact-list__value"><a class="contact-list__link" href="tel:+79000000000">+7 (900) 000-00-00</a></dd>
+          <dt class="contact-list__term">E-mail</dt>
+          <dd class="contact-list__value"><a class="contact-list__link" href="mailto:example@mail.ru">example@mail.ru</a></dd>
+          <dt class="contact-list__term">Адрес</dt>
+          <dd class="contact-list__value"><address class="contact-list__address">г. Москва, ул. Учебная, д. 1, пункт выдачи заказов</address></dd>
+          <dt class="contact-list__term">Режим работы</dt>
+          <dd class="contact-list__value">Пн–Пт: 9:00–20:00, Сб–Вс: 10:00–18:00</dd>
+        </dl>
+        <a class="button button--primary" href="order.html">Перейти к форме заявки</a>
+      </section>
+
+      <aside class="aside-info contacts-layout__aside" aria-labelledby="contacts-aside-title">
+        <h2 class="aside-info__title" id="contacts-aside-title">Ответим быстро</h2>
+        <p class="aside-info__text">Заявки, отправленные до 18:00, обрабатываются в тот же день. В выходные отвечаем на e-mail в течение 24 часов.</p>
+      </aside>
+    </div>
+
+    <section class="section" aria-labelledby="faq-title">
+      <h2 class="section__title" id="faq-title">Частые вопросы</h2>
+      <div class="faq">
+        <details class="faq__item">
+          <summary class="faq__question">Как оформить заказ?</summary>
+          <p class="faq__answer">Нажмите «Заказать» в карточке товара или заполните форму на странице <a href="order.html">«Заявка»</a>. Менеджер перезвонит в течение рабочего дня.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Сколько стоит доставка?</summary>
+          <p class="faq__answer">Доставка по городу — 300 руб., при заказе от 5 000 руб. — бесплатно. Самовывоз из пункта выдачи бесплатный.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Можно ли вернуть товар?</summary>
+          <p class="faq__answer">Да, в течение 14 дней, если товар не был в использовании и сохранена упаковка.</p>
+        </details>
+        <details class="faq__item">
+          <summary class="faq__question">Какие способы оплаты доступны?</summary>
+          <p class="faq__answer">Оплата картой или наличными при получении. Онлайн-оплата появится после подключения backend.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contacts">
+    <div class="site-footer__inner">
+      <nav class="site-footer__nav" aria-label="Быстрые ссылки">
+        <a class="site-footer__link" href="index.html#advantages">Преимущества</a>
+        <a class="site-footer__link" href="index.html#popular">Популярные товары</a>
+        <a class="site-footer__link" href="index.html#contacts">Контакты</a>
+      </nav>
+      <p class="site-footer__text">&copy; 2026 Учебный проект. Все права защищены.</p>
+      <p class="site-footer__text">Дисциплина: Фронтенд и бэкенд разработка</p>
+    </div>
+  </footer>
+  <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
+</body>
+</html>
