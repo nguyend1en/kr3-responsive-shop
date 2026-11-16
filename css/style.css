@@ -891,6 +891,36 @@ summary:focus-visible {
   font-weight: 600;
 }
 
+/* таблица сравнения не сжимается до нечитаемой ширины:
+   на телефоне она прокручивается внутри .table-wrap,
+   первый столбец (названия параметров) закреплён */
+.data-table--compare {
+  min-width: 560px;
+}
+
+.data-table--compare .data-table__row-head,
+.data-table--compare .data-table__head-cell:first-child {
+  position: sticky;
+  left: 0;
+  background-color: var(--color-bg);
+  box-shadow: 1px 0 0 var(--color-line);
+}
+
+.data-table--compare .data-table__head-cell:first-child {
+  background-color: var(--color-surface);
+}
+
+/* подсказка видна только на телефоне (скрыта в responsive.css) */
+.table-hint {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: 0 0 var(--space-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
 /* ===== 12. Формы ===== */
 .order-form {
   display: grid;

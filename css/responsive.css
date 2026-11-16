@@ -57,6 +57,24 @@
     left: auto;
     max-width: 380px;
   }
+
+  /* форма: поля в две колонки, длинные — на всю ширину */
+  .order-form {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md) var(--space-lg);
+    align-items: start;
+  }
+
+  .order-form__field--wide,
+  .order-form__field--checkbox,
+  .order-form__actions {
+    grid-column: 1 / -1;
+  }
+
+  /* от 600px таблица сравнения помещается — подсказка не нужна */
+  .table-hint {
+    display: none;
+  }
 }
 
 /* ===== 768px: планшет ===== */
