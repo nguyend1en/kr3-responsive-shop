@@ -401,14 +401,14 @@ if (cartList) {
 
 // ===== Личный кабинет =====
 // Backend ещё нет, поэтому аккаунты, вход и заказы хранятся
-// в localStorage. Для проверки есть демо-аккаунт.
+// в localStorage. Демо-аккаунт для проверки описан в README.
 // Хранить пароль в браузере допустимо только в учебном демо!
 const USERS_KEY = 'shopproject-users';
 const SESSION_KEY = 'shopproject-session';
 const DEMO_USER = {
-  name: 'Анна',
-  email: 'demo@shopproject.ru',
-  password: 'demo1234',
+  name: 'Dien',
+  email: 'admin@shopproject.ru',
+  password: 'admin123',
   phone: '+7 (900) 123-45-67',
   orders: [
     { id: 10517, date: '12.11.2026', items: 'Вязаный плед × 1', total: 1890, status: 'В пути' },
@@ -555,18 +555,6 @@ function renderAccount(moveFocus = false) {
   document.getElementById('orders-empty').hidden = user.orders.length > 0;
 
   if (moveFocus) document.getElementById('profile-title').focus();
-}
-
-const demoFill = document.getElementById('demo-fill');
-if (demoFill) {
-  demoFill.addEventListener('click', () => {
-    const form = document.getElementById('login-form');
-    form.elements.email.value = DEMO_USER.email;
-    form.elements.password.value = DEMO_USER.password;
-    form.elements.password.removeAttribute('aria-invalid');
-    document.getElementById('login-error').hidden = true;
-    form.querySelector('button[type="submit"]').focus();
-  });
 }
 
 const logout = document.getElementById('logout');
