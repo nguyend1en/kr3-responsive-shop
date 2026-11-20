@@ -2538,33 +2538,244 @@ main:focus {
   margin: 0;
 }
 
-/* ===== Временно: блоки прежнего содержимого (до шага 21) ===== */
-.categories--photos .category-card__link {
+/* ===== 25. Электроника: иконки категорий, характеристики, наборы ===== */
+/* характеристики в карточке — «чипы» моноширинным шрифтом */
+.product-card__specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+  padding: 0;
+  list-style: none;
+}
+
+.product-card__spec {
+  padding: 2px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-line);
+  border-radius: 6px;
+}
+
+/* готовые наборы-проекты в виде «чека» */
+.kits {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-lg);
+}
+
+.kit-card {
+  display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: 0;
-  padding: var(--space-sm);
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.3s ease, transform 0.35s var(--ease);
 }
 
-.categories--photos .category-card__link::after {
-  display: none;
+.kit-card:hover {
+  border-color: rgba(255, 181, 71, 0.45);
+  transform: translateY(-4px);
 }
 
-.category-card__image {
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
+.kit-card__label {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.kit-card__title {
+  margin-bottom: var(--space-sm);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+}
+
+.kit-card__text {
+  margin: 0 0 var(--space-md);
+  color: var(--color-muted);
+}
+
+.kit-card__parts {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 var(--space-md);
+  padding: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  list-style: none;
+  background-color: var(--color-bg-soft);
+  border: 1px dashed var(--color-line-strong);
   border-radius: var(--radius-md);
 }
 
-.categories--photos .category-card__body {
-  padding: var(--space-md) var(--space-sm) var(--space-sm);
+.kit-card__part {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+  color: var(--color-muted);
 }
 
-.hero__image {
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
+.kit-card__part span:last-child {
+  flex-shrink: 0;
+  white-space: nowrap;
+  color: var(--color-text);
+}
+
+.kit-card__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: auto 0 var(--space-md);
+  font-weight: 700;
+}
+
+.kit-card__sum {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--color-gold);
+}
+
+/* призыв с узором дорожек платы */
+.cta-band {
+  position: relative;
+  margin-bottom: 0;
+  padding: var(--space-xl) var(--space-lg);
+  overflow: hidden;
+  text-align: center;
+  color: var(--color-accent-ink);
+  background-color: var(--color-accent);
+  background-image:
+    repeating-linear-gradient(135deg, rgba(3, 20, 15, 0.07) 0 14px, transparent 14px 28px);
+  border-radius: var(--radius-lg);
+}
+
+.cta-band__title {
+  max-width: 20ch;
+  margin: 0 auto var(--space-sm);
+  font-size: 1.6rem;
+}
+
+.cta-band__text {
+  max-width: 52ch;
+  margin: 0 auto var(--space-lg);
+  font-weight: 500;
+}
+
+.cta-band__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.cta-band .button--primary {
+  color: var(--color-accent);
+  background-color: var(--color-accent-ink);
+  box-shadow: none;
+}
+
+.cta-band .button--primary:hover {
+  color: var(--color-accent-strong);
+  background-color: #000000;
+}
+
+.cta-band .button--secondary {
+  color: var(--color-accent-ink);
+  background-color: transparent;
+  border-color: rgba(3, 20, 15, 0.5);
+}
+
+.cta-band .button--secondary:hover {
+  border-color: var(--color-accent-ink);
+}
+
+/* иллюстрация платы в hero (SVG) */
+.board {
+  position: relative;
+  margin: 0;
+  padding: var(--space-lg);
+  background:
+    radial-gradient(circle at 50% 40%, rgba(60, 242, 200, 0.12), transparent 65%);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-lg);
+}
+
+.board__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.board__tag {
+  position: absolute;
+  padding: 6px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-text);
+  background-color: rgba(16, 22, 30, 0.92);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-sm);
+}
+
+.board__tag b {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.board__tag--one {
+  top: 14px;
+  left: 14px;
+}
+
+.board__tag--two {
+  right: 14px;
+  bottom: 14px;
+}
+
+/* «монитор порта» — терминал под платой */
+.terminal {
+  margin: var(--space-md) 0 0;
+  padding: var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: var(--color-muted);
+  background-color: #04060a;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+
+.terminal__head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: var(--space-sm);
+  font-size: 0.72rem;
+  color: #6f7e8f;
+}
+
+.terminal__head::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-success);
+  border-radius: 50%;
+}
+
+.terminal__line {
+  display: block;
+  min-height: 1.7em;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.terminal__ok {
+  color: var(--color-accent);
 }

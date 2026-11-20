@@ -109,7 +109,7 @@ if (chatToggle && chatPanel) {
   const chatForm = document.getElementById('chat-form');
   const chatInput = document.getElementById('chat-input');
   const chatList = chatPanel.querySelector('.chat__messages');
-  const STORAGE_KEY = 'shopproject-chat';
+  const STORAGE_KEY = 'pinout-chat';
   let noteShown = false;
   let history = [];
 
@@ -198,7 +198,7 @@ if (chatToggle && chatPanel) {
 // ===== Корзина =====
 // Товары хранятся в localStorage браузера (пока нет backend),
 // поэтому корзина сохраняется при переходе между страницами.
-const CART_KEY = 'shopproject-cart';
+const CART_KEY = 'pinout-cart';
 
 function loadCart() {
   try {
@@ -222,7 +222,7 @@ function cartQuantity(cart) {
 }
 
 function formatRub(value) {
-  return `${value.toLocaleString('ru-RU')} руб.`;
+  return `${value.toLocaleString('ru-RU')} ₽`;
 }
 
 // 1 товар, 2 товара, 5 товаров
@@ -243,25 +243,42 @@ function updateCartCount(cart = loadCart()) {
 
 updateCartCount();
 
+// добавить товар в корзину (данные берутся из data-атрибутов)
+function addToCart(cart, data) {
+  const found = cart.find((item) => item.id === data.id);
+  if (found) {
+    found.qty = Math.min(found.qty + 1, 10);
+  } else {
+    cart.push({
+      id: data.id,
+      name: data.name,
+      category: data.category,
+      price: Number(data.price),
+      oldPrice: Number(data.oldPrice) || 0,
+      qty: 1,
+    });
+  }
+}
+
 // кнопки «В корзину» в карточках и на странице товара
 document.querySelectorAll('.product-card__cart, .product-detail__cart').forEach((button) => {
   button.addEventListener('click', () => {
     const cart = loadCart();
-    const found = cart.find((item) => item.id === button.dataset.id);
-    if (found) {
-      found.qty = Math.min(found.qty + 1, 10);
-    } else {
-      cart.push({
-        id: button.dataset.id,
-        name: button.dataset.name,
-        category: button.dataset.category,
-        price: Number(button.dataset.price),
-        oldPrice: Number(button.dataset.oldPrice) || 0,
-        qty: 1,
-      });
-    }
+    addToCart(cart, button.dataset);
     saveCart(cart);
     showMessage(`«${button.dataset.name}» в корзине. Товаров: ${cartQuantity(cart)}`);
+  });
+});
+
+// готовые наборы: одна кнопка добавляет все детали набора
+document.querySelectorAll('.kit-card__cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    const cart = loadCart();
+    button.closest('.kit-card').querySelectorAll('.kit-card__part').forEach((part) => {
+      addToCart(cart, part.dataset);
+    });
+    saveCart(cart);
+    showMessage(`Набор «${button.dataset.kit}» в корзине. Товаров: ${cartQuantity(cart)}`);
   });
 });
 
@@ -403,16 +420,16 @@ if (cartList) {
 // Backend ещё нет, поэтому аккаунты, вход и заказы хранятся
 // в localStorage. Демо-аккаунт для проверки описан в README.
 // Хранить пароль в браузере допустимо только в учебном демо!
-const USERS_KEY = 'shopproject-users';
-const SESSION_KEY = 'shopproject-session';
+const USERS_KEY = 'pinout-users';
+const SESSION_KEY = 'pinout-session';
 const DEMO_USER = {
   name: 'Dien',
-  email: 'admin@shopproject.ru',
+  email: 'admin@pinout.ru',
   password: 'admin123',
   phone: '+7 (900) 123-45-67',
   orders: [
-    { id: 10517, date: '12.11.2026', items: 'Вязаный плед × 1', total: 1890, status: 'В пути' },
-    { id: 10482, date: '02.11.2026', items: 'Умная колонка × 1, Портативный аккумулятор × 2', total: 7470, status: 'Доставлен' },
+    { id: 10517, date: '12.11.2026', items: 'ESP32-DevKitC V4 × 2, Датчик BME280 × 2', total: 2860, status: 'В пути' },
+    { id: 10482, date: '02.11.2026', items: 'Raspberry Pi 5, 4 ГБ × 1', total: 8490, status: 'Доставлен' },
   ],
 };
 
@@ -572,3 +589,12 @@ if (logout) {
 }
 
 renderAccount();
+
+// кнопка «Спросить инженера» открывает чат (без JS ведёт к форме на странице «Контакты»)
+document.querySelectorAll('[data-open-chat]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    if (!chatToggle || !chatPanel) return;
+    event.preventDefault();
+    if (chatPanel.hidden) chatToggle.click();
+  });
+});

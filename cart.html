@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Корзина — Учебный интернет-магазин</title>
-  <meta name="description" content="Корзина учебного интернет-магазина: выбранные товары, количество, итоговая сумма и переход к оформлению заявки.">
+  <title>Корзина — PINOUT</title>
+  <meta name="description" content="Корзина PINOUT: выбранные компоненты, количество, итоговая сумма и переход к оформлению заказа.">
   <meta name="theme-color" content="#07090d">
   <script>document.documentElement.classList.add('js');</script>
   <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
@@ -19,13 +19,13 @@
   <a class="skip-link" href="#main">Перейти к основному содержимому</a>
   <div class="topbar">
     <div class="topbar__inner">
-      <p class="topbar__text">Бесплатная доставка от 5 000 руб.</p>
+      <p class="topbar__text">Отправка в день заказа до 16:00 · бесплатно от 5 000 ₽</p>
       <a class="topbar__phone" href="tel:+79000000000">+7 (900) 000-00-00</a>
     </div>
   </div>
   <header class="site-header" id="top">
     <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#161f2a"/><path d="M19 25h26l-3 21H22z" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round"/><path d="M26 25v-3a6 6 0 0 1 12 0v3" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/><circle cx="47" cy="46" r="6" fill="#3cf2c8"/></svg><span class="site-header__name">ShopProject</span></a>
+      <a class="site-header__logo" href="index.html" aria-label="PINOUT — на главную"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><rect x="2" y="2" width="60" height="60" rx="16" fill="#10161e" stroke="#33445a" stroke-width="2"/><g fill="#ffb547"><rect x="10" y="20" width="8" height="4" rx="1"/><rect x="10" y="30" width="8" height="4" rx="1"/><rect x="10" y="40" width="8" height="4" rx="1"/><rect x="46" y="20" width="8" height="4" rx="1"/><rect x="46" y="30" width="8" height="4" rx="1"/><rect x="46" y="40" width="8" height="4" rx="1"/></g><rect x="18" y="14" width="28" height="36" rx="5" fill="#3cf2c8"/><circle cx="25" cy="21" r="2.6" fill="#03140f"/><path d="M27 42V28h6a4.5 4.5 0 0 1 0 9h-6" fill="none" stroke="#03140f" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="site-header__name">PIN<span class="site-header__name-accent">OUT</span></span></a>
       <div class="header-actions">
         <a class="header-actions__link" href="account.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="header-actions__text">Войти</span></a>
         <a class="header-actions__link header-actions__link--active" aria-current="page" href="cart.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg><span class="header-actions__text">Корзина</span><span class="header-actions__count"><span class="visually-hidden">, товаров: </span><span class="header-actions__count-value">0</span></span></a>
@@ -38,6 +38,7 @@
         <ul class="site-nav__list" id="site-nav-list">
           <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html#kits">Наборы</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
         </ul>
       </nav>
@@ -73,20 +74,20 @@
       <aside class="cart-summary" aria-labelledby="summary-title">
         <h2 class="cart-summary__title" id="summary-title">Ваш заказ</h2>
         <dl class="cart-summary__list">
-          <div class="cart-summary__row"><dt id="summary-items-label">Товары (0)</dt><dd id="summary-items">0 руб.</dd></div>
-          <div class="cart-summary__row cart-summary__row--discount"><dt>Скидка</dt><dd id="summary-discount">0 руб.</dd></div>
+          <div class="cart-summary__row"><dt id="summary-items-label">Товары (0)</dt><dd id="summary-items">0 ₽</dd></div>
+          <div class="cart-summary__row cart-summary__row--discount"><dt>Скидка</dt><dd id="summary-discount">0 ₽</dd></div>
           <div class="cart-summary__row"><dt>Доставка</dt><dd id="summary-delivery">Бесплатно</dd></div>
-          <div class="cart-summary__row cart-summary__row--total"><dt>Итого</dt><dd id="summary-total">0 руб.</dd></div>
+          <div class="cart-summary__row cart-summary__row--total"><dt>Итого</dt><dd id="summary-total">0 ₽</dd></div>
         </dl>
         <form class="promo" action="#" method="post">
           <label class="promo__label" for="promo-code">Промокод</label>
           <div class="promo__group">
-            <input class="promo__input" id="promo-code" name="promo" type="text" placeholder="Например, KR3" autocomplete="off">
+            <input class="promo__input" id="promo-code" name="promo" type="text" placeholder="Например, ESP10" autocomplete="off">
             <button class="button button--secondary promo__button" type="submit" disabled aria-describedby="promo-note">Применить</button>
           </div>
           <p class="promo__note" id="promo-note">Промокоды появятся после подключения backend.</p>
         </form>
-        <a class="button button--primary cart-summary__checkout" id="cart-checkout" href="order.html">Оформить заявку</a>
+        <a class="button button--primary cart-summary__checkout" id="cart-checkout" href="order.html">Оформить заказ</a>
         <a class="cart-summary__back" href="catalog.html">Продолжить покупки</a>
       </aside>
     </div>
@@ -95,31 +96,30 @@
   <footer class="site-footer" id="contacts">
     <div class="site-footer__inner">
       <div class="site-footer__brand">
-        <a class="site-footer__logo" href="index.html">ShopProject</a>
-        <p class="site-footer__about">Учебный интернет-магазин электроники, товаров для дома и аксессуаров. Проект по дисциплине «Фронтенд и бэкенд разработка».</p>
+        <a class="site-footer__logo" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><rect x="2" y="2" width="60" height="60" rx="16" fill="#10161e" stroke="#33445a" stroke-width="2"/><g fill="#ffb547"><rect x="10" y="20" width="8" height="4" rx="1"/><rect x="10" y="30" width="8" height="4" rx="1"/><rect x="10" y="40" width="8" height="4" rx="1"/><rect x="46" y="20" width="8" height="4" rx="1"/><rect x="46" y="30" width="8" height="4" rx="1"/><rect x="46" y="40" width="8" height="4" rx="1"/></g><rect x="18" y="14" width="28" height="36" rx="5" fill="#3cf2c8"/><circle cx="25" cy="21" r="2.6" fill="#03140f"/><path d="M27 42V28h6a4.5 4.5 0 0 1 0 9h-6" fill="none" stroke="#03140f" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="site-header__name">PIN<span class="site-header__name-accent">OUT</span></span></a>
+        <p class="site-footer__about">Магазин электронных компонентов для мейкеров, студентов и инженеров: платы, датчики и наборы для проектов.</p>
         <ul class="socials">
-          <li><a class="socials__link" href="https://vk.com/" target="_blank" rel="noopener" aria-label="ВКонтакте (в новой вкладке)">VK</a></li>
-          <li><a class="socials__link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram (в новой вкладке)">TG</a></li>
+          <li><a class="socials__link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 4L3 11l6 2.5M21 4l-3 16-9-6.5M21 4L9 13.5V19l3-3.5"/></svg></a></li>
+          <li><a class="socials__link" href="https://vk.com/" target="_blank" rel="noopener" aria-label="ВКонтакте (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 7c.5 6 4 10 9.5 10h.5v-3.5c2 .2 3.4 1.6 4 3.5H20c-.8-2.6-2.7-4.3-4-5 1.3-.8 3-2.6 3.5-5h-2.8c-.6 2-2.2 3.8-3.7 4V7h-3v7c-1.8-.4-3.6-2.6-3.7-7z"/></svg></a></li>
+          <li><a class="socials__link" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z"/></svg></a></li>
+          <li><a class="socials__link" href="https://github.com/nguyend1en/kr3-responsive-shop" target="_blank" rel="noopener" aria-label="GitHub (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.6 2.8 5.6 3.1 5.6 3.1a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li>
         </ul>
       </div>
       <nav class="site-footer__col" aria-labelledby="footer-shop-title">
         <h2 class="site-footer__title" id="footer-shop-title">Магазин</h2>
         <ul class="site-footer__list">
           <li><a class="site-footer__link" href="catalog.html">Каталог</a></li>
-          <li><a class="site-footer__link" href="index.html#popular">Популярные товары</a></li>
-          <li><a class="site-footer__link" href="index.html#advantages">Преимущества</a></li>
+          <li><a class="site-footer__link" href="index.html#kits">Наборы</a></li>
           <li><a class="site-footer__link" href="cart.html">Корзина</a></li>
           <li><a class="site-footer__link" href="account.html">Личный кабинет</a></li>
-          <li><a class="site-footer__link" href="order.html">Оформить заявку</a></li>
         </ul>
       </nav>
       <nav class="site-footer__col" aria-labelledby="footer-help-title">
         <h2 class="site-footer__title" id="footer-help-title">Покупателям</h2>
         <ul class="site-footer__list">
           <li><a class="site-footer__link" href="contacts.html#faq">Доставка и оплата</a></li>
-          <li><a class="site-footer__link" href="contacts.html#faq">Возврат товара</a></li>
+          <li><a class="site-footer__link" href="contacts.html#faq">Гарантия и возврат</a></li>
           <li><a class="site-footer__link" href="contacts.html#route">Как добраться</a></li>
-          <li><a class="site-footer__link" href="contacts.html">Контакты</a></li>
         </ul>
       </nav>
       <div class="site-footer__col">
@@ -127,32 +127,30 @@
         <address class="site-footer__address">
           <span>г. Москва, ул. Мясницкая, д. 24</span>
           <a href="tel:+79000000000">+7 (900) 000-00-00</a>
-          <a href="mailto:example@mail.ru">example@mail.ru</a>
-          <span>Ежедневно 10:00–20:00</span>
+          <a href="mailto:hello@pinout.ru">hello@pinout.ru</a>
         </address>
       </div>
     </div>
     <div class="site-footer__bottom">
-      <p>&copy; 2026 ShopProject. Учебный проект, данные условные.</p>
-      <p>Фото товаров — с сайтов производителей, используются в учебных целях.</p>
+      <p>&copy; 2026 PINOUT. Все права защищены.</p>
     </div>
   </footer>
   <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
 
-  <p class="success-message" id="success-message" role="status" hidden>Заявка отправлена! Мы свяжемся с вами в течение рабочего дня.</p>
+  <p class="success-message" id="success-message" role="status" hidden>Заказ принят! Мы свяжемся с вами в течение часа.</p>
   <div class="chat" id="chat">
     <section class="chat__panel" id="chat-panel" aria-labelledby="chat-title" hidden>
       <div class="chat__header">
         <div>
           <h2 class="chat__title" id="chat-title">Чат с магазином</h2>
-          <p class="chat__status"><span class="chat__dot" aria-hidden="true"></span>Менеджеры отвечают 10:00–20:00</p>
+          <p class="chat__status"><span class="chat__dot" aria-hidden="true"></span>Инженеры на связи 10:00–20:00</p>
         </div>
         <button class="chat__close" type="button" aria-label="Свернуть чат">&times;</button>
       </div>
       <ol class="chat__messages" aria-live="polite">
         <li class="chat__message chat__message--shop">
-          <p class="chat__author">Менеджер ShopProject</p>
-          <p class="chat__text">Здравствуйте! Напишите вопрос о товаре, доставке или возврате — сотрудник магазина ответит здесь.</p>
+          <p class="chat__author">Инженер PINOUT</p>
+          <p class="chat__text">Здравствуйте! Расскажите о проекте или спросите про распиновку, драйвер, доставку — инженер магазина ответит здесь.</p>
         </li>
       </ol>
       <form class="chat__form" id="chat-form" action="#" method="post">

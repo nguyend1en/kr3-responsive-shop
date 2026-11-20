@@ -351,14 +351,18 @@
   }
 }
 
-/* временно: три категории с фото (до шага 21) */
-@media (min-width: 1024px) {
-  .categories--photos {
+/* ===== Наборы и призыв ===== */
+@media (min-width: 768px) {
+  .kits {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .categories--photos .category-card__link {
-    min-height: 0;
+  .cta-band {
+    padding: var(--space-2xl) var(--space-xl);
+  }
+
+  .cta-band__title {
+    font-size: 2.2rem;
   }
 }
 
