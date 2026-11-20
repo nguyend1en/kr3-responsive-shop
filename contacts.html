@@ -233,7 +233,16 @@
     </div>
     <p class="site-footer__giant" aria-hidden="true">PINOUT</p>
   </footer>
-  <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
+  <a class="to-top" href="#top" aria-label="Наверх">
+    <svg class="to-top__chip" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
+      <g class="to-top__pin to-top__pin--left"><rect x="4" y="16" width="10" height="4" rx="1"/><rect x="4" y="26" width="10" height="4" rx="1"/><rect x="4" y="36" width="10" height="4" rx="1"/><rect x="4" y="46" width="10" height="4" rx="1"/></g>
+      <g class="to-top__pin to-top__pin--right"><rect x="50" y="16" width="10" height="4" rx="1"/><rect x="50" y="26" width="10" height="4" rx="1"/><rect x="50" y="36" width="10" height="4" rx="1"/><rect x="50" y="46" width="10" height="4" rx="1"/></g>
+      <rect class="to-top__body" x="13" y="8" width="38" height="48" rx="5"/>
+      <rect class="to-top__fill" x="14.5" y="9.5" width="35" height="45" rx="4"/>
+      <path class="to-top__notch" d="M27 8.8a5 5 0 0 0 10 0z"/>
+      <path class="to-top__arrow" d="M32 44V22M24 30l8-8 8 8"/>
+    </svg>
+  </a>
 
   <p class="success-message" id="success-message" role="status" hidden>Заказ принят! Мы свяжемся с вами в течение часа.</p>
   <div class="chat" id="chat">

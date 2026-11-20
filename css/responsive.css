@@ -395,6 +395,14 @@
   }
 }
 
+/* кнопка-микросхема чуть крупнее на desktop */
+@media (min-width: 1024px) {
+  .to-top {
+    width: 64px;
+    height: 64px;
+  }
+}
+
 /* ===== Меньше движения ===== */
 @media (prefers-reduced-motion: reduce) {
   html {

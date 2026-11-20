@@ -701,4 +701,21 @@ document.addEventListener('click', (event) => {
   document.querySelectorAll('.header-actions__count').forEach((count) => pulse(count, 'is-bumped'));
 });
 
+// ===== Кнопка «Наверх» — микросхема =====
+// Появляется после прокрутки на 600px; заливка корпуса следует за --progress.
+const toTop = document.querySelector('.to-top');
+if (toTop) {
+  scrollHandlers.push(() => {
+    toTop.classList.toggle('is-visible', window.scrollY > 600);
+  });
+
+  // #top — это «липкая» шапка: она всегда у верхнего края экрана, поэтому
+  // переход по якорю почти не прокручивает страницу. Прокручиваем к началу сами.
+  toTop.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    document.querySelector('.site-header__logo').focus({ preventScroll: true });
+  });
+}
+
 onScroll();
