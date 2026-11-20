@@ -109,7 +109,7 @@ if (chatToggle && chatPanel) {
   const chatForm = document.getElementById('chat-form');
   const chatInput = document.getElementById('chat-input');
   const chatList = chatPanel.querySelector('.chat__messages');
-  const STORAGE_KEY = 'shopproject-chat';
+  const STORAGE_KEY = 'pinout-chat';
   let noteShown = false;
   let history = [];
 
@@ -198,7 +198,7 @@ if (chatToggle && chatPanel) {
 // ===== Корзина =====
 // Товары хранятся в localStorage браузера (пока нет backend),
 // поэтому корзина сохраняется при переходе между страницами.
-const CART_KEY = 'shopproject-cart';
+const CART_KEY = 'pinout-cart';
 
 function loadCart() {
   try {
@@ -222,7 +222,7 @@ function cartQuantity(cart) {
 }
 
 function formatRub(value) {
-  return `${value.toLocaleString('ru-RU')} руб.`;
+  return `${value.toLocaleString('ru-RU')} ₽`;
 }
 
 // 1 товар, 2 товара, 5 товаров
@@ -243,25 +243,42 @@ function updateCartCount(cart = loadCart()) {
 
 updateCartCount();
 
+// добавить товар в корзину (данные берутся из data-атрибутов)
+function addToCart(cart, data) {
+  const found = cart.find((item) => item.id === data.id);
+  if (found) {
+    found.qty = Math.min(found.qty + 1, 10);
+  } else {
+    cart.push({
+      id: data.id,
+      name: data.name,
+      category: data.category,
+      price: Number(data.price),
+      oldPrice: Number(data.oldPrice) || 0,
+      qty: 1,
+    });
+  }
+}
+
 // кнопки «В корзину» в карточках и на странице товара
 document.querySelectorAll('.product-card__cart, .product-detail__cart').forEach((button) => {
   button.addEventListener('click', () => {
     const cart = loadCart();
-    const found = cart.find((item) => item.id === button.dataset.id);
-    if (found) {
-      found.qty = Math.min(found.qty + 1, 10);
-    } else {
-      cart.push({
-        id: button.dataset.id,
-        name: button.dataset.name,
-        category: button.dataset.category,
-        price: Number(button.dataset.price),
-        oldPrice: Number(button.dataset.oldPrice) || 0,
-        qty: 1,
-      });
-    }
+    addToCart(cart, button.dataset);
     saveCart(cart);
     showMessage(`«${button.dataset.name}» в корзине. Товаров: ${cartQuantity(cart)}`);
+  });
+});
+
+// готовые наборы: одна кнопка добавляет все детали набора
+document.querySelectorAll('.kit-card__cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    const cart = loadCart();
+    button.closest('.kit-card').querySelectorAll('.kit-card__part').forEach((part) => {
+      addToCart(cart, part.dataset);
+    });
+    saveCart(cart);
+    showMessage(`Набор «${button.dataset.kit}» в корзине. Товаров: ${cartQuantity(cart)}`);
   });
 });
 
@@ -401,18 +418,18 @@ if (cartList) {
 
 // ===== Личный кабинет =====
 // Backend ещё нет, поэтому аккаунты, вход и заказы хранятся
-// в localStorage. Для проверки есть демо-аккаунт.
+// в localStorage. Демо-аккаунт для проверки описан в README.
 // Хранить пароль в браузере допустимо только в учебном демо!
-const USERS_KEY = 'shopproject-users';
-const SESSION_KEY = 'shopproject-session';
+const USERS_KEY = 'pinout-users';
+const SESSION_KEY = 'pinout-session';
 const DEMO_USER = {
-  name: 'Анна',
-  email: 'demo@shopproject.ru',
-  password: 'demo1234',
+  name: 'Dien',
+  email: 'admin@pinout.ru',
+  password: 'admin123',
   phone: '+7 (900) 123-45-67',
   orders: [
-    { id: 10517, date: '12.11.2026', items: 'Вязаный плед × 1', total: 1890, status: 'В пути' },
-    { id: 10482, date: '02.11.2026', items: 'Умная колонка × 1, Портативный аккумулятор × 2', total: 7470, status: 'Доставлен' },
+    { id: 10517, date: '12.11.2026', items: 'ESP32-DevKitC V4 × 2, Датчик BME280 × 2', total: 2860, status: 'В пути' },
+    { id: 10482, date: '02.11.2026', items: 'Raspberry Pi 5, 4 ГБ × 1', total: 8490, status: 'Доставлен' },
   ],
 };
 
@@ -557,18 +574,6 @@ function renderAccount(moveFocus = false) {
   if (moveFocus) document.getElementById('profile-title').focus();
 }
 
-const demoFill = document.getElementById('demo-fill');
-if (demoFill) {
-  demoFill.addEventListener('click', () => {
-    const form = document.getElementById('login-form');
-    form.elements.email.value = DEMO_USER.email;
-    form.elements.password.value = DEMO_USER.password;
-    form.elements.password.removeAttribute('aria-invalid');
-    document.getElementById('login-error').hidden = true;
-    form.querySelector('button[type="submit"]').focus();
-  });
-}
-
 const logout = document.getElementById('logout');
 if (logout) {
   logout.addEventListener('click', () => {
@@ -584,3 +589,133 @@ if (logout) {
 }
 
 renderAccount();
+
+// кнопка «Спросить инженера» открывает чат (без JS ведёт к форме на странице «Контакты»)
+document.querySelectorAll('[data-open-chat]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    if (!chatToggle || !chatPanel) return;
+    event.preventDefault();
+    if (chatPanel.hidden) chatToggle.click();
+  });
+});
+
+// ===== Анимации =====
+// Если в системе включено «Уменьшить движение», анимации не запускаются.
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// 1. Появление блоков при прокрутке: IntersectionObserver добавляет класс is-visible
+const revealItems = document.querySelectorAll('[data-reveal]');
+if ('IntersectionObserver' in window && !reduceMotion) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add('is-visible'));
+}
+
+// 2. Прогресс прокрутки (полоса сверху) и плотная шапка после начала прокрутки.
+// Доля прокрутки 0..1 записывается в CSS-переменную --progress.
+const siteHeader = document.querySelector('.site-header');
+const scrollHandlers = [];
+
+function onScroll() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const ratio = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+  document.documentElement.style.setProperty('--progress', ratio.toFixed(3));
+  if (siteHeader) siteHeader.classList.toggle('site-header--scrolled', window.scrollY > 10);
+  scrollHandlers.forEach((handler) => handler());
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+
+// 3. Счётчики в первом экране: число «набегает» от 0 до значения из data-count
+function runCounter(element) {
+  const target = Number(element.dataset.count);
+  const suffix = element.dataset.suffix || '';
+  const start = performance.now();
+  const duration = 1400;
+  function frame(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    element.textContent = Math.round(target * eased).toLocaleString('ru-RU') + suffix;
+    if (t < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+if (!reduceMotion) {
+  document.querySelectorAll('[data-count]').forEach(runCounter);
+}
+
+// 4. «Монитор порта»: строки печатаются по одной букве. Без JS текст виден сразу.
+const terminalLines = document.querySelectorAll('.terminal__line');
+if (terminalLines.length && !reduceMotion) {
+  const texts = Array.from(terminalLines, (line) => line.innerHTML);
+  terminalLines.forEach((line) => {
+    line.textContent = '';
+  });
+  const cursor = document.createElement('span');
+  cursor.className = 'terminal__cursor';
+
+  let lineIndex = 0;
+  function typeLine() {
+    if (lineIndex >= texts.length) return;
+    const line = terminalLines[lineIndex];
+    const holder = document.createElement('div');
+    holder.innerHTML = texts[lineIndex];
+    const plain = holder.textContent;
+    let charIndex = 0;
+    const timer = setInterval(() => {
+      charIndex += 1;
+      line.textContent = plain.slice(0, charIndex);
+      line.append(cursor);
+      if (charIndex >= plain.length) {
+        clearInterval(timer);
+        line.innerHTML = texts[lineIndex]; // возвращаем подсветку «OK»
+        line.append(cursor);
+        lineIndex += 1;
+        setTimeout(typeLine, 350);
+      }
+    }, 28);
+  }
+  setTimeout(typeLine, 700);
+}
+
+// 5. Отклик на «В корзину»: кнопка и счётчик в шапке коротко «пульсируют»
+function pulse(element, className) {
+  element.classList.remove(className);
+  void element.offsetWidth; // перезапуск CSS-анимации
+  element.classList.add(className);
+}
+
+document.addEventListener('click', (event) => {
+  const button = event.target.closest('.product-card__cart, .product-detail__cart, .kit-card__cart');
+  if (!button || button.disabled) return;
+  pulse(button, 'is-added');
+  document.querySelectorAll('.header-actions__count').forEach((count) => pulse(count, 'is-bumped'));
+});
+
+// ===== Кнопка «Наверх» — микросхема =====
+// Появляется после прокрутки на 600px; заливка корпуса следует за --progress.
+const toTop = document.querySelector('.to-top');
+if (toTop) {
+  scrollHandlers.push(() => {
+    toTop.classList.toggle('is-visible', window.scrollY > 600);
+  });
+
+  // #top — это «липкая» шапка: она всегда у верхнего края экрана, поэтому
+  // переход по якорю почти не прокручивает страницу. Прокручиваем к началу сами.
+  toTop.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+    document.querySelector('.site-header__logo').focus({ preventScroll: true });
+  });
+}
+
+onScroll();
