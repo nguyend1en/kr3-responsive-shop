@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Личный кабинет — Учебный интернет-магазин</title>
+  <meta name="description" content="Вход и регистрация в личном кабинете учебного интернет-магазина: история заказов, адреса доставки и бонусы.">
+  <meta name="theme-color" content="#ffffff">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+  <div class="topbar">
+    <div class="topbar__inner">
+      <p class="topbar__text">Бесплатная доставка от 5 000 руб.</p>
+      <a class="topbar__phone" href="tel:+79000000000">+7 (900) 000-00-00</a>
+    </div>
+  </div>
+  <header class="site-header" id="top">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#141414"/><path d="M19 25h26l-3 21H22z" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round"/><path d="M26 25v-3a6 6 0 0 1 12 0v3" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/><circle cx="47" cy="46" r="6" fill="#e8590c"/></svg><span class="site-header__name">ShopProject</span></a>
+      <div class="header-actions">
+        <a class="header-actions__link header-actions__link--active" aria-current="page" href="account.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="header-actions__text">Войти</span></a>
+        <a class="header-actions__link" href="cart.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg><span class="header-actions__text">Корзина</span><span class="header-actions__count"><span class="visually-hidden">, товаров: </span><span class="header-actions__count-value">0</span></span></a>
+      </div>
+      <nav class="site-nav" aria-label="Основная навигация">
+        <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-list">
+          <span class="site-nav__toggle-icon" aria-hidden="true"></span>
+          <span class="site-nav__toggle-text">Меню</span>
+        </button>
+        <ul class="site-nav__list" id="site-nav-list">
+          <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <nav class="breadcrumbs" aria-label="Хлебные крошки">
+      <ol class="breadcrumbs__list">
+        <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="index.html">Главная</a></li>
+        <li class="breadcrumbs__item"><span class="breadcrumbs__current" aria-current="page">Личный кабинет</span></li>
+      </ol>
+    </nav>
+    <h1 class="page-title">Личный кабинет</h1>
+
+    <div class="account-layout" id="account-auth">
+      <section class="account-card" aria-labelledby="login-title">
+        <h2 class="account-card__title" id="login-title">Вход</h2>
+        <p class="account-card__text">Войдите, чтобы видеть историю заказов и быстрее оформлять заявки.</p>
+        <div class="account-demo">
+          <p class="account-demo__data">Демо-доступ: <code>demo@shopproject.ru</code> / <code>demo1234</code></p>
+          <button class="account-demo__fill" id="demo-fill" type="button">Подставить</button>
+        </div>
+        <form class="order-form" id="login-form" action="#" method="post" data-success="Вы вошли в личный кабинет." data-account="login">
+          <div class="order-form__field order-form__field--wide">
+            <label class="order-form__label" for="login-email">E-mail</label>
+            <input class="order-form__input" id="login-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
+          </div>
+          <div class="order-form__field order-form__field--wide">
+            <label class="order-form__label" for="login-password">Пароль</label>
+            <input class="order-form__input" id="login-password" name="password" type="password" minlength="6" autocomplete="current-password" required>
+          </div>
+          <div class="order-form__field order-form__field--checkbox">
+            <input class="order-form__checkbox" id="login-remember" name="remember" type="checkbox">
+            <label class="order-form__label" for="login-remember">Запомнить меня</label>
+          </div>
+          <div class="order-form__actions">
+            <button class="button button--primary" type="submit">Войти</button>
+            <a class="account-card__link" href="contacts.html#faq">Забыли пароль?</a>
+          </div>
+          <p class="account-card__error" id="login-error" role="alert" hidden>Неверный e-mail или пароль. Попробуйте ещё раз или воспользуйтесь демо-доступом.</p>
+        </form>
+      </section>
+
+      <section class="account-card account-card--accent" aria-labelledby="register-title">
+        <h2 class="account-card__title" id="register-title">Регистрация</h2>
+        <p class="account-card__text">Новый покупатель? Создайте аккаунт за минуту. Поля со звёздочкой <span class="order-form__required" aria-hidden="true">*</span> обязательны.</p>
+        <form class="order-form" id="register-form" action="#" method="post" data-success="Аккаунт создан, вы вошли в личный кабинет." data-account="register">
+          <div class="order-form__field">
+            <label class="order-form__label" for="reg-name">Имя <span class="order-form__required" aria-hidden="true">*</span></label>
+            <input class="order-form__input" id="reg-name" name="name" type="text" minlength="2" autocomplete="given-name" required>
+          </div>
+          <div class="order-form__field">
+            <label class="order-form__label" for="reg-phone">Телефон <span class="order-form__required" aria-hidden="true">*</span></label>
+            <input class="order-form__input" id="reg-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" autocomplete="tel" aria-describedby="reg-phone-hint" required>
+            <small class="order-form__hint" id="reg-phone-hint">Формат: +7 (900) 000-00-00</small>
+          </div>
+          <div class="order-form__field order-form__field--wide">
+            <label class="order-form__label" for="reg-email">E-mail <span class="order-form__required" aria-hidden="true">*</span></label>
+            <input class="order-form__input" id="reg-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
+          </div>
+          <div class="order-form__field order-form__field--wide">
+            <label class="order-form__label" for="reg-password">Пароль <span class="order-form__required" aria-hidden="true">*</span></label>
+            <input class="order-form__input" id="reg-password" name="password" type="password" minlength="8" autocomplete="new-password" aria-describedby="reg-password-hint" required>
+            <small class="order-form__hint" id="reg-password-hint">Не меньше 8 символов</small>
+          </div>
+          <div class="order-form__field order-form__field--checkbox">
+            <input class="order-form__checkbox" id="reg-agreement" name="agreement" type="checkbox" required>
+            <label class="order-form__label" for="reg-agreement">Я согласен на обработку персональных данных <span class="order-form__required" aria-hidden="true">*</span></label>
+          </div>
+          <div class="order-form__actions">
+            <button class="button button--primary" type="submit">Зарегистрироваться</button>
+          </div>
+          <p class="account-card__error" id="register-error" role="alert" hidden>Пользователь с таким e-mail уже зарегистрирован. Войдите в аккаунт.</p>
+        </form>
+      </section>
+    </div>
+
+    <!-- профиль показывается после входа (js/main.js) -->
+    <section class="profile" id="account-profile" aria-labelledby="profile-title" hidden>
+      <div class="profile__head">
+        <span class="profile__avatar" id="profile-avatar" aria-hidden="true"></span>
+        <div class="profile__who">
+          <h2 class="profile__title" id="profile-title" tabindex="-1">Здравствуйте, <span id="profile-name"></span>!</h2>
+          <p class="profile__meta"><span id="profile-email"></span> · <span id="profile-phone"></span></p>
+        </div>
+        <button class="button button--secondary profile__logout" id="logout" type="button">Выйти</button>
+      </div>
+
+      <dl class="profile__stats">
+        <div class="profile__stat"><dt>Заказов</dt><dd id="stat-orders">0</dd></div>
+        <div class="profile__stat"><dt>Сумма покупок</dt><dd id="stat-spent">0 руб.</dd></div>
+        <div class="profile__stat"><dt>Бонусы (5%)</dt><dd id="stat-bonus">0</dd></div>
+      </dl>
+
+      <h3 class="profile__subtitle">История заказов</h3>
+      <p class="table-hint" aria-hidden="true">Таблицу можно прокрутить вправо &rarr;</p>
+      <div class="table-wrap" role="region" aria-labelledby="orders-caption" tabindex="0">
+        <table class="data-table orders-table">
+          <caption class="data-table__caption" id="orders-caption">Ваши заказы — новые сверху</caption>
+          <thead>
+            <tr class="data-table__row">
+              <th class="data-table__head-cell" scope="col">№</th>
+              <th class="data-table__head-cell" scope="col">Дата</th>
+              <th class="data-table__head-cell" scope="col">Товары</th>
+              <th class="data-table__head-cell" scope="col">Сумма</th>
+              <th class="data-table__head-cell" scope="col">Статус</th>
+            </tr>
+          </thead>
+          <tbody id="orders-body"></tbody>
+        </table>
+      </div>
+      <p class="profile__empty" id="orders-empty" hidden>Заказов пока нет. <a href="catalog.html">Перейти в каталог</a></p>
+    </section>
+
+    <section class="section" aria-labelledby="perks-title">
+      <h2 class="section__title" id="perks-title">Что есть в личном кабинете</h2>
+      <ul class="advantages">
+        <li class="advantages__item">
+          <span class="advantages__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/></svg></span>
+          <h3 class="advantages__title">История заказов</h3>
+          <p class="advantages__text">Все заявки и их статусы в одном месте.</p>
+        </li>
+        <li class="advantages__item">
+          <span class="advantages__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h11v10H3z"/><path d="M14 9h4l3 3v4h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></span>
+          <h3 class="advantages__title">Адреса доставки</h3>
+          <p class="advantages__text">Сохраните адрес, чтобы не вводить его каждый раз.</p>
+        </li>
+        <li class="advantages__item">
+          <span class="advantages__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 3L5 13h6l-1 8 8-10h-6z"/></svg></span>
+          <h3 class="advantages__title">Бонусы</h3>
+          <p class="advantages__text">5% от суммы заказа возвращаются бонусами.</p>
+        </li>
+        <li class="advantages__item">
+          <span class="advantages__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14L4 9l5-5"/><path d="M4 9h11a5 5 0 010 10h-3"/></svg></span>
+          <h3 class="advantages__title">Быстрый возврат</h3>
+          <p class="advantages__text">Заявку на возврат можно оформить в два клика.</p>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contacts">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <a class="site-footer__logo" href="index.html">ShopProject</a>
+        <p class="site-footer__about">Учебный интернет-магазин электроники, товаров для дома и аксессуаров. Проект по дисциплине «Фронтенд и бэкенд разработка».</p>
+        <ul class="socials">
+          <li><a class="socials__link" href="https://vk.com/" target="_blank" rel="noopener" aria-label="ВКонтакте (в новой вкладке)">VK</a></li>
+          <li><a class="socials__link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram (в новой вкладке)">TG</a></li>
+        </ul>
+      </div>
+      <nav class="site-footer__col" aria-labelledby="footer-shop-title">
+        <h2 class="site-footer__title" id="footer-shop-title">Магазин</h2>
+        <ul class="site-footer__list">
+          <li><a class="site-footer__link" href="catalog.html">Каталог</a></li>
+          <li><a class="site-footer__link" href="index.html#popular">Популярные товары</a></li>
+          <li><a class="site-footer__link" href="index.html#advantages">Преимущества</a></li>
+          <li><a class="site-footer__link" href="cart.html">Корзина</a></li>
+          <li><a class="site-footer__link" href="account.html">Личный кабинет</a></li>
+          <li><a class="site-footer__link" href="order.html">Оформить заявку</a></li>
+        </ul>
+      </nav>
+      <nav class="site-footer__col" aria-labelledby="footer-help-title">
+        <h2 class="site-footer__title" id="footer-help-title">Покупателям</h2>
+        <ul class="site-footer__list">
+          <li><a class="site-footer__link" href="contacts.html#faq">Доставка и оплата</a></li>
+          <li><a class="site-footer__link" href="contacts.html#faq">Возврат товара</a></li>
+          <li><a class="site-footer__link" href="contacts.html#route">Как добраться</a></li>
+          <li><a class="site-footer__link" href="contacts.html">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="site-footer__col">
+        <h2 class="site-footer__title">Контакты</h2>
+        <address class="site-footer__address">
+          <span>г. Москва, ул. Мясницкая, д. 24</span>
+          <a href="tel:+79000000000">+7 (900) 000-00-00</a>
+          <a href="mailto:example@mail.ru">example@mail.ru</a>
+          <span>Ежедневно 10:00–20:00</span>
+        </address>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <p>&copy; 2026 ShopProject. Учебный проект, данные условные.</p>
+      <p>Фото товаров — с сайтов производителей, используются в учебных целях.</p>
+    </div>
+  </footer>
+  <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
+
+  <p class="success-message" id="success-message" role="status" hidden>Заявка отправлена! Мы свяжемся с вами в течение рабочего дня.</p>
+  <div class="chat" id="chat">
+    <section class="chat__panel" id="chat-panel" aria-labelledby="chat-title" hidden>
+      <div class="chat__header">
+        <div>
+          <h2 class="chat__title" id="chat-title">Чат с магазином</h2>
+          <p class="chat__status"><span class="chat__dot" aria-hidden="true"></span>Менеджеры отвечают 10:00–20:00</p>
+        </div>
+        <button class="chat__close" type="button" aria-label="Свернуть чат">&times;</button>
+      </div>
+      <ol class="chat__messages" aria-live="polite">
+        <li class="chat__message chat__message--shop">
+          <p class="chat__author">Менеджер ShopProject</p>
+          <p class="chat__text">Здравствуйте! Напишите вопрос о товаре, доставке или возврате — сотрудник магазина ответит здесь.</p>
+        </li>
+      </ol>
+      <form class="chat__form" id="chat-form" action="#" method="post">
+        <label class="visually-hidden" for="chat-input">Ваше сообщение</label>
+        <textarea class="chat__input" id="chat-input" name="message" rows="2" placeholder="Напишите сообщение…" required></textarea>
+        <button class="chat__send" type="submit" aria-label="Отправить сообщение"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12l16-8-6 16-2-7z"/></svg></button>
+      </form>
+    </section>
+    <button class="chat__toggle" type="button" aria-expanded="false" aria-controls="chat-panel"><svg class="chat__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="chat__toggle-text">Чат</span></button>
+  </div>
+
+</body>
+</html>

@@ -101,14 +101,6 @@
     font-size: 1.75rem;
   }
 
-  /* кнопка заявки в шапке */
-  .button.site-header__cta {
-    display: inline-flex;
-    min-height: 40px;
-    padding: 8px 18px;
-    font-size: 0.95rem;
-  }
-
   .hero__title {
     font-size: 3rem;
   }
@@ -306,6 +298,127 @@
   .product-card:hover,
   .product-card:focus-within {
     transform: none;
+  }
+}
+
+/* ===== Новые страницы (шаги 10–12) ===== */
+@media (min-width: 600px) {
+  .js .site-nav__toggle {
+    padding: 8px 16px;
+  }
+
+  .logo-mark {
+    width: 36px;
+    height: 36px;
+  }
+
+  .site-header__name {
+    font-size: 1.35rem;
+  }
+
+  .site-nav__toggle-text {
+    position: static;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+  }
+
+  /* товар в корзине: фото | описание | количество и сумма */
+  .cart-item {
+    grid-template-columns: 160px 1fr auto;
+    align-items: center;
+  }
+
+  .cart-item__image {
+    width: 160px;
+    aspect-ratio: 3 / 2;
+  }
+
+  .cart-item__controls {
+    flex-direction: column;
+    grid-column: auto;
+    align-items: flex-end;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .cart-item__sum {
+    margin: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* шапка: логотип, меню, иконки */
+  .site-nav {
+    order: 1;
+  }
+
+  .header-actions {
+    order: 2;
+    margin-left: var(--space-md);
+  }
+
+  .header-actions__link {
+    padding: 8px 14px;
+  }
+
+  .header-actions__text {
+    display: inline;
+  }
+
+  .header-actions__count {
+    position: static;
+  }
+
+  .cart-layout {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .cart-summary {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-lg));
+  }
+
+  .account-layout {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+
+  .account-card {
+    padding: var(--space-xl);
+  }
+}
+
+/* категории с фото на маленьком планшете: три узкие колонки,
+   стрелка скрыта, отступы меньше */
+@media (min-width: 600px) and (max-width: 767px) {
+  .categories--photos {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .categories--photos .category-card__body {
+    padding: var(--space-md);
+  }
+
+  .categories--photos .category-card__title {
+    font-size: 1rem;
+  }
+
+  .categories--photos .category-card__link::after {
+    content: none;
+  }
+}
+
+/* профиль: просторнее с 600px, крупнее цифры */
+@media (min-width: 600px) {
+  .profile {
+    padding: var(--space-xl);
+  }
+
+  .profile__stat dd {
+    font-size: 1.3rem;
   }
 }
 

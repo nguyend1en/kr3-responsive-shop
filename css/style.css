@@ -243,12 +243,6 @@ main:focus {
   color: var(--color-accent);
 }
 
-/* кнопка заявки в шапке появляется с 768px
-   (два класса — чтобы правило было сильнее, чем .button) */
-.button.site-header__cta {
-  display: none;
-}
-
 /* ===== 5. Навигация (Flexbox) ===== */
 .site-nav {
   width: 100%;
@@ -1639,4 +1633,846 @@ main:focus {
 
 .topbar__phone {
   padding: 4px 0;
+}
+
+/* ===== 21. Логотип со знаком и иконки в шапке ===== */
+.site-header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.site-header__logo::after {
+  content: none;
+}
+
+/* точка после названия — оранжевая, как на знаке */
+.site-header__name::after {
+  content: ".";
+  color: var(--color-accent);
+}
+
+/* на телефоне в одной строке: знак, название, кабинет, корзина, меню */
+.site-header__inner {
+  column-gap: var(--space-sm);
+}
+
+.logo-mark {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+}
+
+.site-header__name {
+  font-size: 1.2rem;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-left: auto;
+}
+
+.header-actions__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  min-width: 44px;
+  min-height: 44px;
+  padding: 8px 10px;
+  font-weight: 700;
+  color: var(--color-text);
+  text-decoration: none;
+  border-radius: var(--radius-pill);
+}
+
+.header-actions__link:hover,
+.header-actions__link--active {
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+/* подписи «Войти» и «Корзина» видны с 1024px */
+.header-actions__text {
+  display: none;
+}
+
+/* на узком экране у кнопки меню остаётся только значок,
+   слово «Меню» скрыто визуально, но читается диктором */
+.js .site-nav__toggle {
+  padding: 8px 12px;
+}
+
+.site-nav__toggle-text {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.header-actions__count {
+  position: absolute;
+  top: 2px;
+  right: 0;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 20px;
+  text-align: center;
+  color: var(--color-text);
+  background-color: var(--color-accent);
+  border-radius: var(--radius-pill);
+}
+
+/* ===== 22. Корзина ===== */
+.cart-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-xl);
+}
+
+.cart {
+  min-width: 0;
+}
+
+.cart__list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.cart-item__image {
+  width: 96px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.cart-item__info {
+  min-width: 0;
+}
+
+.cart-item__category {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.cart-item__title {
+  margin: 2px 0 var(--space-xs);
+  font-size: 1.05rem;
+}
+
+.cart-item__link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.cart-item__link:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+}
+
+.cart-item__price {
+  margin: 0;
+  font-weight: 700;
+}
+
+.cart-item__old-price {
+  margin-left: var(--space-sm);
+  font-weight: 500;
+  color: var(--color-muted);
+}
+
+/* на телефоне количество и сумма — отдельной строкой под товаром */
+.cart-item__controls {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: 1 / -1;
+  align-items: center;
+  gap: var(--space-sm) var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-line);
+}
+
+.cart-item__qty-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.cart-item__qty {
+  width: 76px;
+  min-height: 44px;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: var(--color-surface);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
+}
+
+.cart-item__qty:focus {
+  background-color: var(--color-bg);
+  border-color: var(--color-text);
+}
+
+.cart-item__sum {
+  margin: 0 0 0 auto;
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+.cart-item__remove {
+  min-height: 44px;
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+.cart-item__remove:hover {
+  color: var(--color-danger);
+}
+
+.cart__note {
+  margin: var(--space-md) 0 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.cart-summary {
+  align-self: start;
+  padding: var(--space-lg);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+}
+
+.cart-summary__title {
+  margin-bottom: var(--space-md);
+  font-size: 1.3rem;
+}
+
+.cart-summary__list {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0 0 var(--space-lg);
+}
+
+.cart-summary__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.cart-summary__row dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.cart-summary__row--discount dd {
+  color: var(--color-accent-text);
+}
+
+.cart-summary__row--total {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-md);
+  font-size: 1.2rem;
+  font-weight: 800;
+  border-top: 1px solid var(--color-line);
+}
+
+.promo {
+  margin-bottom: var(--space-lg);
+}
+
+.promo__label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.promo__group {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.promo__input {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding: 12px var(--space-md);
+  font-family: inherit;
+  font-size: 1rem;
+  background-color: var(--color-bg);
+  border: 1.5px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+
+.promo__input:focus {
+  border-color: var(--color-text);
+}
+
+.promo__button {
+  min-height: 48px;
+  padding: 10px var(--space-md);
+}
+
+.promo__note {
+  margin: 6px 0 0;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+}
+
+.cart-summary__checkout {
+  width: 100%;
+}
+
+.cart-summary__back {
+  display: block;
+  margin-top: var(--space-md);
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ===== 23. Личный кабинет ===== */
+.account-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-2xl);
+}
+
+.account-card {
+  padding: var(--space-lg) var(--space-md);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.account-card--accent {
+  background-color: var(--color-surface);
+  border-color: var(--color-surface);
+}
+
+.account-card--accent .order-form__input {
+  background-color: var(--color-bg);
+}
+
+.account-card__title {
+  margin-bottom: var(--space-sm);
+}
+
+.account-card__text {
+  margin: 0 0 var(--space-lg);
+  color: var(--color-muted);
+}
+
+.account-card__link {
+  align-self: center;
+  font-weight: 700;
+}
+
+/* ===== 24. Категории с фото ===== */
+.categories--photos .category-card__link {
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  min-height: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.category-card__image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.category-card__link:hover .category-card__image {
+  transform: scale(1.04);
+}
+
+.category-card__body {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg) 80px var(--space-lg) var(--space-lg);
+}
+
+/* стрелка — в правом нижнем углу карточки */
+.categories--photos .category-card__link::after {
+  position: absolute;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+}
+
+/* ===== 25. Чат поддержки =====
+   Без JavaScript чат не работает, поэтому он показывается только
+   при классе .js. Отвечает менеджер магазина, а не бот. */
+.chat {
+  display: none;
+}
+
+.js .chat {
+  position: fixed;
+  right: var(--space-md);
+  bottom: var(--space-md);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-sm);
+}
+
+/* кнопка «Наверх» и сообщение поднимаются над кнопкой чата */
+.js .to-top {
+  bottom: 84px;
+}
+
+.js .success-message {
+  bottom: 148px;
+}
+
+.chat__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 52px;
+  padding: 12px 20px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #ffffff;
+  background-color: var(--color-text);
+  border: none;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 8px 24px rgba(20, 20, 20, 0.25);
+  cursor: pointer;
+}
+
+.chat__toggle:hover,
+.chat__toggle[aria-expanded="true"] {
+  color: var(--color-text);
+  background-color: var(--color-accent);
+}
+
+.chat__panel {
+  display: flex;
+  flex-direction: column;
+  width: min(360px, calc(100vw - 2 * var(--space-md)));
+  height: min(480px, calc(100vh - 110px));
+  overflow: hidden;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 48px rgba(20, 20, 20, 0.18);
+}
+
+.chat__panel[hidden] {
+  display: none;
+}
+
+.chat__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  color: #ffffff;
+  background-color: var(--color-text);
+}
+
+.chat__title {
+  margin: 0;
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.chat__status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 0;
+  font-size: 0.8rem;
+  color: var(--color-footer-text);
+}
+
+.chat__dot {
+  width: 8px;
+  height: 8px;
+  background-color: #3ddc84;
+  border-radius: 50%;
+}
+
+.chat__close {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  font-family: inherit;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: #ffffff;
+  background: transparent;
+  border: 1.5px solid #3a3a3a;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.chat__close:hover {
+  border-color: #ffffff;
+}
+
+.chat__messages {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: var(--space-md);
+  overflow-y: auto;
+  list-style: none;
+  background-color: var(--color-surface);
+}
+
+.chat__message {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+}
+
+.chat__message--shop {
+  align-self: flex-start;
+  background-color: var(--color-bg);
+  border-bottom-left-radius: 4px;
+}
+
+.chat__message--user {
+  align-self: flex-end;
+  color: #ffffff;
+  background-color: var(--color-text);
+  border-bottom-right-radius: 4px;
+}
+
+.chat__author {
+  margin: 0 0 2px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--color-muted);
+}
+
+.chat__text {
+  margin: 0;
+  font-size: 0.95rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.chat__time {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  text-align: right;
+  color: var(--color-footer-text);
+}
+
+.chat__note {
+  align-self: center;
+  max-width: 90%;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.chat__form {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border-top: 1px solid var(--color-line);
+}
+
+.chat__input {
+  flex: 1;
+  min-width: 0;
+  min-height: 44px;
+  max-height: 120px;
+  padding: 10px 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  resize: none;
+  background-color: var(--color-surface);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-md);
+}
+
+.chat__input:focus {
+  background-color: var(--color-bg);
+  border-color: var(--color-text);
+}
+
+.chat__send {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--color-text);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* ===== 26. Рабочая корзина ===== */
+.cart__empty {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+}
+
+.cart__empty[hidden] {
+  display: none;
+}
+
+.cart__empty-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.cart__empty-text {
+  margin: 0 0 var(--space-sm);
+  color: var(--color-muted);
+}
+
+.cart__list:empty {
+  display: none;
+}
+
+/* ссылка-кнопка «Оформить заявку» при пустой корзине */
+.button--disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.cart-title:focus,
+#cart-title:focus {
+  outline: none;
+}
+
+/* ===== 27. Вход, демо-доступ и профиль ===== */
+.account-demo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm) var(--space-md);
+  margin: 0 0 var(--space-lg);
+  padding: var(--space-md);
+  font-size: 0.95rem;
+  background-color: var(--color-accent-soft);
+  border-radius: var(--radius-md);
+}
+
+.account-demo__data {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.account-demo code {
+  font-family: inherit;
+  font-weight: 800;
+}
+
+.account-demo__fill {
+  min-height: 44px;
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1.5px solid var(--color-text);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+.account-demo__fill:hover {
+  background-color: var(--color-surface);
+}
+
+.account-card__error {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 10px 14px;
+  font-weight: 600;
+  color: var(--color-danger);
+  background-color: #fdecea;
+  border-radius: var(--radius-md);
+}
+
+.account-card__error[hidden],
+.account-layout[hidden],
+.profile[hidden],
+.profile__empty[hidden] {
+  display: none;
+}
+
+.profile {
+  margin-bottom: var(--space-2xl);
+  padding: var(--space-lg) var(--space-md);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.profile__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.profile__avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-text);
+  background-color: var(--color-accent);
+  border-radius: 50%;
+}
+
+.profile__who {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.profile__title {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.profile__title:focus {
+  outline: none;
+}
+
+.profile__meta {
+  margin: 2px 0 0;
+  color: var(--color-muted);
+  overflow-wrap: anywhere;
+}
+
+.profile__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-sm);
+  margin: var(--space-lg) 0;
+}
+
+.profile__stat {
+  padding: var(--space-md) 12px;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-md);
+}
+
+.profile__stat dt {
+  font-size: 0.8rem;
+  color: var(--color-muted);
+}
+
+.profile__stat dd {
+  margin: 2px 0 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.profile__subtitle {
+  margin-bottom: var(--space-md);
+  font-size: 1.15rem;
+}
+
+.orders-table {
+  min-width: 600px;
+}
+
+.orders-table .data-table__row-head,
+.orders-table .data-table__cell:nth-child(2) {
+  white-space: nowrap;
+}
+
+.order-status {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  white-space: nowrap;
+  border-radius: var(--radius-pill);
+}
+
+.order-status--done {
+  color: var(--color-success);
+  background-color: #e8f5ec;
+}
+
+.order-status--way {
+  color: var(--color-accent-text);
+  background-color: var(--color-accent-soft);
+}
+
+.order-status--new {
+  color: var(--color-text);
+  background-color: var(--color-surface-dark);
+}
+
+.profile__empty {
+  margin: var(--space-md) 0 0;
+  color: var(--color-muted);
+}
+
+/* длинное имя в шапке обрезается многоточием */
+.header-actions__text {
+  max-width: 12ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

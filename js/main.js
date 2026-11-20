@@ -32,8 +32,12 @@ if (nav && navToggle) {
 const dialog = document.getElementById('order-dialog');
 const message = document.getElementById('success-message');
 
-function showMessage() {
+// текст сообщения берётся из data-success формы (или стандартный)
+const defaultMessage = message ? message.textContent : '';
+
+function showMessage(text) {
   if (!message) return;
+  message.textContent = text || defaultMessage;
   message.hidden = false;
   setTimeout(() => {
     message.hidden = true;
@@ -82,8 +86,501 @@ document.querySelectorAll('.order-form').forEach((form) => {
       return;
     }
 
+    if (form.dataset.account && !handleAccount(form)) return;
+
     form.reset();
+    if ('clearCart' in form.dataset) {
+      recordOrder(loadCart());
+      saveCart([]);
+    }
     if (dialog && dialog.open) dialog.close();
-    showMessage();
+    showMessage(form.dataset.success);
   });
 });
+
+// Чат поддержки. Сообщение уходит менеджеру магазина — отвечает
+// сотрудник, а не бот. Пока нет backend, сообщения сохраняются
+// в браузере (localStorage), чтобы не пропадали при переходе по страницам.
+const chatToggle = document.querySelector('.chat__toggle');
+const chatPanel = document.getElementById('chat-panel');
+
+if (chatToggle && chatPanel) {
+  const chatClose = chatPanel.querySelector('.chat__close');
+  const chatForm = document.getElementById('chat-form');
+  const chatInput = document.getElementById('chat-input');
+  const chatList = chatPanel.querySelector('.chat__messages');
+  const STORAGE_KEY = 'shopproject-chat';
+  let noteShown = false;
+  let history = [];
+
+  function setChat(open) {
+    chatPanel.hidden = !open;
+    chatToggle.setAttribute('aria-expanded', String(open));
+    if (open) {
+      chatList.scrollTop = chatList.scrollHeight;
+      chatInput.focus();
+    }
+  }
+
+  // createElement + textContent: текст пользователя не выполняется как HTML
+  function addMessage(text, time) {
+    const item = document.createElement('li');
+    item.className = 'chat__message chat__message--user';
+    const body = document.createElement('p');
+    body.className = 'chat__text';
+    body.textContent = text;
+    const stamp = document.createElement('time');
+    stamp.className = 'chat__time';
+    stamp.textContent = time;
+    item.append(body, stamp);
+    chatList.append(item);
+    chatList.scrollTop = chatList.scrollHeight;
+  }
+
+  function addNote(text) {
+    const note = document.createElement('li');
+    note.className = 'chat__note';
+    note.textContent = text;
+    chatList.append(note);
+  }
+
+  try {
+    history = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  } catch (error) {
+    history = [];
+  }
+  history.forEach((message) => addMessage(message.text, message.time));
+
+  chatToggle.addEventListener('click', () => setChat(chatPanel.hidden));
+
+  chatClose.addEventListener('click', () => {
+    setChat(false);
+    chatToggle.focus();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !chatPanel.hidden) {
+      setChat(false);
+      chatToggle.focus();
+    }
+  });
+
+  // Enter — отправить, Shift+Enter — новая строка
+  chatInput.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      chatForm.requestSubmit();
+    }
+  });
+
+  chatForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const text = chatInput.value.trim();
+    if (!text) return;
+
+    const time = new Date().toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+    addMessage(text, time);
+    history.push({ text, time });
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(history.slice(-20)));
+    } catch (error) {
+      // хранилище недоступно — сообщение просто не сохранится
+    }
+    chatInput.value = '';
+
+    if (!noteShown) {
+      addNote('Сообщение передано менеджеру. Ответ придёт в этот чат в рабочее время.');
+      noteShown = true;
+    }
+  });
+}
+
+// ===== Корзина =====
+// Товары хранятся в localStorage браузера (пока нет backend),
+// поэтому корзина сохраняется при переходе между страницами.
+const CART_KEY = 'shopproject-cart';
+
+function loadCart() {
+  try {
+    return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveCart(cart) {
+  try {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  } catch (error) {
+    // хранилище недоступно — корзина не сохранится
+  }
+  updateCartCount(cart);
+}
+
+function cartQuantity(cart) {
+  return cart.reduce((sum, item) => sum + item.qty, 0);
+}
+
+function formatRub(value) {
+  return `${value.toLocaleString('ru-RU')} руб.`;
+}
+
+// 1 товар, 2 товара, 5 товаров
+function plural(n, forms) {
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return forms[0];
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return forms[1];
+  return forms[2];
+}
+
+// счётчик на иконке корзины в шапке
+function updateCartCount(cart = loadCart()) {
+  document.querySelectorAll('.header-actions__count-value').forEach((counter) => {
+    counter.textContent = cartQuantity(cart);
+  });
+}
+
+updateCartCount();
+
+// кнопки «В корзину» в карточках и на странице товара
+document.querySelectorAll('.product-card__cart, .product-detail__cart').forEach((button) => {
+  button.addEventListener('click', () => {
+    const cart = loadCart();
+    const found = cart.find((item) => item.id === button.dataset.id);
+    if (found) {
+      found.qty = Math.min(found.qty + 1, 10);
+    } else {
+      cart.push({
+        id: button.dataset.id,
+        name: button.dataset.name,
+        category: button.dataset.category,
+        price: Number(button.dataset.price),
+        oldPrice: Number(button.dataset.oldPrice) || 0,
+        qty: 1,
+      });
+    }
+    saveCart(cart);
+    showMessage(`«${button.dataset.name}» в корзине. Товаров: ${cartQuantity(cart)}`);
+  });
+});
+
+// страница корзины: список строится из localStorage
+const cartList = document.getElementById('cart-list');
+
+if (cartList) {
+  const cartTitle = document.getElementById('cart-title');
+  const cartStatus = document.getElementById('cart-status');
+  const cartEmpty = document.getElementById('cart-empty');
+  const checkout = document.getElementById('cart-checkout');
+
+  function createPicture(item) {
+    const picture = document.createElement('picture');
+    const source = document.createElement('source');
+    source.type = 'image/webp';
+    source.srcset = `images/products/${item.id}-480.webp 480w`;
+    const img = document.createElement('img');
+    img.className = 'cart-item__image';
+    img.src = `images/products/${item.id}-480.jpg`;
+    img.alt = item.name;
+    img.width = 480;
+    img.height = 320;
+    img.loading = 'lazy';
+    picture.append(source, img);
+    return picture;
+  }
+
+  function createElement(tag, className, text) {
+    const element = document.createElement(tag);
+    element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+  }
+
+  function createCartItem(item) {
+    const li = createElement('li', 'cart-item');
+    li.dataset.id = item.id;
+
+    const info = createElement('div', 'cart-item__info');
+    const title = createElement('h3', 'cart-item__title');
+    const link = createElement('a', 'cart-item__link', item.name);
+    link.href = 'product.html';
+    title.append(link);
+    const price = createElement('p', 'cart-item__price', formatRub(item.price));
+    if (item.oldPrice) {
+      const old = createElement('s', 'cart-item__old-price', formatRub(item.oldPrice));
+      price.append(' ', old);
+    }
+    info.append(createElement('p', 'cart-item__category', item.category), title, price);
+
+    const controls = createElement('div', 'cart-item__controls');
+    const label = createElement('label', 'cart-item__qty-label', 'Количество');
+    label.htmlFor = `qty-${item.id}`;
+    const hidden = createElement('span', 'visually-hidden', ` «${item.name}»`);
+    label.append(hidden);
+    const input = createElement('input', 'cart-item__qty');
+    input.type = 'number';
+    input.id = `qty-${item.id}`;
+    input.min = '1';
+    input.max = '10';
+    input.value = item.qty;
+    input.inputMode = 'numeric';
+    const sum = createElement('p', 'cart-item__sum', formatRub(item.price * item.qty));
+    const remove = createElement('button', 'cart-item__remove', 'Удалить');
+    remove.type = 'button';
+    remove.setAttribute('aria-label', `Удалить «${item.name}» из корзины`);
+    controls.append(label, input, sum, remove);
+
+    li.append(createPicture(item), info, controls);
+    return li;
+  }
+
+  function renderSummary() {
+    const cart = loadCart();
+    const qty = cartQuantity(cart);
+    const total = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    const full = cart.reduce((sum, item) => sum + (item.oldPrice || item.price) * item.qty, 0);
+
+    document.getElementById('cart-count').textContent = `${qty} ${plural(qty, ['товар', 'товара', 'товаров'])}`;
+    document.getElementById('summary-items-label').textContent = `Товары (${qty})`;
+    document.getElementById('summary-items').textContent = formatRub(full);
+    document.getElementById('summary-discount').textContent = full > total ? `−${formatRub(full - total)}` : formatRub(0);
+    document.getElementById('summary-delivery').textContent = total >= 5000 || total === 0 ? 'Бесплатно' : formatRub(300);
+    document.getElementById('summary-total').textContent = formatRub(total + (total > 0 && total < 5000 ? 300 : 0));
+
+    // пустая корзина: показываем подсказку и блокируем оформление
+    cartEmpty.hidden = cart.length > 0;
+    checkout.classList.toggle('button--disabled', cart.length === 0);
+    if (cart.length === 0) {
+      checkout.setAttribute('aria-disabled', 'true');
+    } else {
+      checkout.removeAttribute('aria-disabled');
+    }
+  }
+
+  function renderCart() {
+    cartList.replaceChildren(...loadCart().map(createCartItem));
+    renderSummary();
+  }
+
+  // изменение количества
+  cartList.addEventListener('change', (event) => {
+    if (!event.target.classList.contains('cart-item__qty')) return;
+    const li = event.target.closest('.cart-item');
+    const cart = loadCart();
+    const item = cart.find((entry) => entry.id === li.dataset.id);
+    const qty = Math.min(Math.max(parseInt(event.target.value, 10) || 1, 1), 10);
+    event.target.value = qty;
+    item.qty = qty;
+    saveCart(cart);
+    li.querySelector('.cart-item__sum').textContent = formatRub(item.price * qty);
+    renderSummary();
+  });
+
+  // удаление товара
+  cartList.addEventListener('click', (event) => {
+    const button = event.target.closest('.cart-item__remove');
+    if (!button) return;
+    const li = button.closest('.cart-item');
+    const cart = loadCart();
+    const removed = cart.find((entry) => entry.id === li.dataset.id);
+    saveCart(cart.filter((entry) => entry.id !== li.dataset.id));
+    li.remove();
+    renderSummary();
+    // фокус возвращается к заголовку, диктор сообщает об удалении
+    cartTitle.focus();
+    cartStatus.textContent = `«${removed.name}» удалён из корзины`;
+  });
+
+  checkout.addEventListener('click', (event) => {
+    if (checkout.getAttribute('aria-disabled') === 'true') event.preventDefault();
+  });
+
+  renderCart();
+}
+
+// ===== Личный кабинет =====
+// Backend ещё нет, поэтому аккаунты, вход и заказы хранятся
+// в localStorage. Для проверки есть демо-аккаунт.
+// Хранить пароль в браузере допустимо только в учебном демо!
+const USERS_KEY = 'shopproject-users';
+const SESSION_KEY = 'shopproject-session';
+const DEMO_USER = {
+  name: 'Анна',
+  email: 'demo@shopproject.ru',
+  password: 'demo1234',
+  phone: '+7 (900) 123-45-67',
+  orders: [
+    { id: 10517, date: '12.11.2026', items: 'Вязаный плед × 1', total: 1890, status: 'В пути' },
+    { id: 10482, date: '02.11.2026', items: 'Умная колонка × 1, Портативный аккумулятор × 2', total: 7470, status: 'Доставлен' },
+  ],
+};
+
+function readJSON(key, fallback) {
+  try {
+    const value = JSON.parse(localStorage.getItem(key));
+    return value ?? fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
+
+function writeJSON(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (error) {
+    // хранилище недоступно
+  }
+}
+
+// демо-аккаунт всегда есть в списке пользователей
+function getUsers() {
+  const users = readJSON(USERS_KEY, []);
+  if (!users.some((user) => user.email === DEMO_USER.email)) {
+    users.unshift(JSON.parse(JSON.stringify(DEMO_USER)));
+  }
+  return users;
+}
+
+function currentUser() {
+  const email = readJSON(SESSION_KEY, null);
+  return email ? getUsers().find((user) => user.email === email) || null : null;
+}
+
+// заказ из корзины попадает в историю вошедшего пользователя
+function recordOrder(cart) {
+  const email = readJSON(SESSION_KEY, null);
+  if (!email || cart.length === 0) return;
+  const users = getUsers();
+  const user = users.find((entry) => entry.email === email);
+  if (!user) return;
+  const sum = cart.reduce((total, item) => total + item.price * item.qty, 0);
+  user.orders.unshift({
+    id: 10000 + (Date.now() % 90000),
+    date: new Date().toLocaleDateString('ru-RU'),
+    items: cart.map((item) => `${item.name} × ${item.qty}`).join(', '),
+    total: sum + (sum < 5000 ? 300 : 0),
+    status: 'Принят',
+  });
+  writeJSON(USERS_KEY, users);
+}
+
+// вызывается из общего обработчика форм; true — вход выполнен
+function handleAccount(form) {
+  const users = getUsers();
+  if (form.dataset.account === 'login') {
+    const email = form.elements.email.value.trim().toLowerCase();
+    const user = users.find((entry) => entry.email === email && entry.password === form.elements.password.value);
+    const error = document.getElementById('login-error');
+    if (!user) {
+      error.hidden = false;
+      form.elements.password.setAttribute('aria-invalid', 'true');
+      form.elements.password.focus();
+      return false;
+    }
+    error.hidden = true;
+    writeJSON(SESSION_KEY, user.email);
+  } else {
+    const email = form.elements.email.value.trim().toLowerCase();
+    const error = document.getElementById('register-error');
+    if (users.some((entry) => entry.email === email)) {
+      error.hidden = false;
+      form.elements.email.setAttribute('aria-invalid', 'true');
+      form.elements.email.focus();
+      return false;
+    }
+    error.hidden = true;
+    users.push({
+      name: form.elements.name.value.trim(),
+      email,
+      password: form.elements.password.value,
+      phone: form.elements.phone.value,
+      orders: [],
+    });
+    writeJSON(USERS_KEY, users);
+    writeJSON(SESSION_KEY, email);
+  }
+  renderAccount(true);
+  return true;
+}
+
+function renderAccount(moveFocus = false) {
+  const user = currentUser();
+
+  // в шапке вместо «Войти» — имя пользователя
+  document.querySelectorAll('.header-actions__link[href="account.html"] .header-actions__text').forEach((label) => {
+    label.textContent = user ? user.name : 'Войти';
+  });
+
+  const auth = document.getElementById('account-auth');
+  const profile = document.getElementById('account-profile');
+  if (!auth || !profile) return;
+
+  auth.hidden = Boolean(user);
+  profile.hidden = !user;
+  if (!user) return;
+
+  document.getElementById('profile-avatar').textContent = user.name.charAt(0).toUpperCase();
+  document.getElementById('profile-name').textContent = user.name;
+  document.getElementById('profile-email').textContent = user.email;
+  document.getElementById('profile-phone').textContent = user.phone;
+
+  const spent = user.orders.reduce((total, order) => total + order.total, 0);
+  document.getElementById('stat-orders').textContent = user.orders.length;
+  document.getElementById('stat-spent').textContent = formatRub(spent);
+  document.getElementById('stat-bonus').textContent = Math.round(spent * 0.05).toLocaleString('ru-RU');
+
+  const body = document.getElementById('orders-body');
+  const statusClass = { 'Доставлен': 'done', 'В пути': 'way', 'Принят': 'new' };
+  body.replaceChildren(...user.orders.map((order) => {
+    const row = document.createElement('tr');
+    row.className = 'data-table__row';
+    const cells = [`№ ${order.id}`, order.date, order.items, formatRub(order.total)];
+    cells.forEach((text, index) => {
+      const cell = document.createElement(index === 0 ? 'th' : 'td');
+      cell.className = index === 0 ? 'data-table__row-head' : 'data-table__cell';
+      if (index === 0) cell.scope = 'row';
+      cell.textContent = text;
+      row.append(cell);
+    });
+    const statusCell = document.createElement('td');
+    statusCell.className = 'data-table__cell';
+    const badge = document.createElement('span');
+    badge.className = `order-status order-status--${statusClass[order.status] || 'new'}`;
+    badge.textContent = order.status;
+    statusCell.append(badge);
+    row.append(statusCell);
+    return row;
+  }));
+  document.getElementById('orders-empty').hidden = user.orders.length > 0;
+
+  if (moveFocus) document.getElementById('profile-title').focus();
+}
+
+const demoFill = document.getElementById('demo-fill');
+if (demoFill) {
+  demoFill.addEventListener('click', () => {
+    const form = document.getElementById('login-form');
+    form.elements.email.value = DEMO_USER.email;
+    form.elements.password.value = DEMO_USER.password;
+    form.elements.password.removeAttribute('aria-invalid');
+    document.getElementById('login-error').hidden = true;
+    form.querySelector('button[type="submit"]').focus();
+  });
+}
+
+const logout = document.getElementById('logout');
+if (logout) {
+  logout.addEventListener('click', () => {
+    try {
+      localStorage.removeItem(SESSION_KEY);
+    } catch (error) {
+      // ничего
+    }
+    renderAccount();
+    document.getElementById('login-email').focus();
+    showMessage('Вы вышли из личного кабинета.');
+  });
+}
+
+renderAccount();

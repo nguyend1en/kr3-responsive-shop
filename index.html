@@ -25,21 +25,22 @@
   </div>
   <header class="site-header" id="top">
     <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
+      <a class="site-header__logo" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><rect width="64" height="64" rx="16" fill="#141414"/><path d="M19 25h26l-3 21H22z" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linejoin="round"/><path d="M26 25v-3a6 6 0 0 1 12 0v3" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round"/><circle cx="47" cy="46" r="6" fill="#e8590c"/></svg><span class="site-header__name">ShopProject</span></a>
+      <div class="header-actions">
+        <a class="header-actions__link" href="account.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="header-actions__text">Войти</span></a>
+        <a class="header-actions__link" href="cart.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg><span class="header-actions__text">Корзина</span><span class="header-actions__count"><span class="visually-hidden">, товаров: </span><span class="header-actions__count-value">0</span></span></a>
+      </div>
       <nav class="site-nav" aria-label="Основная навигация">
         <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-list">
           <span class="site-nav__toggle-icon" aria-hidden="true"></span>
-          Меню
+          <span class="site-nav__toggle-text">Меню</span>
         </button>
         <ul class="site-nav__list" id="site-nav-list">
           <li class="site-nav__item"><a class="site-nav__link site-nav__link--active" href="index.html" aria-current="page">Главная</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="catalog.html">Каталог</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="product.html">Товар</a></li>
-          <li class="site-nav__item"><a class="site-nav__link" href="order.html">Заявка</a></li>
           <li class="site-nav__item"><a class="site-nav__link" href="contacts.html">Контакты</a></li>
         </ul>
       </nav>
-      <a class="button button--primary site-header__cta" href="order.html">Оставить заявку</a>
     </div>
   </header>
 
@@ -62,17 +63,41 @@
       <div class="hero__media">
         <picture>
           <source type="image/webp" srcset="images/products/hero-480.webp 480w, images/products/hero-960.webp 960w" sizes="(min-width: 1024px) 560px, 100vw">
-          <img class="hero__image" src="images/products/hero-960.jpg" srcset="images/products/hero-480.jpg 480w, images/products/hero-960.jpg 960w" sizes="(min-width: 1024px) 560px, 100vw" alt="Рабочий стол с беспроводными наушниками и ноутбуком" width="960" height="640" fetchpriority="high">
+          <img class="hero__image" src="images/products/hero-960.jpg" srcset="images/products/hero-480.jpg 480w, images/products/hero-960.jpg 960w" sizes="(min-width: 1024px) 560px, 100vw" alt="Рабочий стол с моноблоком, беспроводной клавиатурой и наушниками" width="960" height="640" fetchpriority="high">
         </picture>
       </div>
     </section>
 
     <section class="section" id="categories" aria-labelledby="categories-title">
       <h2 class="section__title" id="categories-title">Категории</h2>
-      <ul class="categories">
-        <li class="category-card"><a class="category-card__link" href="catalog.html"><span><span class="category-card__title">Электроника</span><br><span class="category-card__count">3 товара</span></span></a></li>
-        <li class="category-card"><a class="category-card__link" href="catalog.html"><span><span class="category-card__title">Дом</span><br><span class="category-card__count">2 товара</span></span></a></li>
-        <li class="category-card"><a class="category-card__link" href="catalog.html"><span><span class="category-card__title">Аксессуары</span><br><span class="category-card__count">3 товара</span></span></a></li>
+      <ul class="categories categories--photos">
+        <li class="category-card">
+          <a class="category-card__link" href="catalog.html">
+            <picture>
+              <source type="image/webp" srcset="images/products/cat-electronics-480.webp 480w, images/products/cat-electronics-960.webp 960w" sizes="(min-width: 600px) 33vw, 100vw">
+              <img class="category-card__image" src="images/products/cat-electronics-480.jpg" srcset="images/products/cat-electronics-480.jpg 480w, images/products/cat-electronics-960.jpg 960w" sizes="(min-width: 600px) 33vw, 100vw" alt="Беспроводная клавиатура в кармане рюкзака" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
+            <span class="category-card__body"><span class="category-card__title">Электроника</span><span class="category-card__count">3 товара</span></span>
+          </a>
+        </li>
+        <li class="category-card">
+          <a class="category-card__link" href="catalog.html">
+            <picture>
+              <source type="image/webp" srcset="images/products/cat-home-480.webp 480w, images/products/cat-home-960.webp 960w" sizes="(min-width: 600px) 33vw, 100vw">
+              <img class="category-card__image" src="images/products/cat-home-480.jpg" srcset="images/products/cat-home-480.jpg 480w, images/products/cat-home-960.jpg 960w" sizes="(min-width: 600px) 33vw, 100vw" alt="Жёлтый плед на светлом диване" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
+            <span class="category-card__body"><span class="category-card__title">Дом</span><span class="category-card__count">2 товара</span></span>
+          </a>
+        </li>
+        <li class="category-card">
+          <a class="category-card__link" href="catalog.html">
+            <picture>
+              <source type="image/webp" srcset="images/products/cat-accessories-480.webp 480w, images/products/cat-accessories-960.webp 960w" sizes="(min-width: 600px) 33vw, 100vw">
+              <img class="category-card__image" src="images/products/cat-accessories-480.jpg" srcset="images/products/cat-accessories-480.jpg 480w, images/products/cat-accessories-960.jpg 960w" sizes="(min-width: 600px) 33vw, 100vw" alt="Жёлтый рюкзак, наушники и очки на жёлтом фоне" width="480" height="320" loading="lazy" decoding="async">
+            </picture>
+            <span class="category-card__body"><span class="category-card__title">Аксессуары</span><span class="category-card__count">3 товара</span></span>
+          </a>
+        </li>
       </ul>
     </section>
 
@@ -93,7 +118,7 @@
             <p class="product-card__price">4 990 руб.</p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Беспроводные наушники»</span></a>
-              <button class="button button--primary product-card__button" type="button" data-product="Беспроводные наушники">Заказать<span class="visually-hidden"> «Беспроводные наушники»</span></button>
+              <button class="button button--primary product-card__cart" type="button" data-id="headphones" data-name="Беспроводные наушники" data-category="Электроника" data-price="4990">В корзину<span class="visually-hidden"> «Беспроводные наушники»</span></button>
             </div>
           </article>
           <article class="product-card product-card--discount">
@@ -104,11 +129,11 @@
             </picture>
             <p class="product-card__category">Электроника</p>
             <h3 class="product-card__title">Умная колонка</h3>
-            <p class="product-card__description">Компактная колонка с голосовым помощником и Wi‑Fi.</p>
+            <p class="product-card__description">Компактная колонка с голосовым помощником, часами и Wi‑Fi.</p>
             <p class="product-card__price">3 490 руб. <s class="product-card__old-price"><span class="visually-hidden">Старая цена: </span>4 290 руб.</s></p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Умная колонка»</span></a>
-              <button class="button button--primary product-card__button" type="button" data-product="Умная колонка">Заказать<span class="visually-hidden"> «Умная колонка»</span></button>
+              <button class="button button--primary product-card__cart" type="button" data-id="speaker" data-name="Умная колонка" data-category="Электроника" data-price="3490" data-old-price="4290">В корзину<span class="visually-hidden"> «Умная колонка»</span></button>
             </div>
           </article>
           <article class="product-card product-card--hit">
@@ -123,7 +148,7 @@
             <p class="product-card__price">1 990 руб.</p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Портативный аккумулятор»</span></a>
-              <button class="button button--primary product-card__button" type="button" data-product="Портативный аккумулятор">Заказать<span class="visually-hidden"> «Портативный аккумулятор»</span></button>
+              <button class="button button--primary product-card__cart" type="button" data-id="powerbank" data-name="Портативный аккумулятор" data-category="Электроника" data-price="1990">В корзину<span class="visually-hidden"> «Портативный аккумулятор»</span></button>
             </div>
           </article>
           <article class="product-card product-card--new">
@@ -138,7 +163,7 @@
             <p class="product-card__price">2 290 руб.</p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Настольная лампа»</span></a>
-              <button class="button button--primary product-card__button" type="button" data-product="Настольная лампа">Заказать<span class="visually-hidden"> «Настольная лампа»</span></button>
+              <button class="button button--primary product-card__cart" type="button" data-id="lamp" data-name="Настольная лампа" data-category="Дом" data-price="2290">В корзину<span class="visually-hidden"> «Настольная лампа»</span></button>
             </div>
           </article>
       </div>
@@ -202,6 +227,8 @@
           <li><a class="site-footer__link" href="catalog.html">Каталог</a></li>
           <li><a class="site-footer__link" href="index.html#popular">Популярные товары</a></li>
           <li><a class="site-footer__link" href="index.html#advantages">Преимущества</a></li>
+          <li><a class="site-footer__link" href="cart.html">Корзина</a></li>
+          <li><a class="site-footer__link" href="account.html">Личный кабинет</a></li>
           <li><a class="site-footer__link" href="order.html">Оформить заявку</a></li>
         </ul>
       </nav>
@@ -226,56 +253,35 @@
     </div>
     <div class="site-footer__bottom">
       <p>&copy; 2026 ShopProject. Учебный проект, данные условные.</p>
-      <p>Фото товаров: <a href="https://unsplash.com/" target="_blank" rel="noopener">Unsplash<span class="visually-hidden"> (в новой вкладке)</span></a></p>
+      <p>Фото товаров — с сайтов производителей, используются в учебных целях.</p>
     </div>
   </footer>
   <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
 
-  <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
-    <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
-    <form class="order-form" id="dlg-form" action="#" method="post">
-    <input id="selected-product" name="selected-product" type="hidden">
-          <div class="order-form__field">
-            <label class="order-form__label" for="dlg-name">Имя</label>
-            <input class="order-form__input" id="dlg-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" autocomplete="given-name" required>
-          </div>
-          <div class="order-form__field">
-            <label class="order-form__label" for="dlg-email">E-mail</label>
-            <input class="order-form__input" id="dlg-email" name="email" type="email" placeholder="example@mail.ru" autocomplete="email" required>
-          </div>
-          <div class="order-form__field">
-            <label class="order-form__label" for="dlg-phone">Телефон</label>
-            <input class="order-form__input" id="dlg-phone" name="phone" type="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$" autocomplete="tel" aria-describedby="dlg-phone-hint" required>
-            <small class="order-form__hint" id="dlg-phone-hint">Формат: +7 (900) 000-00-00</small>
-          </div>
-          <div class="order-form__field">
-            <label class="order-form__label" for="dlg-date">Дата связи</label>
-            <input class="order-form__input" id="dlg-date" name="date" type="date">
-          </div>
-          <div class="order-form__field order-form__field--wide">
-            <label class="order-form__label" for="dlg-topic">Тема заявки</label>
-            <select class="order-form__select" id="dlg-topic" name="topic" required>
-              <option value="">Выберите тему</option>
-              <option value="product">Заказ товара</option>
-              <option value="consultation">Консультация</option>
-              <option value="delivery">Доставка</option>
-            </select>
-          </div>
-          <div class="order-form__field order-form__field--wide">
-            <label class="order-form__label" for="dlg-comment">Комментарий</label>
-            <textarea class="order-form__textarea" id="dlg-comment" name="comment" rows="4" placeholder="Укажите дополнительную информацию"></textarea>
-          </div>
-          <div class="order-form__field order-form__field--checkbox">
-            <input class="order-form__checkbox" id="dlg-agreement" name="agreement" type="checkbox" required>
-            <label class="order-form__label" for="dlg-agreement">Я согласен на обработку данных</label>
-          </div>
-          <div class="order-form__actions">
-            <button class="button button--secondary" type="button" id="close-order-dialog">Закрыть</button>
-            <button class="button button--primary" type="submit">Отправить заявку</button>
-          </div>
-    </form>
-  </dialog>
-
   <p class="success-message" id="success-message" role="status" hidden>Заявка отправлена! Мы свяжемся с вами в течение рабочего дня.</p>
+  <div class="chat" id="chat">
+    <section class="chat__panel" id="chat-panel" aria-labelledby="chat-title" hidden>
+      <div class="chat__header">
+        <div>
+          <h2 class="chat__title" id="chat-title">Чат с магазином</h2>
+          <p class="chat__status"><span class="chat__dot" aria-hidden="true"></span>Менеджеры отвечают 10:00–20:00</p>
+        </div>
+        <button class="chat__close" type="button" aria-label="Свернуть чат">&times;</button>
+      </div>
+      <ol class="chat__messages" aria-live="polite">
+        <li class="chat__message chat__message--shop">
+          <p class="chat__author">Менеджер ShopProject</p>
+          <p class="chat__text">Здравствуйте! Напишите вопрос о товаре, доставке или возврате — сотрудник магазина ответит здесь.</p>
+        </li>
+      </ol>
+      <form class="chat__form" id="chat-form" action="#" method="post">
+        <label class="visually-hidden" for="chat-input">Ваше сообщение</label>
+        <textarea class="chat__input" id="chat-input" name="message" rows="2" placeholder="Напишите сообщение…" required></textarea>
+        <button class="chat__send" type="submit" aria-label="Отправить сообщение"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12l16-8-6 16-2-7z"/></svg></button>
+      </form>
+    </section>
+    <button class="chat__toggle" type="button" aria-expanded="false" aria-controls="chat-panel"><svg class="chat__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="chat__toggle-text">Чат</span></button>
+  </div>
+
 </body>
 </html>
