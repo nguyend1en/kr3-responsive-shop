@@ -94,25 +94,39 @@
     </div>
   </main>
 
-  <footer class="site-footer" id="contacts">
+  <footer class="site-footer">
+    <div class="footer-cta">
+      <div>
+        <p class="footer-cta__label">// рассылка</p>
+        <h2 class="footer-cta__title">Новые платы и проекты — раз в две недели</h2>
+        <p class="footer-cta__text">Схемы подключения, поступления и скидки на наборы. Без спама, отписка в один клик.</p>
+      </div>
+      <form class="order-form subscribe" id="subscribe-form" action="#" method="post" data-success="Готово! Первое письмо придёт с ближайшей рассылкой.">
+        <label class="visually-hidden" for="subscribe-email">E-mail для рассылки</label>
+        <input class="order-form__input" id="subscribe-email" name="email" type="email" placeholder="you@mail.ru" autocomplete="email" required>
+        <button class="button button--primary" type="submit">Подписаться</button>
+        <p class="subscribe__note">Нажимая «Подписаться», вы соглашаетесь получать письма PINOUT.</p>
+      </form>
+    </div>
     <div class="site-footer__inner">
       <div class="site-footer__brand">
-        <a class="site-footer__logo" href="index.html"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><rect x="2" y="2" width="60" height="60" rx="16" fill="#10161e" stroke="#33445a" stroke-width="2"/><g fill="#ffb547"><rect x="10" y="20" width="8" height="4" rx="1"/><rect x="10" y="30" width="8" height="4" rx="1"/><rect x="10" y="40" width="8" height="4" rx="1"/><rect x="46" y="20" width="8" height="4" rx="1"/><rect x="46" y="30" width="8" height="4" rx="1"/><rect x="46" y="40" width="8" height="4" rx="1"/></g><rect x="18" y="14" width="28" height="36" rx="5" fill="#3cf2c8"/><circle cx="25" cy="21" r="2.6" fill="#03140f"/><path d="M27 42V28h6a4.5 4.5 0 0 1 0 9h-6" fill="none" stroke="#03140f" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="site-header__name">PIN<span class="site-header__name-accent">OUT</span></span></a>
-        <p class="site-footer__about">Магазин электронных компонентов для мейкеров, студентов и инженеров: платы, датчики и наборы для проектов.</p>
+        <a class="site-footer__logo" href="index.html" aria-label="PINOUT — на главную"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><rect x="2" y="2" width="60" height="60" rx="16" fill="#10161e" stroke="#33445a" stroke-width="2"/><g fill="#ffb547"><rect x="10" y="20" width="8" height="4" rx="1"/><rect x="10" y="30" width="8" height="4" rx="1"/><rect x="10" y="40" width="8" height="4" rx="1"/><rect x="46" y="20" width="8" height="4" rx="1"/><rect x="46" y="30" width="8" height="4" rx="1"/><rect x="46" y="40" width="8" height="4" rx="1"/></g><rect x="18" y="14" width="28" height="36" rx="5" fill="#3cf2c8"/><circle cx="25" cy="21" r="2.6" fill="#03140f"/><path d="M27 42V28h6a4.5 4.5 0 0 1 0 9h-6" fill="none" stroke="#03140f" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="site-header__name">PIN<span class="site-header__name-accent">OUT</span></span></a>
+        <p class="site-footer__about">Электронные компоненты для мейкеров, студентов и инженеров. Платы, датчики и наборы, с которыми проект заработает с первого раза.</p>
         <ul class="socials">
           <li><a class="socials__link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 4L3 11l6 2.5M21 4l-3 16-9-6.5M21 4L9 13.5V19l3-3.5"/></svg></a></li>
           <li><a class="socials__link" href="https://vk.com/" target="_blank" rel="noopener" aria-label="ВКонтакте (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 7c.5 6 4 10 9.5 10h.5v-3.5c2 .2 3.4 1.6 4 3.5H20c-.8-2.6-2.7-4.3-4-5 1.3-.8 3-2.6 3.5-5h-2.8c-.6 2-2.2 3.8-3.7 4V7h-3v7c-1.8-.4-3.6-2.6-3.7-7z"/></svg></a></li>
           <li><a class="socials__link" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z"/></svg></a></li>
           <li><a class="socials__link" href="https://github.com/nguyend1en/kr3-responsive-shop" target="_blank" rel="noopener" aria-label="GitHub (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.6 2.8 5.6 3.1 5.6 3.1a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li>
         </ul>
+        <p class="site-footer__status">Склад онлайн · отправка сегодня</p>
       </div>
-      <nav class="site-footer__col" aria-labelledby="footer-shop-title">
-        <h2 class="site-footer__title" id="footer-shop-title">Магазин</h2>
+      <nav class="site-footer__col" aria-labelledby="footer-catalog-title">
+        <h2 class="site-footer__title" id="footer-catalog-title">Каталог</h2>
         <ul class="site-footer__list">
-          <li><a class="site-footer__link" href="catalog.html">Каталог</a></li>
-          <li><a class="site-footer__link" href="index.html#kits">Наборы</a></li>
-          <li><a class="site-footer__link" href="cart.html">Корзина</a></li>
-          <li><a class="site-footer__link" href="account.html">Личный кабинет</a></li>
+          <li><a class="site-footer__link" href="catalog.html">Микроконтроллеры</a></li>
+          <li><a class="site-footer__link" href="catalog.html">Raspberry Pi</a></li>
+          <li><a class="site-footer__link" href="catalog.html">Датчики и дисплеи</a></li>
+          <li><a class="site-footer__link" href="index.html#kits">Готовые наборы</a></li>
         </ul>
       </nav>
       <nav class="site-footer__col" aria-labelledby="footer-help-title">
@@ -120,21 +134,39 @@
         <ul class="site-footer__list">
           <li><a class="site-footer__link" href="contacts.html#faq">Доставка и оплата</a></li>
           <li><a class="site-footer__link" href="contacts.html#faq">Гарантия и возврат</a></li>
-          <li><a class="site-footer__link" href="contacts.html#route">Как добраться</a></li>
+          <li><a class="site-footer__link" href="contacts.html#route">Пункт выдачи</a></li>
+          <li><a class="site-footer__link" href="contacts.html#faq">Частые вопросы</a></li>
+        </ul>
+      </nav>
+      <nav class="site-footer__col" aria-labelledby="footer-account-title">
+        <h2 class="site-footer__title" id="footer-account-title">Аккаунт</h2>
+        <ul class="site-footer__list">
+          <li><a class="site-footer__link" href="account.html">Личный кабинет</a></li>
+          <li><a class="site-footer__link" href="cart.html">Корзина</a></li>
+          <li><a class="site-footer__link" href="order.html">Оформить заказ</a></li>
+          <li><a class="site-footer__link" href="contacts.html#feedback-title">Написать инженеру</a></li>
         </ul>
       </nav>
       <div class="site-footer__col">
         <h2 class="site-footer__title">Контакты</h2>
         <address class="site-footer__address">
-          <span>г. Москва, ул. Мясницкая, д. 24</span>
-          <a href="tel:+79000000000">+7 (900) 000-00-00</a>
-          <a href="mailto:hello@pinout.ru">hello@pinout.ru</a>
+          <p class="site-footer__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Москва, ул. Мясницкая, 24</span></p>
+          <p class="site-footer__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg><a href="tel:+79000000000">+7 (900) 000-00-00</a></p>
+          <p class="site-footer__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:hello@pinout.ru">hello@pinout.ru</a></p>
+          <p class="site-footer__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Ежедневно 10:00–20:00</span></p>
         </address>
       </div>
     </div>
     <div class="site-footer__bottom">
-      <p>&copy; 2026 PINOUT. Все права защищены.</p>
+      <p class="site-footer__copy">&copy; 2026 PINOUT. Все права защищены.</p>
+      <ul class="payments" aria-label="Способы оплаты">
+        <li class="payments__item">МИР</li>
+        <li class="payments__item">СБП</li>
+        <li class="payments__item">Наличные</li>
+      </ul>
+      <p class="site-footer__made">Собрано на <span>3,3&nbsp;В</span> и паяльнике</p>
     </div>
+    <p class="site-footer__giant" aria-hidden="true">PINOUT</p>
   </footer>
   <a class="to-top" href="#top" aria-label="Наверх">&uarr;</a>
 

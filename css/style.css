@@ -3084,3 +3084,157 @@ main:focus {
     transform: translateY(12px) scale(0.98);
   }
 }
+
+/* ===== 27. Подвал =====
+   Блок подписки, 5 колонок на desktop, нижняя полоса. */
+.footer-cta {
+  display: grid;
+  gap: var(--space-lg);
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.footer-cta__label {
+  margin: 0 0 var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.footer-cta__title {
+  margin: 0 0 var(--space-sm);
+  font-size: 1.4rem;
+  color: var(--color-text);
+}
+
+.footer-cta__text {
+  margin: 0;
+}
+
+.subscribe {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  gap: var(--space-sm);
+}
+
+.subscribe .order-form__input {
+  flex: 1 1 220px;
+}
+
+.subscribe .button {
+  flex: 0 0 auto;
+}
+
+.subscribe__note {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+.site-footer__brand .site-header__name {
+  font-size: 1.15rem;
+}
+
+.site-footer__address:has(.site-footer__contact) {
+  gap: 12px;
+}
+
+.site-footer__contact {
+  display: flex;
+  margin: 0;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.site-footer__contact svg {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  color: var(--color-accent);
+}
+
+.site-footer__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: var(--space-md);
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--color-success);
+  background-color: rgba(61, 220, 132, 0.08);
+  border: 1px solid rgba(61, 220, 132, 0.25);
+  border-radius: var(--radius-pill);
+}
+
+.site-footer__status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background-color: currentColor;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.payments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.payments__item {
+  padding: 4px 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-text);
+  border: 1px solid var(--color-line-strong);
+  border-radius: 6px;
+}
+
+.site-footer__copy {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.site-footer__made {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.site-footer__made span {
+  color: var(--color-accent);
+}
+
+/* нижняя полоса больше не последняя — запас под кнопки переносим на название */
+.site-footer__bottom {
+  padding-bottom: var(--space-lg);
+}
+
+/* огромное название магазина «контуром» внизу подвала */
+.site-footer__giant {
+  margin: 0;
+  padding: 0 var(--space-md);
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: 19vw;
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: 0.02em;
+  text-align: center;
+  color: transparent;
+  /* заливка градиентом: буквы «растворяются» книзу */
+  background: linear-gradient(180deg, var(--color-surface-2) 10%, transparent 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  user-select: none;
+  padding-bottom: 88px;
+}
