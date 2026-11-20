@@ -598,3 +598,107 @@ document.querySelectorAll('[data-open-chat]').forEach((link) => {
     if (chatPanel.hidden) chatToggle.click();
   });
 });
+
+// ===== Анимации =====
+// Если в системе включено «Уменьшить движение», анимации не запускаются.
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// 1. Появление блоков при прокрутке: IntersectionObserver добавляет класс is-visible
+const revealItems = document.querySelectorAll('[data-reveal]');
+if ('IntersectionObserver' in window && !reduceMotion) {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealItems.forEach((item) => revealObserver.observe(item));
+} else {
+  revealItems.forEach((item) => item.classList.add('is-visible'));
+}
+
+// 2. Прогресс прокрутки (полоса сверху) и плотная шапка после начала прокрутки.
+// Доля прокрутки 0..1 записывается в CSS-переменную --progress.
+const siteHeader = document.querySelector('.site-header');
+const scrollHandlers = [];
+
+function onScroll() {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const ratio = max > 0 ? Math.min(window.scrollY / max, 1) : 0;
+  document.documentElement.style.setProperty('--progress', ratio.toFixed(3));
+  if (siteHeader) siteHeader.classList.toggle('site-header--scrolled', window.scrollY > 10);
+  scrollHandlers.forEach((handler) => handler());
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+
+// 3. Счётчики в первом экране: число «набегает» от 0 до значения из data-count
+function runCounter(element) {
+  const target = Number(element.dataset.count);
+  const suffix = element.dataset.suffix || '';
+  const start = performance.now();
+  const duration = 1400;
+  function frame(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    element.textContent = Math.round(target * eased).toLocaleString('ru-RU') + suffix;
+    if (t < 1) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+}
+
+if (!reduceMotion) {
+  document.querySelectorAll('[data-count]').forEach(runCounter);
+}
+
+// 4. «Монитор порта»: строки печатаются по одной букве. Без JS текст виден сразу.
+const terminalLines = document.querySelectorAll('.terminal__line');
+if (terminalLines.length && !reduceMotion) {
+  const texts = Array.from(terminalLines, (line) => line.innerHTML);
+  terminalLines.forEach((line) => {
+    line.textContent = '';
+  });
+  const cursor = document.createElement('span');
+  cursor.className = 'terminal__cursor';
+
+  let lineIndex = 0;
+  function typeLine() {
+    if (lineIndex >= texts.length) return;
+    const line = terminalLines[lineIndex];
+    const holder = document.createElement('div');
+    holder.innerHTML = texts[lineIndex];
+    const plain = holder.textContent;
+    let charIndex = 0;
+    const timer = setInterval(() => {
+      charIndex += 1;
+      line.textContent = plain.slice(0, charIndex);
+      line.append(cursor);
+      if (charIndex >= plain.length) {
+        clearInterval(timer);
+        line.innerHTML = texts[lineIndex]; // возвращаем подсветку «OK»
+        line.append(cursor);
+        lineIndex += 1;
+        setTimeout(typeLine, 350);
+      }
+    }, 28);
+  }
+  setTimeout(typeLine, 700);
+}
+
+// 5. Отклик на «В корзину»: кнопка и счётчик в шапке коротко «пульсируют»
+function pulse(element, className) {
+  element.classList.remove(className);
+  void element.offsetWidth; // перезапуск CSS-анимации
+  element.classList.add(className);
+}
+
+document.addEventListener('click', (event) => {
+  const button = event.target.closest('.product-card__cart, .product-detail__cart, .kit-card__cart');
+  if (!button || button.disabled) return;
+  pulse(button, 'is-added');
+  document.querySelectorAll('.header-actions__count').forEach((count) => pulse(count, 'is-bumped'));
+});
+
+onScroll();

@@ -17,6 +17,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+  <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress__bar"></span></div>
   <div class="topbar">
     <div class="topbar__inner">
       <p class="topbar__text">Отправка в день заказа до 16:00 · бесплатно от 5 000 ₽</p>
@@ -89,7 +90,7 @@
           <p class="catalog__count">Найдено: 8 товаров</p>
         </div>
         <div class="products-grid">
-          <article class="product-card product-card--hit">
+          <article class="product-card product-card--hit" data-reveal>
             <span class="product-card__badge product-card__badge--hit">Хит</span>
             <picture>
               <source type="image/webp" srcset="images/products/esp32-480.webp 480w, images/products/esp32-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
@@ -110,7 +111,7 @@
               <button class="button button--primary product-card__cart" type="button" data-id="esp32" data-name="ESP32-DevKitC V4" data-category="Микроконтроллеры" data-price="890">В корзину<span class="visually-hidden"> «ESP32-DevKitC V4»</span></button>
             </div>
           </article>
-          <article class="product-card product-card--new">
+          <article class="product-card product-card--new" data-reveal>
             <span class="product-card__badge product-card__badge--new">Новинка</span>
             <picture>
               <source type="image/webp" srcset="images/products/rpi5-480.webp 480w, images/products/rpi5-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
@@ -131,7 +132,7 @@
               <button class="button button--primary product-card__cart" type="button" data-id="rpi5" data-name="Raspberry Pi 5, 4 ГБ" data-category="Raspberry Pi" data-price="8490">В корзину<span class="visually-hidden"> «Raspberry Pi 5, 4 ГБ»</span></button>
             </div>
           </article>
-          <article class="product-card product-card--discount">
+          <article class="product-card product-card--discount" data-reveal>
             <span class="product-card__badge"><span class="visually-hidden">Скидка </span>−13%</span>
             <picture>
               <source type="image/webp" srcset="images/products/uno-r4-480.webp 480w, images/products/uno-r4-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
@@ -152,7 +153,7 @@
               <button class="button button--primary product-card__cart" type="button" data-id="uno-r4" data-name="Arduino UNO R4 WiFi" data-category="Микроконтроллеры" data-price="3290" data-old-price="3790">В корзину<span class="visually-hidden"> «Arduino UNO R4 WiFi»</span></button>
             </div>
           </article>
-          <article class="product-card">
+          <article class="product-card" data-reveal>
             <picture>
               <source type="image/webp" srcset="images/products/pico-w-480.webp 480w, images/products/pico-w-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
               <img class="product-card__image" src="images/products/pico-w-480.jpg" srcset="images/products/pico-w-480.jpg 480w, images/products/pico-w-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Raspberry Pi Pico W" width="480" height="320" loading="lazy" decoding="async">
@@ -172,7 +173,7 @@
               <button class="button button--primary product-card__cart" type="button" data-id="pico-w" data-name="Raspberry Pi Pico W" data-category="Микроконтроллеры" data-price="790">В корзину<span class="visually-hidden"> «Raspberry Pi Pico W»</span></button>
             </div>
           </article>
-          <article class="product-card">
+          <article class="product-card" data-reveal>
             <picture>
               <source type="image/webp" srcset="images/products/bme280-480.webp 480w, images/products/bme280-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
               <img class="product-card__image" src="images/products/bme280-480.jpg" srcset="images/products/bme280-480.jpg 480w, images/products/bme280-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Датчик BME280" width="480" height="320" loading="lazy" decoding="async">
@@ -191,7 +192,7 @@
               <button class="button button--primary product-card__cart" type="button" data-id="bme280" data-name="Датчик BME280" data-category="Датчики и дисплеи" data-price="390">В корзину<span class="visually-hidden"> «Датчик BME280»</span></button>
             </div>
           </article>
-          <article class="product-card product-card--discount">
+          <article class="product-card product-card--discount" data-reveal>
             <span class="product-card__badge"><span class="visually-hidden">Скидка </span>−17%</span>
             <picture>
               <source type="image/webp" srcset="images/products/oled-480.webp 480w, images/products/oled-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
@@ -211,7 +212,7 @@
               <button class="button button--primary product-card__cart" type="button" data-id="oled" data-name="OLED-дисплей 0,96&quot; SSD1306" data-category="Датчики и дисплеи" data-price="290" data-old-price="350">В корзину<span class="visually-hidden"> «OLED-дисплей 0,96&quot; SSD1306»</span></button>
             </div>
           </article>
-          <article class="product-card product-card--new">
+          <article class="product-card product-card--new" data-reveal>
             <span class="product-card__badge product-card__badge--new">Новинка</span>
             <picture>
               <source type="image/webp" srcset="images/products/starter-kit-480.webp 480w, images/products/starter-kit-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
@@ -231,7 +232,7 @@
               <button class="button button--primary product-card__cart" type="button" data-id="starter-kit" data-name="Стартовый набор с макетной платой" data-category="Наборы" data-price="1290">В корзину<span class="visually-hidden"> «Стартовый набор с макетной платой»</span></button>
             </div>
           </article>
-          <article class="product-card product-card--unavailable">
+          <article class="product-card product-card--unavailable" data-reveal>
             <span class="product-card__badge product-card__badge--muted">Нет в наличии</span>
             <picture>
               <source type="image/webp" srcset="images/products/cam3-480.webp 480w, images/products/cam3-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">

@@ -2779,3 +2779,308 @@ main:focus {
 .terminal__ok {
   color: var(--color-accent);
 }
+
+/* ===== 26. Анимации =====
+   Все анимации отключаются при prefers-reduced-motion (responsive.css). */
+
+/* полоса прогресса прокрутки */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: 3px;
+  pointer-events: none;
+}
+
+.scroll-progress__bar {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-gold));
+  transform: scaleX(var(--progress, 0));
+  transform-origin: left;
+  box-shadow: 0 0 10px var(--color-accent-glow);
+}
+
+/* шапка становится плотнее после начала прокрутки */
+.site-header--scrolled {
+  background-color: rgba(7, 9, 13, 0.95);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* появление блоков при прокрутке (класс ставит IntersectionObserver).
+   Без JavaScript класса .js нет — всё видно сразу. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transition-delay: calc(var(--d, 0) * 90ms);
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* соседние карточки появляются «лесенкой» */
+.js [data-reveal]:nth-child(2) {
+  --d: 1;
+}
+
+.js [data-reveal]:nth-child(3) {
+  --d: 2;
+}
+
+.js [data-reveal]:nth-child(4) {
+  --d: 3;
+}
+
+/* первый экран: заголовок и плата появляются сразу при загрузке */
+.hero__content > * {
+  animation: rise 0.8s var(--ease) both;
+}
+
+.hero__content > :nth-child(2) {
+  animation-delay: 0.08s;
+}
+
+.hero__content > :nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.hero__content > :nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+.hero__content > :nth-child(5) {
+  animation-delay: 0.32s;
+}
+
+.hero__media {
+  animation: rise 1s 0.2s var(--ease) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* переливающееся слово в заголовке */
+.hero__accent {
+  background: linear-gradient(90deg, var(--color-accent), #8ff7ff, var(--color-gold), var(--color-accent));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 8s linear infinite;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: 300% 0;
+  }
+}
+
+/* плата «парит», по дорожкам бегут сигналы, мигает светодиод */
+.board__svg {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.board__trace-signal {
+  stroke-dasharray: 14 220;
+  animation: signal 3.2s linear infinite;
+}
+
+.board__trace-signal:nth-of-type(2n) {
+  animation-duration: 4.1s;
+  animation-delay: -1.3s;
+}
+
+.board__trace-signal:nth-of-type(3n) {
+  animation-duration: 2.7s;
+  animation-delay: -0.6s;
+}
+
+@keyframes signal {
+  from {
+    stroke-dashoffset: 234;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.board__led {
+  animation: blink 1.6s steps(2, jump-none) infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.15;
+  }
+}
+
+.board__tag {
+  animation: bob 5s ease-in-out infinite;
+}
+
+.board__tag--two {
+  animation-delay: -2.5s;
+}
+
+@keyframes bob {
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* мигающий курсор терминала */
+.terminal__cursor {
+  display: inline-block;
+  width: 0.6em;
+  height: 1.1em;
+  margin-left: 2px;
+  vertical-align: -0.2em;
+  background-color: var(--color-accent);
+  animation: caret 1s steps(2, jump-none) infinite;
+}
+
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* бегущая строка с интерфейсами и технологиями */
+.marquee {
+  position: relative;
+  margin: 0 0 var(--space-2xl);
+  padding: 14px 0;
+  overflow: hidden;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  animation: marquee 32s linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  padding-right: var(--space-xl);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  white-space: nowrap;
+  color: var(--color-muted);
+}
+
+.marquee__item::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--color-accent);
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* «блик» по карточке товара при наведении */
+.product-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.06) 50%, transparent 60%);
+  background-size: 250% 100%;
+  background-position: 120% 0;
+  border-radius: inherit;
+  transition: background-position 0.9s var(--ease);
+}
+
+.product-card:hover::after {
+  background-position: -20% 0;
+}
+
+/* кнопка «В корзину» отмечает добавление */
+.product-card__cart.is-added,
+.product-detail__cart.is-added {
+  animation: added 0.6s var(--ease);
+}
+
+@keyframes added {
+  30% {
+    transform: scale(0.94);
+  }
+  60% {
+    transform: scale(1.04);
+  }
+}
+
+/* счётчик корзины «подпрыгивает» */
+.header-actions__count.is-bumped {
+  animation: bump 0.5s var(--ease);
+}
+
+@keyframes bump {
+  40% {
+    transform: scale(1.4);
+  }
+}
+
+/* всплывающее сообщение выезжает снизу */
+.success-message:not([hidden]) {
+  animation: toast 0.45s var(--ease);
+}
+
+@keyframes toast {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* окно чата и модальное окно появляются плавно */
+.chat__panel:not([hidden]),
+.order-dialog[open] {
+  animation: pop 0.35s var(--ease);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+}

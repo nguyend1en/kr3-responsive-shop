@@ -17,6 +17,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Перейти к основному содержимому</a>
+  <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress__bar"></span></div>
   <div class="topbar">
     <div class="topbar__inner">
       <p class="topbar__text">Отправка в день заказа до 16:00 · бесплатно от 5 000 ₽</p>
@@ -87,7 +88,7 @@
     </article>
 
     <section class="section" aria-labelledby="specs-title">
-      <h2 class="section__title" id="specs-title">Характеристики</h2>
+      <h2 class="section__title" id="specs-title" data-reveal>Характеристики</h2>
       <div class="table-wrap" role="region" aria-labelledby="specs-caption" tabindex="0">
         <table class="data-table">
           <caption class="data-table__caption" id="specs-caption">Технические характеристики ESP32-DevKitC V4</caption>
@@ -140,7 +141,7 @@
     </section>
 
     <section class="section" aria-labelledby="compare-title">
-      <h2 class="section__title" id="compare-title">Сравнение с другими платами</h2>
+      <h2 class="section__title" id="compare-title" data-reveal>Сравнение с другими платами</h2>
       <p class="table-hint" aria-hidden="true">Таблицу можно прокрутить вправо &rarr;</p>
       <div class="table-wrap" role="region" aria-labelledby="compare-caption" tabindex="0">
         <table class="data-table data-table--compare">
@@ -196,17 +197,17 @@
     </section>
 
     <section class="section" aria-labelledby="reviews-title">
-      <h2 class="section__title" id="reviews-title">Отзывы мейкеров</h2>
+      <h2 class="section__title" id="reviews-title" data-reveal>Отзывы мейкеров</h2>
       <div class="reviews">
-        <figure class="review-card">
+        <figure class="review-card" data-reveal>
           <blockquote class="review-card__text">Собрал метеостанцию за вечер: BME280 по I²C, данные уходят в Home Assistant по MQTT. Плата определилась сразу.</blockquote>
           <figcaption class="review-card__author">Артём, <span class="review-card__rating">оценка 5 из 5</span></figcaption>
         </figure>
-        <figure class="review-card">
+        <figure class="review-card" data-reveal>
           <blockquote class="review-card__text">Хорошая пайка, модуль оригинальный WROOM-32E. Минус — широкая плата, на макетке остаётся один ряд с каждой стороны.</blockquote>
           <figcaption class="review-card__author">Ксения, <span class="review-card__rating">оценка 4 из 5</span></figcaption>
         </figure>
-        <figure class="review-card">
+        <figure class="review-card" data-reveal>
           <blockquote class="review-card__text">Заказал в 14:00 — вечером уже прошивал. В чате подсказали, какой драйвер ставить на Windows.</blockquote>
           <figcaption class="review-card__author">Дмитрий, <span class="review-card__rating">оценка 5 из 5</span></figcaption>
         </figure>
@@ -214,9 +215,9 @@
     </section>
 
     <section class="section" aria-labelledby="similar-title">
-      <h2 class="section__title" id="similar-title">С этим покупают</h2>
+      <h2 class="section__title" id="similar-title" data-reveal>С этим покупают</h2>
       <div class="products-grid">
-          <article class="product-card">
+          <article class="product-card" data-reveal>
             <picture>
               <source type="image/webp" srcset="images/products/pico-w-480.webp 480w, images/products/pico-w-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
               <img class="product-card__image" src="images/products/pico-w-480.jpg" srcset="images/products/pico-w-480.jpg 480w, images/products/pico-w-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Raspberry Pi Pico W" width="480" height="320" loading="lazy" decoding="async">
@@ -236,7 +237,7 @@
               <button class="button button--primary product-card__cart" type="button" data-id="pico-w" data-name="Raspberry Pi Pico W" data-category="Микроконтроллеры" data-price="790">В корзину<span class="visually-hidden"> «Raspberry Pi Pico W»</span></button>
             </div>
           </article>
-          <article class="product-card product-card--discount">
+          <article class="product-card product-card--discount" data-reveal>
             <span class="product-card__badge"><span class="visually-hidden">Скидка </span>−13%</span>
             <picture>
               <source type="image/webp" srcset="images/products/uno-r4-480.webp 480w, images/products/uno-r4-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
@@ -257,7 +258,7 @@
               <button class="button button--primary product-card__cart" type="button" data-id="uno-r4" data-name="Arduino UNO R4 WiFi" data-category="Микроконтроллеры" data-price="3290" data-old-price="3790">В корзину<span class="visually-hidden"> «Arduino UNO R4 WiFi»</span></button>
             </div>
           </article>
-          <article class="product-card">
+          <article class="product-card" data-reveal>
             <picture>
               <source type="image/webp" srcset="images/products/bme280-480.webp 480w, images/products/bme280-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
               <img class="product-card__image" src="images/products/bme280-480.jpg" srcset="images/products/bme280-480.jpg 480w, images/products/bme280-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Датчик BME280" width="480" height="320" loading="lazy" decoding="async">
