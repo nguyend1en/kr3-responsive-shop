@@ -263,10 +263,12 @@ function addToCart(cart, data) {
 // кнопки «В корзину» в карточках и на странице товара
 document.querySelectorAll('.product-card__cart, .product-detail__cart').forEach((button) => {
   button.addEventListener('click', () => {
+    // данные товара записаны один раз — на карточке <article data-id data-name ...>
+    const product = button.closest('[data-id]').dataset;
     const cart = loadCart();
-    addToCart(cart, button.dataset);
+    addToCart(cart, product);
     saveCart(cart);
-    showMessage(`«${button.dataset.name}» в корзине. Товаров: ${cartQuantity(cart)}`);
+    showMessage(`«${product.name}» в корзине. Товаров: ${cartQuantity(cart)}`);
   });
 });
 
@@ -753,8 +755,7 @@ function applyFavFilter() {
   const ids = loadFavs().map((item) => item.id);
   let visible = 0;
   document.querySelectorAll('#catalog-grid .product-card').forEach((card) => {
-    const button = card.querySelector('.product-card__fav');
-    const show = !onlyFavs || (button && ids.includes(button.dataset.id));
+    const show = !onlyFavs || ids.includes(card.dataset.id);
     card.hidden = !show;
     if (show) visible += 1;
   });
@@ -816,7 +817,8 @@ function updateFavs() {
   const favs = loadFavs();
   const ids = favs.map((item) => item.id);
   document.querySelectorAll('.product-card__fav').forEach((button) => {
-    button.setAttribute('aria-pressed', String(ids.includes(button.dataset.id)));
+    const product = button.closest('[data-id]');
+    button.setAttribute('aria-pressed', String(ids.includes(product.dataset.id)));
   });
   document.querySelectorAll('.fav-count').forEach((count) => {
     count.textContent = favs.length;
@@ -828,7 +830,7 @@ function updateFavs() {
 document.querySelectorAll('.product-card__fav').forEach((button) => {
   button.addEventListener('click', () => {
     const favs = loadFavs();
-    const { id, name, category, price } = button.dataset;
+    const { id, name, category, price } = button.closest('[data-id]').dataset;
     if (favs.some((item) => item.id === id)) {
       saveFavs(favs.filter((item) => item.id !== id));
       showMessage(`«${name}» удалён из избранного`);

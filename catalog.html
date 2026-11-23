@@ -16,6 +16,23 @@
   <script src="js/main.js" defer></script>
 </head>
 <body>
+  <!-- SVG-спрайт: иконки описаны один раз, ниже они подключаются через <use href="#..."> -->
+  <svg class="svg-sprite" aria-hidden="true" focusable="false">
+    <symbol id="logo-mark" viewBox="0 0 64 64"><rect x="2" y="2" width="60" height="60" rx="16" fill="#10161e" stroke="#33445a" stroke-width="2"/><g fill="#ffb547"><rect x="10" y="20" width="8" height="4" rx="1"/><rect x="10" y="30" width="8" height="4" rx="1"/><rect x="10" y="40" width="8" height="4" rx="1"/><rect x="46" y="20" width="8" height="4" rx="1"/><rect x="46" y="30" width="8" height="4" rx="1"/><rect x="46" y="40" width="8" height="4" rx="1"/></g><rect x="18" y="14" width="28" height="36" rx="5" fill="#3cf2c8"/><circle cx="25" cy="21" r="2.6" fill="#03140f"/><path d="M27 42V28h6a4.5 4.5 0 0 1 0 9h-6" fill="none" stroke="#03140f" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></symbol>
+    <symbol id="icon-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.4 0 5.7 3.1 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></symbol>
+    <symbol id="icon-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="icon-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="icon-telegram" viewBox="0 0 24 24"><path d="M21 4L3 11l6 2.5M21 4l-3 16-9-6.5M21 4L9 13.5V19l3-3.5"/></symbol>
+    <symbol id="icon-vk" viewBox="0 0 24 24"><path d="M3 7c.5 6 4 10 9.5 10h.5v-3.5c2 .2 3.4 1.6 4 3.5H20c-.8-2.6-2.7-4.3-4-5 1.3-.8 3-2.6 3.5-5h-2.8c-.6 2-2.2 3.8-3.7 4V7h-3v7c-1.8-.4-3.6-2.6-3.7-7z"/></symbol>
+    <symbol id="icon-youtube" viewBox="0 0 24 24"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z"/></symbol>
+    <symbol id="icon-github" viewBox="0 0 24 24"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.6 2.8 5.6 3.1 5.6 3.1a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></symbol>
+    <symbol id="icon-send" viewBox="0 0 24 24"><path d="M4 12l16-8-6 16-2-7z"/></symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+  </svg>
   <a class="skip-link" href="#main">Перейти к основному содержимому</a>
   <div class="scroll-progress" aria-hidden="true"><span class="scroll-progress__bar"></span></div>
   <div class="topbar">
@@ -26,10 +43,10 @@
   </div>
   <header class="site-header" id="top">
     <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html" aria-label="PINOUT — на главную"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><rect x="2" y="2" width="60" height="60" rx="16" fill="#10161e" stroke="#33445a" stroke-width="2"/><g fill="#ffb547"><rect x="10" y="20" width="8" height="4" rx="1"/><rect x="10" y="30" width="8" height="4" rx="1"/><rect x="10" y="40" width="8" height="4" rx="1"/><rect x="46" y="20" width="8" height="4" rx="1"/><rect x="46" y="30" width="8" height="4" rx="1"/><rect x="46" y="40" width="8" height="4" rx="1"/></g><rect x="18" y="14" width="28" height="36" rx="5" fill="#3cf2c8"/><circle cx="25" cy="21" r="2.6" fill="#03140f"/><path d="M27 42V28h6a4.5 4.5 0 0 1 0 9h-6" fill="none" stroke="#03140f" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="site-header__name">PIN<span class="site-header__name-accent">OUT</span></span></a>
+      <a class="site-header__logo" href="index.html" aria-label="PINOUT — на главную"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><use href="#logo-mark"></use></svg><span class="site-header__name">PIN<span class="site-header__name-accent">OUT</span></span></a>
       <div class="header-actions">
-        <a class="header-actions__link" href="account.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="header-actions__text">Войти</span></a>
-        <a class="header-actions__link" href="cart.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V7a3 3 0 0 1 6 0v1"/></svg><span class="header-actions__text">Корзина</span><span class="header-actions__count"><span class="visually-hidden">, товаров: </span><span class="header-actions__count-value">0</span></span></a>
+        <a class="header-actions__link" href="account.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-user"></use></svg><span class="header-actions__text">Войти</span></a>
+        <a class="header-actions__link" href="cart.html"><svg class="header-actions__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-bag"></use></svg><span class="header-actions__text">Корзина</span><span class="header-actions__count"><span class="visually-hidden">, товаров: </span><span class="header-actions__count-value">0</span></span></a>
       </div>
       <nav class="site-nav" aria-label="Основная навигация">
         <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="site-nav-list">
@@ -89,18 +106,39 @@
           <h2 class="catalog__title" id="catalog-title">Все товары</h2>
           <p class="catalog__count" aria-live="polite">Найдено: 8 товаров</p>
           <button class="catalog__fav-filter" type="button" aria-pressed="false" aria-controls="catalog-grid">
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.4 0 5.7 3.1 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg>
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><use href="#icon-heart"></use></svg>
             Только избранное <span class="catalog__fav-count fav-count">0</span>
           </button>
         </div>
         <p class="catalog__empty" hidden>В избранном пока пусто. Нажмите на сердечко у товара, чтобы сохранить его.</p>
         <div class="products-grid" id="catalog-grid">
-          <article class="product-card product-card--hit" data-reveal>
-            <button class="product-card__fav" type="button" aria-pressed="false" data-id="esp32" data-name="ESP32-DevKitC V4" data-category="Микроконтроллеры" data-price="890"><svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.4 0 5.7 3.1 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg><span class="visually-hidden">В избранное: ESP32-DevKitC V4</span></button>
+          <!-- ===== Товар: ESP32-DevKitC V4 ===== -->
+          <article
+            class="product-card product-card--hit"
+            data-id="esp32"
+            data-name="ESP32-DevKitC V4"
+            data-category="Микроконтроллеры"
+            data-price="890"
+            data-reveal>
+            <button class="product-card__fav" type="button" aria-pressed="false">
+              <svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><use href="#icon-heart"></use></svg>
+              <span class="visually-hidden">В избранное: ESP32-DevKitC V4</span>
+            </button>
             <span class="product-card__badge product-card__badge--hit">Хит</span>
             <picture>
-              <source type="image/webp" srcset="images/products/esp32-480.webp 480w, images/products/esp32-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
-              <img class="product-card__image" src="images/products/esp32-480.jpg" srcset="images/products/esp32-480.jpg 480w, images/products/esp32-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="ESP32-DevKitC V4" width="480" height="320" decoding="async">
+              <source
+                type="image/webp"
+                srcset="images/products/esp32-480.webp 480w, images/products/esp32-960.webp 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
+              <img
+                alt="ESP32-DevKitC V4"
+                class="product-card__image"
+                src="images/products/esp32-480.jpg"
+                srcset="images/products/esp32-480.jpg 480w, images/products/esp32-960.jpg 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw"
+                width="480"
+                height="320"
+                decoding="async">
             </picture>
             <p class="product-card__category">Микроконтроллеры</p>
             <h3 class="product-card__title">ESP32-DevKitC V4</h3>
@@ -114,15 +152,36 @@
             <p class="product-card__price">890 ₽</p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «ESP32-DevKitC V4»</span></a>
-              <button class="button button--primary product-card__cart" type="button" data-id="esp32" data-name="ESP32-DevKitC V4" data-category="Микроконтроллеры" data-price="890">В корзину<span class="visually-hidden"> «ESP32-DevKitC V4»</span></button>
+              <button class="button button--primary product-card__cart" type="button">В корзину<span class="visually-hidden"> «ESP32-DevKitC V4»</span></button>
             </div>
           </article>
-          <article class="product-card product-card--new" data-reveal>
-            <button class="product-card__fav" type="button" aria-pressed="false" data-id="rpi5" data-name="Raspberry Pi 5, 4 ГБ" data-category="Raspberry Pi" data-price="8490"><svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.4 0 5.7 3.1 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg><span class="visually-hidden">В избранное: Raspberry Pi 5, 4 ГБ</span></button>
+          <!-- ===== Товар: Raspberry Pi 5, 4 ГБ ===== -->
+          <article
+            class="product-card product-card--new"
+            data-id="rpi5"
+            data-name="Raspberry Pi 5, 4 ГБ"
+            data-category="Raspberry Pi"
+            data-price="8490"
+            data-reveal>
+            <button class="product-card__fav" type="button" aria-pressed="false">
+              <svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><use href="#icon-heart"></use></svg>
+              <span class="visually-hidden">В избранное: Raspberry Pi 5, 4 ГБ</span>
+            </button>
             <span class="product-card__badge product-card__badge--new">Новинка</span>
             <picture>
-              <source type="image/webp" srcset="images/products/rpi5-480.webp 480w, images/products/rpi5-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
-              <img class="product-card__image" src="images/products/rpi5-480.jpg" srcset="images/products/rpi5-480.jpg 480w, images/products/rpi5-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Raspberry Pi 5, 4 ГБ" width="480" height="320" decoding="async">
+              <source
+                type="image/webp"
+                srcset="images/products/rpi5-480.webp 480w, images/products/rpi5-960.webp 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
+              <img
+                alt="Raspberry Pi 5, 4 ГБ"
+                class="product-card__image"
+                src="images/products/rpi5-480.jpg"
+                srcset="images/products/rpi5-480.jpg 480w, images/products/rpi5-960.jpg 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw"
+                width="480"
+                height="320"
+                decoding="async">
             </picture>
             <p class="product-card__category">Raspberry Pi</p>
             <h3 class="product-card__title">Raspberry Pi 5, 4 ГБ</h3>
@@ -136,15 +195,37 @@
             <p class="product-card__price">8 490 ₽</p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Raspberry Pi 5, 4 ГБ»</span></a>
-              <button class="button button--primary product-card__cart" type="button" data-id="rpi5" data-name="Raspberry Pi 5, 4 ГБ" data-category="Raspberry Pi" data-price="8490">В корзину<span class="visually-hidden"> «Raspberry Pi 5, 4 ГБ»</span></button>
+              <button class="button button--primary product-card__cart" type="button">В корзину<span class="visually-hidden"> «Raspberry Pi 5, 4 ГБ»</span></button>
             </div>
           </article>
-          <article class="product-card product-card--discount" data-reveal>
-            <button class="product-card__fav" type="button" aria-pressed="false" data-id="uno-r4" data-name="Arduino UNO R4 WiFi" data-category="Микроконтроллеры" data-price="3290"><svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.4 0 5.7 3.1 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg><span class="visually-hidden">В избранное: Arduino UNO R4 WiFi</span></button>
+          <!-- ===== Товар: Arduino UNO R4 WiFi ===== -->
+          <article
+            class="product-card product-card--discount"
+            data-id="uno-r4"
+            data-name="Arduino UNO R4 WiFi"
+            data-category="Микроконтроллеры"
+            data-price="3290"
+            data-old-price="3790"
+            data-reveal>
+            <button class="product-card__fav" type="button" aria-pressed="false">
+              <svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><use href="#icon-heart"></use></svg>
+              <span class="visually-hidden">В избранное: Arduino UNO R4 WiFi</span>
+            </button>
             <span class="product-card__badge"><span class="visually-hidden">Скидка </span>−13%</span>
             <picture>
-              <source type="image/webp" srcset="images/products/uno-r4-480.webp 480w, images/products/uno-r4-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
-              <img class="product-card__image" src="images/products/uno-r4-480.jpg" srcset="images/products/uno-r4-480.jpg 480w, images/products/uno-r4-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Arduino UNO R4 WiFi" width="480" height="320" decoding="async">
+              <source
+                type="image/webp"
+                srcset="images/products/uno-r4-480.webp 480w, images/products/uno-r4-960.webp 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
+              <img
+                alt="Arduino UNO R4 WiFi"
+                class="product-card__image"
+                src="images/products/uno-r4-480.jpg"
+                srcset="images/products/uno-r4-480.jpg 480w, images/products/uno-r4-960.jpg 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw"
+                width="480"
+                height="320"
+                decoding="async">
             </picture>
             <p class="product-card__category">Микроконтроллеры</p>
             <h3 class="product-card__title">Arduino UNO R4 WiFi</h3>
@@ -158,14 +239,36 @@
             <p class="product-card__price">3 290 ₽ <s class="product-card__old-price"><span class="visually-hidden">Старая цена: </span>3 790 ₽</s></p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Arduino UNO R4 WiFi»</span></a>
-              <button class="button button--primary product-card__cart" type="button" data-id="uno-r4" data-name="Arduino UNO R4 WiFi" data-category="Микроконтроллеры" data-price="3290" data-old-price="3790">В корзину<span class="visually-hidden"> «Arduino UNO R4 WiFi»</span></button>
+              <button class="button button--primary product-card__cart" type="button">В корзину<span class="visually-hidden"> «Arduino UNO R4 WiFi»</span></button>
             </div>
           </article>
-          <article class="product-card" data-reveal>
-            <button class="product-card__fav" type="button" aria-pressed="false" data-id="pico-w" data-name="Raspberry Pi Pico W" data-category="Микроконтроллеры" data-price="790"><svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.4 0 5.7 3.1 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg><span class="visually-hidden">В избранное: Raspberry Pi Pico W</span></button>
+          <!-- ===== Товар: Raspberry Pi Pico W ===== -->
+          <article
+            class="product-card"
+            data-id="pico-w"
+            data-name="Raspberry Pi Pico W"
+            data-category="Микроконтроллеры"
+            data-price="790"
+            data-reveal>
+            <button class="product-card__fav" type="button" aria-pressed="false">
+              <svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><use href="#icon-heart"></use></svg>
+              <span class="visually-hidden">В избранное: Raspberry Pi Pico W</span>
+            </button>
             <picture>
-              <source type="image/webp" srcset="images/products/pico-w-480.webp 480w, images/products/pico-w-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
-              <img class="product-card__image" src="images/products/pico-w-480.jpg" srcset="images/products/pico-w-480.jpg 480w, images/products/pico-w-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Raspberry Pi Pico W" width="480" height="320" loading="lazy" decoding="async">
+              <source
+                type="image/webp"
+                srcset="images/products/pico-w-480.webp 480w, images/products/pico-w-960.webp 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
+              <img
+                alt="Raspberry Pi Pico W"
+                class="product-card__image"
+                src="images/products/pico-w-480.jpg"
+                srcset="images/products/pico-w-480.jpg 480w, images/products/pico-w-960.jpg 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw"
+                width="480"
+                height="320"
+                loading="lazy"
+                decoding="async">
             </picture>
             <p class="product-card__category">Микроконтроллеры</p>
             <h3 class="product-card__title">Raspberry Pi Pico W</h3>
@@ -179,14 +282,36 @@
             <p class="product-card__price">790 ₽</p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Raspberry Pi Pico W»</span></a>
-              <button class="button button--primary product-card__cart" type="button" data-id="pico-w" data-name="Raspberry Pi Pico W" data-category="Микроконтроллеры" data-price="790">В корзину<span class="visually-hidden"> «Raspberry Pi Pico W»</span></button>
+              <button class="button button--primary product-card__cart" type="button">В корзину<span class="visually-hidden"> «Raspberry Pi Pico W»</span></button>
             </div>
           </article>
-          <article class="product-card" data-reveal>
-            <button class="product-card__fav" type="button" aria-pressed="false" data-id="bme280" data-name="Датчик BME280" data-category="Датчики и дисплеи" data-price="390"><svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.4 0 5.7 3.1 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg><span class="visually-hidden">В избранное: Датчик BME280</span></button>
+          <!-- ===== Товар: Датчик BME280 ===== -->
+          <article
+            class="product-card"
+            data-id="bme280"
+            data-name="Датчик BME280"
+            data-category="Датчики и дисплеи"
+            data-price="390"
+            data-reveal>
+            <button class="product-card__fav" type="button" aria-pressed="false">
+              <svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><use href="#icon-heart"></use></svg>
+              <span class="visually-hidden">В избранное: Датчик BME280</span>
+            </button>
             <picture>
-              <source type="image/webp" srcset="images/products/bme280-480.webp 480w, images/products/bme280-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
-              <img class="product-card__image" src="images/products/bme280-480.jpg" srcset="images/products/bme280-480.jpg 480w, images/products/bme280-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Датчик BME280" width="480" height="320" loading="lazy" decoding="async">
+              <source
+                type="image/webp"
+                srcset="images/products/bme280-480.webp 480w, images/products/bme280-960.webp 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
+              <img
+                alt="Датчик BME280"
+                class="product-card__image"
+                src="images/products/bme280-480.jpg"
+                srcset="images/products/bme280-480.jpg 480w, images/products/bme280-960.jpg 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw"
+                width="480"
+                height="320"
+                loading="lazy"
+                decoding="async">
             </picture>
             <p class="product-card__category">Датчики и дисплеи</p>
             <h3 class="product-card__title">Датчик BME280</h3>
@@ -199,15 +324,38 @@
             <p class="product-card__price">390 ₽</p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Датчик BME280»</span></a>
-              <button class="button button--primary product-card__cart" type="button" data-id="bme280" data-name="Датчик BME280" data-category="Датчики и дисплеи" data-price="390">В корзину<span class="visually-hidden"> «Датчик BME280»</span></button>
+              <button class="button button--primary product-card__cart" type="button">В корзину<span class="visually-hidden"> «Датчик BME280»</span></button>
             </div>
           </article>
-          <article class="product-card product-card--discount" data-reveal>
-            <button class="product-card__fav" type="button" aria-pressed="false" data-id="oled" data-name="OLED-дисплей 0,96&quot; SSD1306" data-category="Датчики и дисплеи" data-price="290"><svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.4 0 5.7 3.1 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg><span class="visually-hidden">В избранное: OLED-дисплей 0,96&quot; SSD1306</span></button>
+          <!-- ===== Товар: OLED-дисплей 0,96" SSD1306 ===== -->
+          <article
+            class="product-card product-card--discount"
+            data-id="oled"
+            data-name="OLED-дисплей 0,96&quot; SSD1306"
+            data-category="Датчики и дисплеи"
+            data-price="290"
+            data-old-price="350"
+            data-reveal>
+            <button class="product-card__fav" type="button" aria-pressed="false">
+              <svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><use href="#icon-heart"></use></svg>
+              <span class="visually-hidden">В избранное: OLED-дисплей 0,96&quot; SSD1306</span>
+            </button>
             <span class="product-card__badge"><span class="visually-hidden">Скидка </span>−17%</span>
             <picture>
-              <source type="image/webp" srcset="images/products/oled-480.webp 480w, images/products/oled-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
-              <img class="product-card__image" src="images/products/oled-480.jpg" srcset="images/products/oled-480.jpg 480w, images/products/oled-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="OLED-дисплей 0,96" SSD1306" width="480" height="320" loading="lazy" decoding="async">
+              <source
+                type="image/webp"
+                srcset="images/products/oled-480.webp 480w, images/products/oled-960.webp 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
+              <img
+                alt="OLED-дисплей 0,96&quot; SSD1306"
+                class="product-card__image"
+                src="images/products/oled-480.jpg"
+                srcset="images/products/oled-480.jpg 480w, images/products/oled-960.jpg 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw"
+                width="480"
+                height="320"
+                loading="lazy"
+                decoding="async">
             </picture>
             <p class="product-card__category">Датчики и дисплеи</p>
             <h3 class="product-card__title">OLED-дисплей 0,96" SSD1306</h3>
@@ -220,15 +368,37 @@
             <p class="product-card__price">290 ₽ <s class="product-card__old-price"><span class="visually-hidden">Старая цена: </span>350 ₽</s></p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «OLED-дисплей 0,96&quot; SSD1306»</span></a>
-              <button class="button button--primary product-card__cart" type="button" data-id="oled" data-name="OLED-дисплей 0,96&quot; SSD1306" data-category="Датчики и дисплеи" data-price="290" data-old-price="350">В корзину<span class="visually-hidden"> «OLED-дисплей 0,96&quot; SSD1306»</span></button>
+              <button class="button button--primary product-card__cart" type="button">В корзину<span class="visually-hidden"> «OLED-дисплей 0,96&quot; SSD1306»</span></button>
             </div>
           </article>
-          <article class="product-card product-card--new" data-reveal>
-            <button class="product-card__fav" type="button" aria-pressed="false" data-id="starter-kit" data-name="Стартовый набор с макетной платой" data-category="Наборы" data-price="1290"><svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.4 0 5.7 3.1 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg><span class="visually-hidden">В избранное: Стартовый набор с макетной платой</span></button>
+          <!-- ===== Товар: Стартовый набор с макетной платой ===== -->
+          <article
+            class="product-card product-card--new"
+            data-id="starter-kit"
+            data-name="Стартовый набор с макетной платой"
+            data-category="Наборы"
+            data-price="1290"
+            data-reveal>
+            <button class="product-card__fav" type="button" aria-pressed="false">
+              <svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><use href="#icon-heart"></use></svg>
+              <span class="visually-hidden">В избранное: Стартовый набор с макетной платой</span>
+            </button>
             <span class="product-card__badge product-card__badge--new">Новинка</span>
             <picture>
-              <source type="image/webp" srcset="images/products/starter-kit-480.webp 480w, images/products/starter-kit-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
-              <img class="product-card__image" src="images/products/starter-kit-480.jpg" srcset="images/products/starter-kit-480.jpg 480w, images/products/starter-kit-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Стартовый набор с макетной платой" width="480" height="320" loading="lazy" decoding="async">
+              <source
+                type="image/webp"
+                srcset="images/products/starter-kit-480.webp 480w, images/products/starter-kit-960.webp 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
+              <img
+                alt="Стартовый набор с макетной платой"
+                class="product-card__image"
+                src="images/products/starter-kit-480.jpg"
+                srcset="images/products/starter-kit-480.jpg 480w, images/products/starter-kit-960.jpg 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw"
+                width="480"
+                height="320"
+                loading="lazy"
+                decoding="async">
             </picture>
             <p class="product-card__category">Наборы</p>
             <h3 class="product-card__title">Стартовый набор с макетной платой</h3>
@@ -241,15 +411,37 @@
             <p class="product-card__price">1 290 ₽</p>
             <div class="product-card__actions">
               <a class="button button--secondary" href="product.html">Подробнее<span class="visually-hidden"> о товаре «Стартовый набор с макетной платой»</span></a>
-              <button class="button button--primary product-card__cart" type="button" data-id="starter-kit" data-name="Стартовый набор с макетной платой" data-category="Наборы" data-price="1290">В корзину<span class="visually-hidden"> «Стартовый набор с макетной платой»</span></button>
+              <button class="button button--primary product-card__cart" type="button">В корзину<span class="visually-hidden"> «Стартовый набор с макетной платой»</span></button>
             </div>
           </article>
-          <article class="product-card product-card--unavailable" data-reveal>
-            <button class="product-card__fav" type="button" aria-pressed="false" data-id="cam3" data-name="Raspberry Pi Camera Module 3" data-category="Raspberry Pi" data-price="3190"><svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.3 4.5c2 0 3.6 1.1 4.7 2.7 1.1-1.6 2.7-2.7 4.7-2.7 3.4 0 5.7 3.1 4.5 6.6-1.7 4.8-9.2 9.4-9.2 9.4z"/></svg><span class="visually-hidden">В избранное: Raspberry Pi Camera Module 3</span></button>
+          <!-- ===== Товар: Raspberry Pi Camera Module 3 ===== -->
+          <article
+            class="product-card product-card--unavailable"
+            data-id="cam3"
+            data-name="Raspberry Pi Camera Module 3"
+            data-category="Raspberry Pi"
+            data-price="3190"
+            data-reveal>
+            <button class="product-card__fav" type="button" aria-pressed="false">
+              <svg class="product-card__fav-icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><use href="#icon-heart"></use></svg>
+              <span class="visually-hidden">В избранное: Raspberry Pi Camera Module 3</span>
+            </button>
             <span class="product-card__badge product-card__badge--muted">Нет в наличии</span>
             <picture>
-              <source type="image/webp" srcset="images/products/cam3-480.webp 480w, images/products/cam3-960.webp 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
-              <img class="product-card__image" src="images/products/cam3-480.jpg" srcset="images/products/cam3-480.jpg 480w, images/products/cam3-960.jpg 960w" sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw" alt="Raspberry Pi Camera Module 3" width="480" height="320" loading="lazy" decoding="async">
+              <source
+                type="image/webp"
+                srcset="images/products/cam3-480.webp 480w, images/products/cam3-960.webp 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw">
+              <img
+                alt="Raspberry Pi Camera Module 3"
+                class="product-card__image"
+                src="images/products/cam3-480.jpg"
+                srcset="images/products/cam3-480.jpg 480w, images/products/cam3-960.jpg 960w"
+                sizes="(min-width: 1280px) 280px, (min-width: 1024px) 30vw, (min-width: 600px) 45vw, 100vw"
+                width="480"
+                height="320"
+                loading="lazy"
+                decoding="async">
             </picture>
             <p class="product-card__category">Raspberry Pi</p>
             <h3 class="product-card__title">Raspberry Pi Camera Module 3</h3>
@@ -286,7 +478,7 @@
     </div>
     <div class="site-footer__inner">
       <div class="site-footer__brand">
-        <a class="site-footer__logo" href="index.html" aria-label="PINOUT — на главную"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><rect x="2" y="2" width="60" height="60" rx="16" fill="#10161e" stroke="#33445a" stroke-width="2"/><g fill="#ffb547"><rect x="10" y="20" width="8" height="4" rx="1"/><rect x="10" y="30" width="8" height="4" rx="1"/><rect x="10" y="40" width="8" height="4" rx="1"/><rect x="46" y="20" width="8" height="4" rx="1"/><rect x="46" y="30" width="8" height="4" rx="1"/><rect x="46" y="40" width="8" height="4" rx="1"/></g><rect x="18" y="14" width="28" height="36" rx="5" fill="#3cf2c8"/><circle cx="25" cy="21" r="2.6" fill="#03140f"/><path d="M27 42V28h6a4.5 4.5 0 0 1 0 9h-6" fill="none" stroke="#03140f" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="site-header__name">PIN<span class="site-header__name-accent">OUT</span></span></a>
+        <a class="site-footer__logo" href="index.html" aria-label="PINOUT — на главную"><svg class="logo-mark" viewBox="0 0 64 64" width="36" height="36" aria-hidden="true" focusable="false"><use href="#logo-mark"></use></svg><span class="site-header__name">PIN<span class="site-header__name-accent">OUT</span></span></a>
         <p class="site-footer__about">Электронные компоненты для мейкеров, студентов и инженеров. Платы, датчики и наборы, с которыми проект заработает с первого раза.</p>
         <p class="site-footer__status">Склад онлайн · отправка сегодня</p>
       </div>
@@ -320,16 +512,16 @@
       <div class="site-footer__col">
         <h2 class="site-footer__title">Контакты</h2>
         <address class="site-footer__address">
-          <p class="site-footer__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span>Москва, ул. Мясницкая, 24</span></p>
-          <p class="site-footer__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg><a href="tel:+79251080380">+7 (925) 108-03-80</a></p>
-          <p class="site-footer__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Ежедневно 10:00–20:00</span></p>
-          <p class="site-footer__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:hello@pinout.ru">hello@pinout.ru</a></p>
+          <p class="site-footer__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-pin"></use></svg><span>Москва, ул. Мясницкая, 24</span></p>
+          <p class="site-footer__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-phone"></use></svg><a href="tel:+79251080380">+7 (925) 108-03-80</a></p>
+          <p class="site-footer__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-clock"></use></svg><span>Ежедневно 10:00–20:00</span></p>
+          <p class="site-footer__contact"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-mail"></use></svg><a href="mailto:hello@pinout.ru">hello@pinout.ru</a></p>
         </address>
         <ul class="socials site-footer__socials">
-          <li><a class="socials__link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 4L3 11l6 2.5M21 4l-3 16-9-6.5M21 4L9 13.5V19l3-3.5"/></svg></a></li>
-          <li><a class="socials__link" href="https://vk.com/" target="_blank" rel="noopener" aria-label="ВКонтакте (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M3 7c.5 6 4 10 9.5 10h.5v-3.5c2 .2 3.4 1.6 4 3.5H20c-.8-2.6-2.7-4.3-4-5 1.3-.8 3-2.6 3.5-5h-2.8c-.6 2-2.2 3.8-3.7 4V7h-3v7c-1.8-.4-3.6-2.6-3.7-7z"/></svg></a></li>
-          <li><a class="socials__link" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z"/></svg></a></li>
-          <li><a class="socials__link" href="https://github.com/nguyend1en/kr3-responsive-shop" target="_blank" rel="noopener" aria-label="GitHub (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9 19c-4 1.3-4-2-6-2.5m12 4.5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.6 11.6 0 0 0-6.2 0C6.6 2.8 5.6 3.1 5.6 3.1a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 4.2 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li>
+          <li><a class="socials__link" href="https://t.me/" target="_blank" rel="noopener" aria-label="Telegram (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-telegram"></use></svg></a></li>
+          <li><a class="socials__link" href="https://vk.com/" target="_blank" rel="noopener" aria-label="ВКонтакте (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-vk"></use></svg></a></li>
+          <li><a class="socials__link" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-youtube"></use></svg></a></li>
+          <li><a class="socials__link" href="https://github.com/nguyend1en/kr3-responsive-shop" target="_blank" rel="noopener" aria-label="GitHub (в новой вкладке)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg></a></li>
         </ul>
       </div>
     </div>
@@ -369,10 +561,10 @@
       <form class="chat__form" id="chat-form" action="#" method="post">
         <label class="visually-hidden" for="chat-input">Ваше сообщение</label>
         <textarea class="chat__input" id="chat-input" name="message" rows="2" placeholder="Напишите сообщение…" required></textarea>
-        <button class="chat__send" type="submit" aria-label="Отправить сообщение"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 12l16-8-6 16-2-7z"/></svg></button>
+        <button class="chat__send" type="submit" aria-label="Отправить сообщение"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-send"></use></svg></button>
       </form>
     </section>
-    <button class="chat__toggle" type="button" aria-expanded="false" aria-controls="chat-panel"><svg class="chat__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9l-5 4z"/></svg><span class="chat__toggle-text">Чат</span></button>
+    <button class="chat__toggle" type="button" aria-expanded="false" aria-controls="chat-panel"><svg class="chat__icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="#icon-chat"></use></svg><span class="chat__toggle-text">Чат</span></button>
   </div>
 
 </body>
