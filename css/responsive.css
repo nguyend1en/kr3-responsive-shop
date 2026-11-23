@@ -563,6 +563,108 @@
   }
 }
 
+/* ===== Карточки товаров: обычный вид с 600px ===== */
+@media (min-width: 600px) {
+  .products-grid {
+    gap: var(--space-lg);
+  }
+
+  .product-card {
+    padding: var(--space-sm) var(--space-sm) var(--space-md);
+    border-radius: var(--radius-lg);
+  }
+
+  .product-card__image,
+  .product-card picture {
+    border-radius: var(--radius-md);
+  }
+
+  .product-card__image {
+    margin-bottom: var(--space-md);
+  }
+
+  .product-card__category,
+  .product-card__title,
+  .product-card__description,
+  .product-card__specs,
+  .product-card__price,
+  .product-card__actions {
+    margin-left: var(--space-sm);
+    margin-right: var(--space-sm);
+  }
+
+  .product-card__category {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+
+  .product-card__title {
+    font-size: 1.1rem;
+    line-height: 1.15;
+  }
+
+  .product-card__description {
+    display: block;
+  }
+
+  .product-card__specs {
+    gap: 6px;
+    margin-bottom: var(--space-md);
+  }
+
+  .product-card__spec {
+    padding: 2px 8px;
+    font-size: 0.72rem;
+  }
+
+  .product-card__spec:nth-child(n + 3) {
+    display: list-item;
+  }
+
+  .product-card__price {
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+    font-size: 1.3rem;
+  }
+
+  .product-card__old-price {
+    display: inline;
+    margin-left: var(--space-sm);
+    font-size: 0.95rem;
+  }
+
+  .product-card__actions {
+    flex-direction: row;
+    gap: var(--space-sm);
+  }
+
+  .product-card__actions .button {
+    flex: 1 1 120px;
+    min-height: 44px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+  }
+
+  .product-card__badge {
+    top: var(--space-md);
+    left: var(--space-md);
+    padding: 4px 10px;
+    font-size: 0.72rem;
+  }
+
+  .js .product-card__fav {
+    top: var(--space-md);
+    right: var(--space-md);
+    width: 44px;
+    height: 44px;
+  }
+
+  .product-card__fav-icon {
+    width: 22px;
+    height: 22px;
+  }
+}
+
 /* ===== Меньше движения ===== */
 @media (prefers-reduced-motion: reduce) {
   html {
