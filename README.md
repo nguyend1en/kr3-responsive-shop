@@ -138,9 +138,9 @@ Chrome DevTools → Lighthouse → режим Navigation, устройство M
 
 | Страница | Accessibility |
 | --- | --- |
-| `index.html` | __ |
-| `catalog.html` | __ |
-| `order.html` | __ |
+| `index.html` | 97|
+| `catalog.html` | 96 |
+| `order.html` | 96 |
 
 Ручная проверка дополняет Lighthouse: обход страниц клавишей Tab, проверка ширин 360–1440px, режим `prefers-reduced-motion` и проверка контраста каждой цветовой пары.
 
