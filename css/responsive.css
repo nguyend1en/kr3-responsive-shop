@@ -505,6 +505,64 @@
   }
 }
 
+/* ===== Блоки 2×2: раскладка на планшете и desktop ===== */
+@media (min-width: 600px) {
+  /* категории снова в строку: иконка, текст, стрелка */
+  .category-card__link {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-md);
+    min-height: 96px;
+  }
+
+  .category-card__link::after {
+    display: flex;
+  }
+
+  .category-card__icon {
+    width: 64px;
+    height: 64px;
+  }
+
+  .category-card__icon svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .category-card__title {
+    font-size: 1.05rem;
+  }
+
+  .contact-list--row .contact-list__item {
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  .contact-list--row .contact-list__value {
+    font-size: 1.05rem;
+  }
+
+  .site-footer__col {
+    font-size: 1rem;
+  }
+
+  .site-footer__socials {
+    display: flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  /* на desktop логотип подвала — обычная первая колонка слева */
+  .site-footer__brand {
+    grid-column: auto;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .site-footer__about {
+    margin-left: 0;
+  }
+}
+
 /* ===== Меньше движения ===== */
 @media (prefers-reduced-motion: reduce) {
   html {
