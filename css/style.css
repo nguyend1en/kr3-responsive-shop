@@ -3694,3 +3694,122 @@ html:not(.js) .to-top,
   display: grid;
   grid-template-columns: repeat(2, 44px);
 }
+
+/* ===== 33. Телефон: товары сеткой 2×2 =====
+   На телефоне карточки товаров стоят по две в ряд. Карточка становится
+   компактной: без описания, с двумя главными характеристиками,
+   кнопки — друг под другом. С 600px — обычная карточка (responsive.css). */
+.products-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.product-card {
+  padding: 6px 6px var(--space-sm);
+  border-radius: var(--radius-md);
+}
+
+.product-card__image,
+.product-card picture {
+  border-radius: 10px;
+}
+
+.product-card__image {
+  margin-bottom: 10px;
+}
+
+.product-card__category,
+.product-card__title,
+.product-card__description,
+.product-card__specs,
+.product-card__price,
+.product-card__actions {
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.product-card__category {
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+}
+
+.product-card__title {
+  font-size: 0.92rem;
+  line-height: 1.25;
+}
+
+.product-card__description {
+  display: none;
+}
+
+.product-card__specs {
+  gap: 4px;
+  margin-bottom: var(--space-sm);
+}
+
+.product-card__spec {
+  padding: 1px 6px;
+  font-size: 0.62rem;
+}
+
+.product-card__spec:nth-child(n + 3) {
+  display: none;
+}
+
+.product-card__price {
+  margin-top: auto;
+  margin-bottom: var(--space-sm);
+  font-size: 1.05rem;
+}
+
+.product-card__old-price {
+  display: block;
+  margin-left: 0;
+  font-size: 0.78rem;
+}
+
+.product-card__actions {
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-card__actions .button {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 8px 10px;
+  font-size: 0.85rem;
+}
+
+.product-card__badge {
+  top: 12px;
+  left: 12px;
+  padding: 2px 8px;
+  font-size: 0.62rem;
+}
+
+.js .product-card__fav {
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+}
+
+.product-card__fav-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* на странице товара характеристики и бейдж остаются полноразмерными */
+.product-detail .product-card__spec {
+  padding: 2px 8px;
+  font-size: 0.72rem;
+}
+
+.product-detail .product-card__spec:nth-child(n + 3) {
+  display: list-item;
+}
+
+.product-detail .product-card__badge {
+  padding: 4px 10px;
+  font-size: 0.72rem;
+}
