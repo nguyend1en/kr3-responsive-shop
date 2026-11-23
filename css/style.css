@@ -3600,3 +3600,97 @@ html:not(.js) .to-top,
   display: block;
   margin-bottom: 2px;
 }
+
+/* ===== 32. Телефон: блоки «2 колонки × 2 строки» =====
+   Категории, карточки контактов и колонки подвала на телефоне
+   стоят сеткой 2×2, логотип подвала — по центру над ними.
+   С 600px и 1024px раскладка меняется в responsive.css. */
+
+/* категории: компактная карточка — иконка сверху, текст под ней */
+.categories {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.category-card__link {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  height: 100%;
+  min-height: 0;
+  padding: var(--space-md);
+}
+
+.category-card__link::after {
+  display: none;
+}
+
+.category-card__icon {
+  width: 48px;
+  height: 48px;
+}
+
+.category-card__icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.category-card__title {
+  font-size: 0.98rem;
+  hyphens: manual;
+}
+
+.category-card__count {
+  overflow-wrap: anywhere;
+}
+
+/* контакты: 4 карточки сеткой 2×2 */
+.contact-list--row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.contact-list--row .contact-list__item {
+  padding: var(--space-md);
+}
+
+.contact-list--row .contact-list__value {
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+/* подвал: логотип по центру, ниже 4 колонки сеткой 2×2 */
+.site-footer__inner {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-xl) var(--space-md);
+}
+
+.site-footer__brand {
+  display: flex;
+  grid-column: 1 / -1;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.site-footer__about {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.site-footer__col {
+  min-width: 0;
+  font-size: 0.92rem;
+}
+
+.site-footer__contact span,
+.site-footer__contact a {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* соцсети в узкой колонке — квадратом 2×2 */
+.site-footer__socials {
+  display: grid;
+  grid-template-columns: repeat(2, 44px);
+}
