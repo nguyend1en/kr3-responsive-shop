@@ -68,6 +68,60 @@
     display: none;
   }
 
+  /* сравнение плат снова становится таблицей */
+  .data-table--cards {
+    display: table;
+    min-width: 560px;
+  }
+
+  .data-table--cards thead {
+    position: static;
+    display: table-header-group;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  .data-table--cards tbody {
+    display: table-row-group;
+    padding: 0;
+  }
+
+  .data-table--cards .data-table__row {
+    display: table-row;
+    padding: 0;
+    background: none;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .data-table--compare.data-table--cards .data-table__row-head,
+  .data-table--cards .data-table__cell {
+    display: table-cell;
+    padding: 12px var(--space-md);
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: normal;
+    text-align: left;
+    text-transform: none;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .data-table--compare.data-table--cards .data-table__row-head {
+    position: sticky;
+    left: 0;
+    font-weight: 600;
+    color: var(--color-text);
+    background-color: var(--color-surface);
+    box-shadow: 1px 0 0 var(--color-line);
+  }
+
+  .data-table--cards .data-table__cell::before {
+    content: none;
+  }
+
   .contact-list {
     grid-template-columns: 1fr 1fr;
   }
@@ -400,6 +454,54 @@
   .to-top {
     width: 64px;
     height: 64px;
+  }
+}
+
+/* ===== Избранное, карта, кнопки ===== */
+@media (min-width: 600px) {
+  .favorites__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .map-block--wide .map-block__frame {
+    aspect-ratio: 16 / 9;
+  }
+
+  .contact-list--row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 768px) {
+  .route-block .route {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .js .chat {
+    bottom: 112px;
+  }
+
+  .js .success-message {
+    bottom: 96px;
+  }
+
+  .map-block--wide .map-block__frame {
+    aspect-ratio: 21 / 9;
+  }
+
+  .route-block .route,
+  .contact-list--row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .favorites__list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .catalog__toolbar {
+    align-items: center;
   }
 }
 
