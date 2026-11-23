@@ -590,7 +590,7 @@ if (logout) {
 
 renderAccount();
 
-// кнопка «Спросить инженера» открывает чат (без JS ведёт к форме на странице «Контакты»)
+// кнопка «Спросить техподдержку» открывает чат (без JS ведёт к форме на странице «Контакты»)
 document.querySelectorAll('[data-open-chat]').forEach((link) => {
   link.addEventListener('click', (event) => {
     if (!chatToggle || !chatPanel) return;
@@ -719,3 +719,135 @@ if (toTop) {
 }
 
 onScroll();
+
+// ===== Избранное =====
+// Сердечко на карточке сохраняет товар в localStorage. В каталоге есть фильтр
+// «Только избранное», в личном кабинете — список избранных товаров.
+const FAV_KEY = 'pinout-favorites';
+
+function loadFavs() {
+  try {
+    return JSON.parse(localStorage.getItem(FAV_KEY)) || [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function saveFavs(favs) {
+  try {
+    localStorage.setItem(FAV_KEY, JSON.stringify(favs));
+  } catch (error) {
+    // хранилище недоступно — избранное работает до перезагрузки страницы
+  }
+  updateFavs();
+}
+
+const favFilter = document.querySelector('.catalog__fav-filter');
+const catalogCount = document.querySelector('.catalog__count');
+const catalogEmpty = document.querySelector('.catalog__empty');
+
+// показывает в каталоге все товары или только избранные
+function applyFavFilter() {
+  if (!favFilter) return;
+  const onlyFavs = favFilter.getAttribute('aria-pressed') === 'true';
+  const ids = loadFavs().map((item) => item.id);
+  let visible = 0;
+  document.querySelectorAll('#catalog-grid .product-card').forEach((card) => {
+    const button = card.querySelector('.product-card__fav');
+    const show = !onlyFavs || (button && ids.includes(button.dataset.id));
+    card.hidden = !show;
+    if (show) visible += 1;
+  });
+  if (catalogCount) catalogCount.textContent = `Найдено: ${visible} ${plural(visible, ['товар', 'товара', 'товаров'])}`;
+  if (catalogEmpty) catalogEmpty.hidden = !(onlyFavs && visible === 0);
+}
+
+// список избранного в личном кабинете (элементы создаются через createElement)
+function renderFavList() {
+  const list = document.getElementById('favorites-list');
+  const empty = document.getElementById('favorites-empty');
+  if (!list) return;
+  const favs = loadFavs();
+  list.replaceChildren();
+  favs.forEach((item) => {
+    const li = document.createElement('li');
+    li.className = 'favorite-item';
+
+    const img = document.createElement('img');
+    img.className = 'favorite-item__image';
+    img.src = `images/products/${item.id}-480.jpg`;
+    img.alt = item.name;
+    img.width = 88;
+    img.height = 59;
+    img.loading = 'lazy';
+
+    const info = document.createElement('div');
+    const category = document.createElement('p');
+    category.className = 'favorite-item__category';
+    category.textContent = item.category;
+    const title = document.createElement('h3');
+    title.className = 'favorite-item__title';
+    const link = document.createElement('a');
+    link.className = 'favorite-item__link';
+    link.href = 'product.html';
+    link.textContent = item.name;
+    title.append(link);
+    const price = document.createElement('p');
+    price.className = 'favorite-item__price';
+    price.textContent = formatRub(item.price);
+    info.append(category, title, price);
+
+    const remove = document.createElement('button');
+    remove.className = 'favorite-item__remove';
+    remove.type = 'button';
+    remove.textContent = 'Убрать из избранного';
+    remove.addEventListener('click', () => {
+      saveFavs(loadFavs().filter((fav) => fav.id !== item.id));
+      showMessage(`«${item.name}» удалён из избранного`);
+    });
+
+    li.append(img, info, remove);
+    list.append(li);
+  });
+  if (empty) empty.hidden = favs.length > 0;
+}
+
+function updateFavs() {
+  const favs = loadFavs();
+  const ids = favs.map((item) => item.id);
+  document.querySelectorAll('.product-card__fav').forEach((button) => {
+    button.setAttribute('aria-pressed', String(ids.includes(button.dataset.id)));
+  });
+  document.querySelectorAll('.fav-count').forEach((count) => {
+    count.textContent = favs.length;
+  });
+  applyFavFilter();
+  renderFavList();
+}
+
+document.querySelectorAll('.product-card__fav').forEach((button) => {
+  button.addEventListener('click', () => {
+    const favs = loadFavs();
+    const { id, name, category, price } = button.dataset;
+    if (favs.some((item) => item.id === id)) {
+      saveFavs(favs.filter((item) => item.id !== id));
+      showMessage(`«${name}» удалён из избранного`);
+    } else {
+      favs.push({ id, name, category, price: Number(price) });
+      saveFavs(favs);
+      showMessage(`«${name}» добавлен в избранное`);
+    }
+  });
+});
+
+if (favFilter) {
+  favFilter.addEventListener('click', () => {
+    const pressed = favFilter.getAttribute('aria-pressed') === 'true';
+    favFilter.setAttribute('aria-pressed', String(!pressed));
+    applyFavFilter();
+  });
+  // ссылка catalog.html#favorites сразу включает фильтр
+  if (window.location.hash === '#favorites') favFilter.setAttribute('aria-pressed', 'true');
+}
+
+updateFavs();

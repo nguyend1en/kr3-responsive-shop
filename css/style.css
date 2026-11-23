@@ -1157,6 +1157,71 @@ main:focus {
   background-color: var(--color-surface-2);
 }
 
+/* Сравнение плат на телефоне — карточки вместо широкой таблицы.
+   Каждая строка таблицы становится карточкой, а подпись столбца
+   берётся из data-label ячейки. С 600px — обычная таблица (responsive.css). */
+.data-table--cards {
+  min-width: 0;
+}
+
+.data-table--cards thead {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.data-table--cards tbody,
+.data-table--cards .data-table__row,
+.data-table--cards .data-table__row-head,
+.data-table--cards .data-table__cell {
+  display: block;
+}
+
+.data-table--cards tbody {
+  display: grid;
+  gap: var(--space-sm);
+  padding: 0 var(--space-md) var(--space-md);
+}
+
+.data-table--cards .data-table__row {
+  padding: var(--space-md);
+  background-color: var(--color-bg-soft);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+}
+
+.data-table--compare.data-table--cards .data-table__row-head {
+  position: static;
+  padding: 0 0 var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background: none;
+  border-top: 0;
+  box-shadow: none;
+}
+
+.data-table--cards .data-table__cell {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-sm) 0;
+  text-align: right;
+}
+
+.data-table--cards .data-table__cell::before {
+  content: attr(data-label);
+  flex-shrink: 0;
+  font-weight: 600;
+  text-align: left;
+  color: var(--color-muted);
+}
+
 .table-hint {
   margin: 0 0 var(--space-sm);
   font-family: var(--font-mono);
@@ -2210,21 +2275,21 @@ main:focus {
 
 .js .chat {
   position: fixed;
-  right: var(--space-md);
-  bottom: var(--space-md);
+  left: var(--space-md);
+  bottom: 88px; /* чат слева и выше нижнего края, кнопка «Наверх» справа */
   z-index: 50;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: var(--space-sm);
 }
 
 .js .to-top {
-  bottom: 84px;
+  bottom: var(--space-md);
 }
 
 .js .success-message {
-  bottom: 156px;
+  bottom: 84px;
 }
 
 .chat__toggle {
@@ -2255,7 +2320,7 @@ main:focus {
   display: flex;
   flex-direction: column;
   width: min(360px, calc(100vw - 2 * var(--space-md)));
-  height: min(480px, calc(100vh - 110px));
+  height: min(480px, calc(100vh - 180px));
   overflow: hidden;
   background-color: var(--color-surface);
   border: 1px solid var(--color-line-strong);
@@ -3182,24 +3247,6 @@ main:focus {
   box-shadow: 0 0 8px currentColor;
 }
 
-.payments {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.payments__item {
-  padding: 4px 10px;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--color-text);
-  border: 1px solid var(--color-line-strong);
-  border-radius: 6px;
-}
-
 .site-footer__copy {
   font-family: var(--font-mono);
   font-size: 0.78rem;
@@ -3320,4 +3367,228 @@ html:not(.js) .to-top,
 
 .to-top:focus-visible {
   border-radius: var(--radius-md);
+}
+
+/* ===== 29. Избранное ===== */
+/* сердечко на карточке — появляется только с JavaScript */
+.product-card__fav {
+  display: none;
+}
+
+.js .product-card__fav {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--color-text);
+  background-color: rgba(7, 9, 13, 0.75);
+  border: 1px solid var(--color-line-strong);
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition: color 0.2s ease, border-color 0.2s ease, transform 0.25s var(--ease);
+}
+
+.product-card__fav-icon,
+.catalog__fav-filter svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+
+.js .product-card__fav:hover {
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+  transform: scale(1.08);
+}
+
+.js .product-card__fav[aria-pressed="true"] {
+  color: var(--color-danger);
+  border-color: rgba(255, 122, 122, 0.6);
+}
+
+.product-card__fav[aria-pressed="true"] .product-card__fav-icon {
+  fill: currentColor;
+}
+
+.product-card[hidden] {
+  display: none;
+}
+
+/* фильтр «Только избранное» в каталоге */
+.catalog__fav-filter {
+  display: none;
+}
+
+.js .catalog__fav-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  min-height: 44px;
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line-strong);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.js .catalog__fav-filter:hover,
+.js .catalog__fav-filter[aria-pressed="true"] {
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.catalog__fav-filter[aria-pressed="true"] svg {
+  fill: currentColor;
+}
+
+.catalog__fav-count {
+  min-width: 22px;
+  padding: 0 6px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  line-height: 22px;
+  text-align: center;
+  color: var(--color-text);
+  background-color: var(--color-surface-2);
+  border-radius: var(--radius-pill);
+}
+
+.catalog__empty,
+.favorites__empty {
+  margin: 0 0 var(--space-lg);
+  padding: var(--space-lg);
+  color: var(--color-muted);
+  text-align: center;
+  background-color: var(--color-surface);
+  border: 1px dashed var(--color-line-strong);
+  border-radius: var(--radius-lg);
+}
+
+.catalog__empty[hidden],
+.favorites__empty[hidden] {
+  display: none;
+}
+
+/* список избранного в личном кабинете */
+.favorites__list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.favorites__list:empty {
+  display: none;
+}
+
+.favorite-item {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.favorite-item__image {
+  width: 88px;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+}
+
+.favorite-item__category {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.favorite-item__title {
+  margin: 2px 0;
+  font-size: 1rem;
+}
+
+.favorite-item__link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.favorite-item__link:hover {
+  color: var(--color-accent);
+}
+
+.favorite-item__price {
+  margin: 0;
+  font-weight: 700;
+}
+
+.favorite-item__remove {
+  grid-column: 1 / -1;
+  justify-self: start;
+  min-height: 44px;
+  padding: 8px 0;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.favorite-item__remove:hover {
+  color: var(--color-danger);
+}
+
+/* ===== 30. Подвал: соцсети в колонке «Контакты» ===== */
+.site-footer__socials {
+  margin-top: var(--space-lg);
+}
+
+/* ===== 31. Контакты: карта во всю ширину ===== */
+.map-block--wide {
+  margin-bottom: var(--space-xl);
+}
+
+.map-block--wide .map-block__frame {
+  aspect-ratio: 4 / 3;
+}
+
+.route-block .route__step {
+  padding: var(--space-md) var(--space-md) var(--space-md) 64px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.route-block .route__step::before {
+  top: var(--space-md);
+  left: var(--space-md);
+}
+
+.route-block .route__step strong {
+  display: block;
+  margin-bottom: 2px;
 }
